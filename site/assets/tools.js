@@ -1,4 +1,4 @@
-// Filesmith web tools. Every job runs inside the visitor's browser (JavaScript + WebAssembly).
+// Fileshaper web tools. Every job runs inside the visitor's browser (JavaScript + WebAssembly).
 // Files are read from the device and results are handed back as downloads. Nothing is uploaded.
 const BASE = new URL('.', import.meta.url).href; // the site root (tools.js lives there)
 const V = (p) => new URL(`vendor/${p}`, BASE).href;
@@ -39,7 +39,7 @@ function shell(root, cfg) {
   <div class="wt-run"><button class="btn btn-primary" disabled>${esc(cfg.action)}</button><span class="wt-status" role="status"></span></div>
   <div class="wt-bar"><i></i></div>
   <div class="wt-out"></div>
-  <p class="wt-app">${esc(cfg.appNote || 'Big files or hundreds at once? The free app is much faster.')} <a href="${new URL('download.html', BASE).href}">Get Filesmith</a></p>`;
+  <p class="wt-app">${esc(cfg.appNote || 'Big files or hundreds at once? The free app is much faster.')} <a href="${new URL('download.html', BASE).href}">Get Fileshaper</a></p>`;
   const st = { files: [], opts: { ...(cfg.defaults || {}) }, busy: false };
   const input = root.querySelector('input');
   const drop = root.querySelector('.wt-drop');

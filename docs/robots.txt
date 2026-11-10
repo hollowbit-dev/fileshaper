@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hollowbit-dev.github.io/filesmith/sitemap.xml
+Sitemap: https://hollowbit-dev.github.io/fileshaper/sitemap.xml

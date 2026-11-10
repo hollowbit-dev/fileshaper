@@ -1,7 +1,7 @@
 {
   "lang": "English",
   "meta": {
-    "description": "Filesmith is a free, offline app for Windows and Mac. Compress videos for Discord, convert iPhone photos, merge and sign PDFs. Nothing is uploaded."
+    "description": "Fileshaper is a free, offline app for Windows and Mac. Compress videos for Discord, convert iPhone photos, merge and sign PDFs. Nothing is uploaded."
   },
   "nav": {
     "features": "Features",
@@ -24,7 +24,7 @@
     "github": "GitHub",
     "about": "About",
     "made": "Made by Elvis Zygmanta at Hollowbit.",
-    "legal": "© 2026 Hollowbit. Filesmith is free software under the GPL-3.0 licence.",
+    "legal": "© 2026 Hollowbit. Fileshaper is free software under the GPL-3.0 licence.",
     "guides": "Guides"
   },
   "common": {
@@ -38,9 +38,9 @@
     "intel": "Mac with Intel, or need help? See the download page."
   },
   "home": {
-    "title": "Filesmith: fix any file, privately",
+    "title": "Fileshaper: fix any file, privately",
     "h1": "Fix any file. Nothing leaves your computer.",
-    "lead": "Compress videos for Discord, turn iPhone photos into JPGs, merge and sign PDFs. Filesmith does it on your own computer. Free, no account, no limits.",
+    "lead": "Compress videos for Discord, turn iPhone photos into JPGs, merge and sign PDFs. Fileshaper does it on your own computer. Free, no account, no limits.",
     "demo_label": "Live demo of the command field",
     "demo_queries": [
       "compress for discord",
@@ -72,7 +72,7 @@
     "tools_h2": "One app instead of forty websites.",
     "tools_p": "The file jobs people search for every week, in one place that works with the Wi-Fi off.",
     "proof_h2": "Measured, not promised.",
-    "proof_note": "Results from Filesmith's own test files.",
+    "proof_note": "Results from Fileshaper's own test files.",
     "proof": [
       {
         "n": "149 MB → 9.1 MB",
@@ -88,7 +88,7 @@
       }
     ],
     "privacy_h2": "Your files stay yours.",
-    "privacy_p": "Online converters make you upload contracts, ID scans and private photos to servers you know nothing about. Filesmith has no servers. It can't see your files, because they never leave your computer.",
+    "privacy_p": "Online converters make you upload contracts, ID scans and private photos to servers you know nothing about. Fileshaper has no servers. It can't see your files, because they never leave your computer.",
     "facts": [
       {
         "t": "No uploads",
@@ -113,7 +113,7 @@
   "families": {
     "video": {
       "name": "Video",
-      "blurb": "Pick a size limit and Filesmith lands just under it, every time.",
+      "blurb": "Pick a size limit and Fileshaper lands just under it, every time.",
       "items": [
         [
           "Compress to a size",
@@ -214,13 +214,13 @@
   },
   "features": {
     "title": "Features",
-    "h1": "Everything Filesmith can do.",
+    "h1": "Everything Fileshaper can do.",
     "lead": "Eighteen tools for video, images, PDF and audio. Each one is a plain choice like “under 10 MB” or “to JPG”, never a page of settings.",
     "everywhere_h2": "In every tool",
     "everywhere": [
       [
         "Drop anything",
-        "Drag files anywhere onto the window. Filesmith sorts videos, photos, PDFs and audio for you."
+        "Drag files anywhere onto the window. Fileshaper sorts videos, photos, PDFs and audio for you."
       ],
       [
         "Command bar",
@@ -246,7 +246,7 @@
   },
   "download": {
     "title": "Download",
-    "h1": "Download Filesmith.",
+    "h1": "Download Fileshaper.",
     "lead": "Free, with no account. Pick your computer.",
     "win": "Windows",
     "win_req": "Windows 10 or 11, 64-bit",
@@ -257,15 +257,15 @@
     "mac_intel": "Intel",
     "which_mac": "Not sure which Mac you have? Open the Apple menu, then About This Mac. “Apple M1”, M2, M3 or M4 means Apple Silicon.",
     "first_h2": "Opening it the first time",
-    "first_p": "Filesmith is new and isn't signed with a paid developer certificate yet, so your computer shows a warning the first time. This is how to open it safely.",
+    "first_p": "Fileshaper is new and isn't signed with a paid developer certificate yet, so your computer shows a warning the first time. This is how to open it safely.",
     "first_win": [
       "Run the installer you downloaded.",
       "If you see “Windows protected your PC”, click More info.",
       "Click Run anyway. You only do this once."
     ],
     "first_mac": [
-      "Open the .dmg and drag Filesmith into Applications.",
-      "Right-click Filesmith in Applications and choose Open.",
+      "Open the .dmg and drag Fileshaper into Applications.",
+      "Right-click Fileshaper in Applications and choose Open.",
       "Click Open. If macOS still blocks it, go to System Settings, Privacy & Security, and click Open Anyway."
     ],
     "req_h2": "Requirements",
@@ -290,15 +290,24 @@
   "changelog": {
     "title": "Changelog",
     "h1": "Changelog",
-    "lead": "Every release of Filesmith, newest first.",
+    "lead": "Every release of Fileshaper, newest first.",
     "entries": [
+      {
+        "v": "1.2.0",
+        "date": "11 November 2026",
+        "name": "Filesmith is now Fileshaper",
+        "items": [
+          "New name: Filesmith is now Fileshaper. Another product already used the old name, so this one is unmistakably yours. Your settings and history carry over.",
+          "Free online tools on the website: convert HEIC to JPG, compress images, merge, sign, split and compress PDFs, compress videos and make GIFs right in your browser. Nothing is uploaded."
+        ]
+      },
       {
         "v": "1.1.0",
         "date": "11 November 2026",
         "name": "Six languages, right-click and updates",
         "items": [
           "The app is now in English, Spanish, French, German, Russian and Chinese.",
-          "Right-click any file and choose Open with Filesmith (Windows), or Open With, Filesmith (Mac).",
+          "Right-click any file and choose Open with Fileshaper (Windows), or Open With, Fileshaper (Mac).",
           "Automatic updates: Windows installs new versions on its own; Mac shows a notice with a download link. You can turn update checks off in Settings.",
           "Smoother motion: sliding controls, finished files flash and check off.",
           "Licence and third-party notices are included in the app."
@@ -324,11 +333,11 @@
     "title": "Privacy policy",
     "h1": "Privacy policy",
     "updated": "Last updated 11 November 2026",
-    "short": "The short version: Filesmith collects nothing. Your files never leave your computer.",
+    "short": "The short version: Fileshaper collects nothing. Your files never leave your computer.",
     "sections": [
       [
         "The app",
-        "Filesmith processes every file on your own computer. It has no account, no analytics and sends no crash reports. The only network request is an optional update check: once a day it asks GitHub for the latest version number, and sends nothing about you or your files. You can turn it off in Settings. Your settings and the list of files you've made are stored on your computer, and you can clear the history at any time."
+        "Fileshaper processes every file on your own computer. It has no account, no analytics and sends no crash reports. The only network request is an optional update check: once a day it asks GitHub for the latest version number, and sends nothing about you or your files. You can turn it off in Settings. Your settings and the list of files you've made are stored on your computer, and you can clear the history at any time."
       ],
       [
         "This website",
@@ -336,7 +345,7 @@
       ],
       [
         "Tips",
-        "If you leave a tip on Ko-fi, Ko-fi handles the payment under its own privacy policy. Filesmith never sees your payment details."
+        "If you leave a tip on Ko-fi, Ko-fi handles the payment under its own privacy policy. Fileshaper never sees your payment details."
       ],
       [
         "Contact",
@@ -349,16 +358,16 @@
     "h1": "Questions and answers",
     "items": [
       [
-        "Is Filesmith really free?",
+        "Is Fileshaper really free?",
         "Yes. There's no trial, no limit and no watermark. It's open source. If you'd like to support it, there's a tip jar, but you never need to use it."
       ],
       [
         "Is it safe?",
-        "Filesmith only reads the files you give it and saves new copies next to them. It never changes or deletes your originals and never connects to the internet. All of the code is public on GitHub."
+        "Fileshaper only reads the files you give it and saves new copies next to them. It never changes or deletes your originals and never connects to the internet. All of the code is public on GitHub."
       ],
       [
         "Why does my computer warn me when I open it?",
-        "Windows and macOS warn about apps that aren't signed with a paid developer certificate, which costs about $100 to $300 a year. Filesmith is new and independent, so it isn't signed yet. The download page shows how to open it."
+        "Windows and macOS warn about apps that aren't signed with a paid developer certificate, which costs about $100 to $300 a year. Fileshaper is new and independent, so it isn't signed yet. The download page shows how to open it."
       ],
       [
         "Which files can it open?",
@@ -366,11 +375,11 @@
       ],
       [
         "How does “under 10 MB” always land under 10 MB?",
-        "Filesmith measures the video's length, works out exactly how much data fits in your limit, then encodes twice: once to study the video and once to spend the data where it matters. Long videos drop to a lower resolution so they still look clean."
+        "Fileshaper measures the video's length, works out exactly how much data fits in your limit, then encodes twice: once to study the video and once to spend the data where it matters. Long videos drop to a lower resolution so they still look clean."
       ],
       [
         "Does it work without the internet?",
-        "Yes. Filesmith never needs the internet, not even to start."
+        "Yes. Fileshaper never needs the internet, not even to start."
       ],
       [
         "Who made this?",
@@ -382,10 +391,10 @@
     "title": "About",
     "h1": "Hi, I'm Elvis.",
     "lead": "I'm Elvis Zygmanta, and Hollowbit is my studio for small, free tools that do one job well and treat the people using them with respect.",
-    "why_h2": "Why Filesmith exists",
+    "why_h2": "Why Fileshaper exists",
     "why": [
       "Shrinking a video for Discord, opening an iPhone photo on Windows, signing a PDF: almost everyone has to do these things. The usual answer is a website that wants you to upload your files, wait in a queue and pay to remove a watermark.",
-      "That felt wrong for jobs a normal computer can do in seconds. Filesmith is the answer: one app for video, images, PDF and audio that runs entirely on your own computer.",
+      "That felt wrong for jobs a normal computer can do in seconds. Fileshaper is the answer: one app for video, images, PDF and audio that runs entirely on your own computer.",
       "It ships with installers for Windows and Mac, this website, and 21 automated tests that drive the real app to check every tool works."
     ],
     "rules_h2": "What Hollowbit sticks to",
@@ -440,10 +449,10 @@
     "title": "Support",
     "h1": "Support",
     "help_h2": "Get help",
-    "help_p": "Found a bug or something not working? Open an issue on GitHub. Say which computer you're on, which version of Filesmith, and what you tried.",
+    "help_p": "Found a bug or something not working? Open an issue on GitHub. Say which computer you're on, which version of Fileshaper, and what you tried.",
     "help_btn": "Open an issue",
     "give_h2": "Support the project",
-    "give_p": "Filesmith is free and stays free. A tip helps pay for the code-signing certificates that make the security warnings go away.",
+    "give_p": "Fileshaper is free and stays free. A tip helps pay for the code-signing certificates that make the security warnings go away.",
     "tip_btn": "Buy me a coffee",
     "star_btn": "Star on GitHub"
   },

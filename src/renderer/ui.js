@@ -121,7 +121,7 @@ export function makeSortable(container, selector, arr, onChange) {
   let from = -1;
   container.querySelectorAll(selector).forEach((node, i) => {
     node.draggable = true;
-    node.addEventListener('dragstart', (e) => { from = i; node.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/filesmith-sort', '1'); });
+    node.addEventListener('dragstart', (e) => { from = i; node.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/fileshaper-sort', '1'); });
     node.addEventListener('dragend', () => { node.classList.remove('dragging'); container.querySelectorAll('.over').forEach((n) => n.classList.remove('over')); });
     node.addEventListener('dragover', (e) => { if (from < 0) return; e.preventDefault(); e.stopPropagation(); node.classList.add('over'); });
     node.addEventListener('dragleave', () => node.classList.remove('over'));

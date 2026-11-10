@@ -6,7 +6,7 @@ import path from 'path';
 const rootDir = path.resolve('docs');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.webp': 'image/webp', '.png': 'image/png', '.woff2': 'font/woff2', '.mjs': 'text/javascript', '.wasm': 'application/wasm' };
 const server = http.createServer((req, res) => {
-  let p = decodeURIComponent(req.url.split('?')[0]).replace(/^\/filesmith/, '');
+  let p = decodeURIComponent(req.url.split('?')[0]).replace(/^\/fileshaper/, '');
   if (p.endsWith('/')) p += 'index.html';
   const f = path.join(rootDir, p);
   if (!fs.existsSync(f)) { res.writeHead(404); res.end(fs.readFileSync(path.join(rootDir, '404.html'))); return; }

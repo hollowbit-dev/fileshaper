@@ -28,7 +28,7 @@ for (const code of ['en', 'es', 'fr', 'de', 'ru', 'zh']) {
   .bar{height:28px;background:#19191b;display:flex;gap:7px;align-items:center;padding:0 12px}.bar i{width:10px;height:10px;border-radius:50%;background:#3a3a3e}
   .shot img{display:block;width:100%}
   </style></head><body>
-  <div class="l"><div class="brand"><img src="${img('icon-256.png')}">Filesmith</div><h1>${h1}</h1><p>${sub}</p></div>
+  <div class="l"><div class="brand"><img src="${img('icon-256.png')}">Fileshaper</div><h1>${h1}</h1><p>${sub}</p></div>
   <div class="tag"><span>${TAGS[code][0]}</span><span>Windows</span><span>macOS</span><span>${TAGS[code][1]}</span></div>
   <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="${img('video.webp')}"></div>
   </body></html>`;

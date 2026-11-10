@@ -1,4 +1,4 @@
-// Filesmith website: OS-aware download buttons, language memory, tabs, and the live command demo.
+// Fileshaper website: OS-aware download buttons, language memory, tabs, and the live command demo.
 (function () {
   const FS = window.FS || {};
   const store = {

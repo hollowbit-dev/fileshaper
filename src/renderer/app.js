@@ -1,10 +1,10 @@
-// Filesmith — the window: navigation, home, the video/image/audio tools, history, settings, support.
+// Fileshaper — the window: navigation, home, the video/image/audio tools, history, settings, support.
 import { ICON, KINDS, kindOf, extOf, baseName, fmtBytes, fmtTime, fmtAgo, esc, el, savedLabel, toast, newId, makeSortable, segIndicator } from './ui.js';
 import { renderPdf, addPdfFiles } from './pdf-tools.js';
 import { CONFIG } from './config.js';
 import { LANGS, setLang, pickLang, startTranslating, tr, currentLang } from './i18n.js';
 
-const api = window.filesmith;
+const api = window.fileshaper;
 const view = document.getElementById('view');
 
 export const S = {
@@ -59,7 +59,7 @@ const NAV = [
   { id: 'image', label: 'Images', icon: 'image', c: 'var(--image)' },
   { id: 'pdf', label: 'PDF', icon: 'pdf', c: 'var(--pdf)' },
   { id: 'audio', label: 'Audio', icon: 'audio', c: 'var(--audio)' },
-  { section: 'Filesmith' },
+  { section: 'Fileshaper' },
   { id: 'history', label: 'History', icon: 'history' },
   { id: 'settings', label: 'Settings', icon: 'settings' },
 ];
@@ -131,7 +131,7 @@ export async function addFiles(paths, preferred) {
     const k = kindOf(p);
     if (k) groups[k].push(p); else skipped.push(baseName(p));
   }
-  if (skipped.length) toast(`Filesmith can't open ${esc(skipped.slice(0, 3).join(', '))}${skipped.length > 3 ? ` and ${skipped.length - 3} more` : ''}.`, 'bad');
+  if (skipped.length) toast(`Fileshaper can't open ${esc(skipped.slice(0, 3).join(', '))}${skipped.length > 3 ? ` and ${skipped.length - 3} more` : ''}.`, 'bad');
   const order = Object.keys(groups).sort((a, b) => groups[b].length - groups[a].length);
   let target = preferred && groups[preferred]?.length ? preferred : order[0];
   if (!groups[target].length) return;
@@ -158,7 +158,7 @@ export async function addFiles(paths, preferred) {
 }
 
 async function pickFor(kind) {
-  const filters = kind ? [{ name: KINDS[kind].label, extensions: KINDS[kind].exts }] : [{ name: 'Files Filesmith can open', extensions: Object.values(KINDS).flatMap((k) => k.exts) }];
+  const filters = kind ? [{ name: KINDS[kind].label, extensions: KINDS[kind].exts }] : [{ name: 'Files Fileshaper can open', extensions: Object.values(KINDS).flatMap((k) => k.exts) }];
   const files = await api.pickFiles({ filters });
   if (files.length) addFiles(files, kind);
 }
@@ -181,7 +181,7 @@ window.addEventListener('drop', (e) => {
 
 // ---------- Home ----------
 
-// Every outcome Filesmith can do, in the words people use. Drives the home field and the Cmd/Ctrl+K palette.
+// Every outcome Fileshaper can do, in the words people use. Drives the home field and the Cmd/Ctrl+K palette.
 const setV = (a, extra) => () => { S.action.video = a; if (extra) Object.assign(S.opts.video, extra); };
 const setI = (a, extra) => () => { S.action.image = a; if (extra) Object.assign(S.opts.image, extra); };
 const setA = (a, extra) => () => { S.action.audio = a; if (extra) Object.assign(S.opts.audio, extra); };
@@ -208,7 +208,7 @@ const COMMANDS = [
   { t: 'Convert audio', d: 'MP3, M4A, WAV, FLAC', icon: 'swap', k: 'audio', kw: 'mp3 wav m4a flac ogg convert audio', set: setA('convert') },
   { t: 'Trim audio', d: 'ringtones, voice notes', icon: 'scissors', k: 'audio', kw: 'trim cut ringtone voice memo audio', set: setA('trim') },
   { t: 'Even out audio volume', d: 'quiet or loud recordings', icon: 'louder', k: 'audio', kw: 'louder volume normalize quiet loud', set: setA('normalize') },
-  { t: 'History', d: 'everything Filesmith made', icon: 'history', go: 'history', kw: 'history recent files' },
+  { t: 'History', d: 'everything Fileshaper made', icon: 'history', go: 'history', kw: 'history recent files' },
   { t: 'Settings', d: 'output folder, appearance', icon: 'settings', go: 'settings', kw: 'settings preferences folder theme dark light' },
 ];
 const HOME_DEFAULT = [0, 3, 4, 5, 7, 8];
@@ -532,7 +532,7 @@ function renderOpts(k) {
 
   if (k === 'video') {
     if (a === 'compress') {
-      html = `<h3>Compress video</h3><p class="hint">Pick a size limit and Filesmith squeezes each video just under it.</p>
+      html = `<h3>Compress video</h3><p class="hint">Pick a size limit and Fileshaper squeezes each video just under it.</p>
         <div class="field"><span class="field-label">Aim for</span>${chips('mode', k, [['size', 'A file size'], ['quality', 'A quality level']], o.mode)}</div>
         ${o.mode === 'size' ? `
           <div class="field"><span class="field-label">Size limit</span>${chips('targetMB', k, [[8, '8 MB'], [10, '10 MB', 'Discord'], [16, '16 MB', 'WhatsApp'], [25, '25 MB', 'Email'], [50, '50 MB']], o.targetMB)}</div>
@@ -721,7 +721,7 @@ api.onProgress(({ jobId, pct }) => {
 
 function renderHistory() {
   view.innerHTML = `<div class="page">
-    <div class="page-head"><div><h1>History</h1><p class="sub">Everything Filesmith made for you. Kept only on this computer.</p></div>
+    <div class="page-head"><div><h1>History</h1><p class="sub">Everything Fileshaper made for you. Kept only on this computer.</p></div>
       ${S.history.length ? '<button class="btn" id="clear-h">Clear history</button>' : ''}</div>
     <div class="card" style="max-width:1100px">${S.history.length ? S.history.map(historyRow).join('') : '<div class="empty">Nothing yet. Drop a file to get started.</div>'}</div>
   </div>`;
@@ -735,7 +735,7 @@ function renderHistory() {
 function renderSettings() {
   const st = S.settings;
   view.innerHTML = `<div class="page">
-    <div class="page-head"><div><h1>Settings</h1><p class="sub">Filesmith works offline and never collects data.</p></div></div>
+    <div class="page-head"><div><h1>Settings</h1><p class="sub">Fileshaper works offline and never collects data.</p></div></div>
     <div class="group">
       <div class="set-row"><div><div class="t">Where to save</div><div class="meta">${st.outDir ? `<span class="mono">${esc(st.outDir)}</span>` : 'Next to the original file'}</div></div>
         <div class="row">${st.outDir ? '<button class="btn sm ghost" id="reset-dir">Use original folder</button>' : ''}<button class="btn sm" id="pick-dir">Choose folder…</button></div></div>
@@ -743,14 +743,14 @@ function renderSettings() {
         <label class="switch"><input type="checkbox" id="open-done" ${st.openFolderWhenDone ? 'checked' : ''}><span></span></label></div>
       <div class="set-row"><div><div class="t">Language</div></div>
         <select id="lang" style="width:auto;min-width:160px" data-no-i18n>${[['auto', tr('Automatic')], ...Object.entries(LANGS)].map(([v, l]) => `<option value="${v}" ${(st.lang || 'auto') === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
-      <div class="set-row"><div><div class="t">Check for updates</div><div class="meta" style="white-space:normal">Once a day, Filesmith asks GitHub for the latest version number. Nothing about you or your files is sent.</div><div class="meta" id="upd-msg"></div></div>
+      <div class="set-row"><div><div class="t">Check for updates</div><div class="meta" style="white-space:normal">Once a day, Fileshaper asks GitHub for the latest version number. Nothing about you or your files is sent.</div><div class="meta" id="upd-msg"></div></div>
         <div class="row"><button class="btn sm" id="upd-now">Check now</button><label class="switch"><input type="checkbox" id="auto-upd" ${st.autoUpdate !== false ? 'checked' : ''}><span></span></label></div></div>
       <div class="set-row"><div><div class="t">Appearance</div></div>
         <div class="chips" id="theme">${[['system', tr('System')], ['dark', tr('Dark')], ['light', currentLang() === 'en' ? 'Light' : tr('Light appearance')]].map(([v, l]) => `<button class="chip-opt ${st.theme === v ? 'on' : ''}" data-v="${v}" data-no-i18n>${l}</button>`).join('')}</div></div>
     </div>
     <h2>About</h2>
     <div class="group">
-      <div class="set-row"><div><div class="t">Filesmith ${esc(S.version)}</div><div class="meta">Free and open source. Uses FFmpeg, pdf-lib and PDF.js.</div></div>
+      <div class="set-row"><div><div class="t">Fileshaper ${esc(S.version)}</div><div class="meta">Free and open source. Uses FFmpeg, pdf-lib and PDF.js.</div></div>
         <div class="row"><button class="btn sm" id="licences">Licences</button><button class="btn sm" data-href="${CONFIG.github}">${ICON.github} GitHub</button></div></div>
       <div class="set-row"><div><div class="t">Made by ${esc(CONFIG.author)} · ${esc(CONFIG.studio)}</div><div class="meta">${esc(CONFIG.studio)} makes tools with no ads, no accounts and no tracking. Found a bug or have an idea? Open an issue on GitHub.</div></div>
         <button class="btn sm" data-href="${CONFIG.website}">Website</button></div>
@@ -784,12 +784,12 @@ function renderSettings() {
 function renderSupport() {
   const hasCrypto = CONFIG.crypto && CONFIG.crypto.address;
   view.innerHTML = `<div class="page">
-    <div class="page-head"><div><h1>Support Filesmith</h1></div></div>
-    <p class="support-lead">Filesmith is free and stays free: no ads, no limits, no account, no uploads. If it saved you from a converter website, a tip helps pay for the code-signing certificates that make the security warnings go away.</p>
+    <div class="page-head"><div><h1>Support Fileshaper</h1></div></div>
+    <p class="support-lead">Fileshaper is free and stays free: no ads, no limits, no account, no uploads. If it saved you from a converter website, a tip helps pay for the code-signing certificates that make the security warnings go away.</p>
     <div class="group">
       <div class="set-row"><div><div class="t">Leave a tip on ${esc(CONFIG.tipName)}</div><div class="meta">Card, Apple Pay or PayPal. Takes about 20 seconds.</div></div>
         <button class="btn primary" data-href="${CONFIG.tipUrl}">${ICON.coffee}Buy me a coffee</button></div>
-      <div class="set-row"><div><div class="t">Star it on GitHub</div><div class="meta">Free, and it helps other people find Filesmith.</div></div>
+      <div class="set-row"><div><div class="t">Star it on GitHub</div><div class="meta">Free, and it helps other people find Fileshaper.</div></div>
         <button class="btn" data-href="${CONFIG.github}">${ICON.github}Open GitHub</button></div>
       ${hasCrypto ? `<div class="set-row"><div class="grow"><div class="t">Crypto</div><div class="meta">${esc(CONFIG.crypto.label)}. Check the network before sending.</div><div class="addr">${esc(CONFIG.crypto.address)}</div></div>
         <button class="btn" id="copy-addr">${ICON.copy}Copy</button></div>` : ''}
@@ -826,4 +826,4 @@ function showUpdate(st) {
 })();
 
 // Hook for automated tests (test/e2e.mjs).
-window.__filesmithTest = { addFiles, go, S };
+window.__fileshaperTest = { addFiles, go, S };

@@ -1,5 +1,5 @@
-// Filesmith — main process. Window, local file serving, and the ffmpeg/HEIC jobs.
-// Everything runs on this computer. Filesmith makes no network requests.
+// Fileshaper — main process. Window, local file serving, and the ffmpeg/HEIC jobs.
+// Everything runs on this computer. Fileshaper makes no network requests.
 const { app, BrowserWindow, ipcMain, dialog, shell, protocol, nativeTheme, net } = require('electron');
 const path = require('path');
 const fs = require('fs');
@@ -12,7 +12,7 @@ const isMac = process.platform === 'darwin';
 const appRoot = path.join(__dirname, '..');
 
 protocol.registerSchemesAsPrivileged([{
-  scheme: 'filesmith',
+  scheme: 'fileshaper',
   privileges: { standard: true, secure: true, supportFetchAPI: true, stream: true, corsEnabled: true },
 }]);
 
@@ -52,9 +52,9 @@ function serveFile(file, request) {
 }
 
 function registerProtocol() {
-  // filesmith://app/<path>   -> Filesmith's own files
-  // filesmith://file/<path>  -> a file the user dropped in (URL-encoded absolute path)
-  protocol.handle('filesmith', (request) => {
+  // fileshaper://app/<path>   -> Fileshaper's own files
+  // fileshaper://file/<path>  -> a file the user dropped in (URL-encoded absolute path)
+  protocol.handle('fileshaper', (request) => {
     const url = new URL(request.url);
     if (url.host === 'app') {
       const p = path.normalize(path.join(appRoot, decodeURIComponent(url.pathname)));
@@ -93,7 +93,7 @@ function createWindow() {
     height: 800,
     minWidth: 900,
     minHeight: 600,
-    title: 'Filesmith',
+    title: 'Fileshaper',
     // A transparent window lets the sidebar show the system material (macOS vibrancy, Windows 11 Mica).
     backgroundColor: isMac || isWin11 ? '#00000000' : chromeColors().bg,
     ...(isMac ? { vibrancy: 'sidebar', visualEffectState: 'followWindow' } : {}),
@@ -114,14 +114,14 @@ function createWindow() {
   const sendFs = () => { if (!win.isDestroyed()) win.webContents.send('fullscreen', win.isFullScreen()); };
   win.on('enter-full-screen', sendFs);
   win.on('leave-full-screen', sendFs);
-  win.loadURL('filesmith://app/src/renderer/index.html');
-  // Links open in the real browser, never inside Filesmith.
+  win.loadURL('fileshaper://app/src/renderer/index.html');
+  // Links open in the real browser, never inside Fileshaper.
   win.webContents.setWindowOpenHandler(({ url }) => {
     if (/^https?:/.test(url)) shell.openExternal(url);
     return { action: 'deny' };
   });
   win.webContents.on('will-navigate', (e, url) => {
-    if (!url.startsWith('filesmith://')) { e.preventDefault(); if (/^https?:/.test(url)) shell.openExternal(url); }
+    if (!url.startsWith('fileshaper://')) { e.preventDefault(); if (/^https?:/.test(url)) shell.openExternal(url); }
   });
 }
 
@@ -137,7 +137,7 @@ function outputPath(input, suffix, ext, dirOverride) {
 }
 
 function tmpFile(ext) {
-  const dir = path.join(os.tmpdir(), 'filesmith');
+  const dir = path.join(os.tmpdir(), 'fileshaper');
   fs.mkdirSync(dir, { recursive: true });
   return path.join(dir, `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`);
 }
@@ -228,9 +228,9 @@ function finishOutput(input, out) {
 
 function friendlyError(err) {
   const msg = String((err && err.message) || err);
-  if (/Invalid data found|could not find codec|Unknown format/i.test(msg)) return "Filesmith couldn't read this file. It may be damaged or in an unusual format.";
+  if (/Invalid data found|could not find codec|Unknown format/i.test(msg)) return "Fileshaper couldn't read this file. It may be damaged or in an unusual format.";
   if (/No such file/i.test(msg)) return 'The file was moved or deleted.';
-  if (/Permission denied|EACCES|EPERM/i.test(msg)) return "Filesmith isn't allowed to save in that folder. Pick another output folder in Settings.";
+  if (/Permission denied|EACCES|EPERM/i.test(msg)) return "Fileshaper isn't allowed to save in that folder. Pick another output folder in Settings.";
   if (/No space left/i.test(msg)) return 'Your disk is full.';
   return msg.split('\n').slice(-2).join(' ').slice(0, 300);
 }
@@ -389,7 +389,7 @@ async function audioJob(action, file, o, ctx) {
   return out;
 }
 
-// ---------- "Open with Filesmith" ----------
+// ---------- "Open with Fileshaper" ----------
 // Files arrive from the right-click menu, "Open With", or being dropped on the app icon.
 // They're batched for a moment so selecting 20 files opens one batch, not 20.
 let pendingOpen = [];
@@ -412,10 +412,10 @@ function flushOpen() {
 app.on('open-file', (e, file) => { e.preventDefault(); queueOpen([file]); });
 
 // ---------- Updates ----------
-// Once a day (if enabled in Settings) Filesmith asks GitHub for the latest version number.
+// Once a day (if enabled in Settings) Fileshaper asks GitHub for the latest version number.
 // Windows downloads and installs it on quit. macOS builds aren't signed, so they can't
 // replace themselves; there the app shows a notice with a link to the download page.
-const REPO = 'hollowbit-dev/filesmith';
+const REPO = 'hollowbit-dev/fileshaper';
 const newer = (a, b) => {
   const x = a.split('.').map(Number); const y = b.split('.').map(Number);
   for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); }

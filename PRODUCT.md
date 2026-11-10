@@ -14,7 +14,7 @@ Everyday people, not technical users, who hit a file chore and want it fixed qui
 
 ## Product Purpose
 
-Filesmith replaces the "upload to a converter website" habit with one free desktop app that does common video, image, PDF and audio jobs on the user's own computer. Success: the user drops a file, picks an outcome described in plain words ("under 10 MB", "to JPG", "sign here"), and gets a new file next to the original without uploading anything, creating an account or hitting a limit.
+Fileshaper replaces the "upload to a converter website" habit with one free desktop app that does common video, image, PDF and audio jobs on the user's own computer. Success: the user drops a file, picks an outcome described in plain words ("under 10 MB", "to JPG", "sign here"), and gets a new file next to the original without uploading anything, creating an account or hitting a limit.
 
 ## Positioning
 
@@ -38,7 +38,7 @@ Fully local and free with no limits: nothing is uploaded, there is no account, n
 
 ## Brand Commitments
 
-- Product name **Filesmith**; studio name **Hollowbit** ("Filesmith by Hollowbit"). Made by **Elvis Zygmanta**. Hollowbit is NOT associated with the user's other brand (Galactical Cool Tees).
+- Product name **Fileshaper**; studio name **Hollowbit** ("Fileshaper by Hollowbit"). Made by **Elvis Zygmanta**. Hollowbit is NOT associated with the user's other brand (Galactical Cool Tees).
 - Keep the **anvil-with-spark app icon** (`assets/icon.png`). Everything else about the visual look is open for replacement.
 - Hollowbit principles stated publicly: no ads, no accounts, no tracking, open source.
 - Support link: https://ko-fi.com/hollowbit. Do not publish bank details. Crypto address optional and currently empty.

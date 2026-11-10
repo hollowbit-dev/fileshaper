@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' filesmith:; img-src 'self' filesmith: blob: data:; media-src filesmith: blob:; script-src 'self' filesmith:; style-src 'self' 'unsafe-inline'; worker-src 'self' filesmith: blob:; connect-src filesmith: blob: data:; font-src 'self' filesmith: data:">
-  <title>Filesmith</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' fileshaper:; img-src 'self' fileshaper: blob: data:; media-src fileshaper: blob:; script-src 'self' fileshaper:; style-src 'self' 'unsafe-inline'; worker-src 'self' fileshaper: blob:; connect-src fileshaper: blob: data:; font-src 'self' fileshaper: data:">
+  <title>Fileshaper</title>
   <link rel="stylesheet" href="app.css">
   <script src="../../node_modules/pdf-lib/dist/pdf-lib.min.js"></script>
   <script type="module" src="app.js"></script>
@@ -15,7 +15,7 @@
       <div class="brand">
         <img src="../../assets/icon.png" alt="" class="brand-icon">
         <div>
-          <div class="brand-name">Filesmith</div>
+          <div class="brand-name">Fileshaper</div>
           <div class="brand-sub">by Hollowbit</div>
         </div>
       </div>
@@ -27,14 +27,14 @@
       <div class="side-foot">
         <button class="support-btn" data-go="support">
           <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.3-8.8-8.7C1.9 8 4 4.8 7.2 4.8c1.9 0 3.4 1 4.8 2.8 1.4-1.8 2.9-2.8 4.8-2.8 3.2 0 5.3 3.2 4 6.5C19 15.7 12 20 12 20z"/></svg>
-          Support Filesmith
+          Support Fileshaper
         </button>
         <div class="offline-pill"><span class="dot"></span>Offline. Nothing is uploaded.</div>
       </div>
     </aside>
     <main id="main"><div class="titlebar"></div><div id="view"></div></main>
   </div>
-  <div id="drop-overlay"><div class="drop-card"><div class="drop-title">Drop to open in Filesmith</div><div class="drop-sub">Video, images, PDF or audio</div></div></div>
+  <div id="drop-overlay"><div class="drop-card"><div class="drop-title">Drop to open in Fileshaper</div><div class="drop-sub">Video, images, PDF or audio</div></div></div>
   <div id="toasts" role="status" aria-live="polite"></div>
   <div id="modal-root"></div>
 </body>

@@ -1,7 +1,7 @@
 {
   "lang": "Français",
   "meta": {
-    "description": "Filesmith est une app gratuite et hors ligne pour Windows et Mac. Compressez des vidéos pour Discord, convertissez des photos d'iPhone, fusionnez et signez des PDF. Rien n'est envoyé en ligne."
+    "description": "Fileshaper est une app gratuite et hors ligne pour Windows et Mac. Compressez des vidéos pour Discord, convertissez des photos d'iPhone, fusionnez et signez des PDF. Rien n'est envoyé en ligne."
   },
   "nav": {
     "features": "Fonctions",
@@ -24,7 +24,7 @@
     "github": "GitHub",
     "about": "À propos",
     "made": "Créé par Elvis Zygmanta chez Hollowbit.",
-    "legal": "© 2026 Hollowbit. Filesmith est un logiciel libre sous licence GPL-3.0.",
+    "legal": "© 2026 Hollowbit. Fileshaper est un logiciel libre sous licence GPL-3.0.",
     "guides": "Guides (en anglais)"
   },
   "common": {
@@ -38,9 +38,9 @@
     "intel": "Mac Intel ou besoin d'aide ? Voir la page de téléchargement."
   },
   "home": {
-    "title": "Filesmith : réparez n'importe quel fichier, en privé",
+    "title": "Fileshaper : réparez n'importe quel fichier, en privé",
     "h1": "Réparez n'importe quel fichier. Rien ne quitte votre ordinateur.",
-    "lead": "Compressez des vidéos pour Discord, transformez des photos d'iPhone en JPG, fusionnez et signez des PDF. Filesmith le fait sur votre propre ordinateur. Gratuit, sans compte, sans limite.",
+    "lead": "Compressez des vidéos pour Discord, transformez des photos d'iPhone en JPG, fusionnez et signez des PDF. Fileshaper le fait sur votre propre ordinateur. Gratuit, sans compte, sans limite.",
     "demo_label": "Démonstration en direct du champ de commande",
     "demo_queries": [
       "compresser pour discord",
@@ -72,7 +72,7 @@
     "tools_h2": "Une app au lieu de quarante sites.",
     "tools_p": "Les tâches de fichiers que l'on recherche chaque semaine, au même endroit, qui fonctionne même sans Wi-Fi.",
     "proof_h2": "Mesuré, pas promis.",
-    "proof_note": "Résultats obtenus avec les fichiers de test de Filesmith.",
+    "proof_note": "Résultats obtenus avec les fichiers de test de Fileshaper.",
     "proof": [
       {
         "n": "149 Mo → 9,1 Mo",
@@ -88,7 +88,7 @@
       }
     ],
     "privacy_h2": "Vos fichiers restent à vous.",
-    "privacy_p": "Les convertisseurs en ligne vous font envoyer contrats, pièces d'identité et photos privées sur des serveurs inconnus. Filesmith n'a aucun serveur. Il ne peut pas voir vos fichiers, car ils ne quittent jamais votre ordinateur.",
+    "privacy_p": "Les convertisseurs en ligne vous font envoyer contrats, pièces d'identité et photos privées sur des serveurs inconnus. Fileshaper n'a aucun serveur. Il ne peut pas voir vos fichiers, car ils ne quittent jamais votre ordinateur.",
     "facts": [
       {
         "t": "Aucun envoi",
@@ -113,7 +113,7 @@
   "families": {
     "video": {
       "name": "Vidéo",
-      "blurb": "Choisissez une limite de taille et Filesmith tombe juste en dessous, à chaque fois.",
+      "blurb": "Choisissez une limite de taille et Fileshaper tombe juste en dessous, à chaque fois.",
       "items": [
         [
           "Compresser à une taille",
@@ -214,13 +214,13 @@
   },
   "features": {
     "title": "Fonctions",
-    "h1": "Tout ce que fait Filesmith.",
+    "h1": "Tout ce que fait Fileshaper.",
     "lead": "Dix-huit outils pour la vidéo, les images, les PDF et l'audio. Chacun est un choix simple comme « moins de 10 Mo » ou « en JPG », jamais une page de réglages.",
     "everywhere_h2": "Dans chaque outil",
     "everywhere": [
       [
         "Déposez n'importe quoi",
-        "Glissez des fichiers n'importe où sur la fenêtre. Filesmith trie vidéos, photos, PDF et audio pour vous."
+        "Glissez des fichiers n'importe où sur la fenêtre. Fileshaper trie vidéos, photos, PDF et audio pour vous."
       ],
       [
         "Barre de commande",
@@ -246,7 +246,7 @@
   },
   "download": {
     "title": "Télécharger",
-    "h1": "Téléchargez Filesmith.",
+    "h1": "Téléchargez Fileshaper.",
     "lead": "Gratuit, sans compte. Choisissez votre ordinateur.",
     "win": "Windows",
     "win_req": "Windows 10 ou 11, 64 bits",
@@ -257,15 +257,15 @@
     "mac_intel": "Intel",
     "which_mac": "Vous ne savez pas quel Mac vous avez ? Ouvrez le menu Pomme, puis À propos de ce Mac. « Apple M1 », M2, M3 ou M4 signifie Apple Silicon.",
     "first_h2": "La première ouverture",
-    "first_p": "Filesmith est récent et pas encore signé avec un certificat de développeur payant, donc votre ordinateur affiche un avertissement la première fois. Voici comment l'ouvrir en toute sécurité.",
+    "first_p": "Fileshaper est récent et pas encore signé avec un certificat de développeur payant, donc votre ordinateur affiche un avertissement la première fois. Voici comment l'ouvrir en toute sécurité.",
     "first_win": [
       "Lancez le programme d'installation téléchargé.",
       "Si « Windows a protégé votre ordinateur » apparaît, cliquez sur Informations complémentaires.",
       "Cliquez sur Exécuter quand même. C'est à faire une seule fois."
     ],
     "first_mac": [
-      "Ouvrez le .dmg et faites glisser Filesmith dans Applications.",
-      "Faites un clic droit sur Filesmith dans Applications et choisissez Ouvrir.",
+      "Ouvrez le .dmg et faites glisser Fileshaper dans Applications.",
+      "Faites un clic droit sur Fileshaper dans Applications et choisissez Ouvrir.",
       "Cliquez sur Ouvrir. Si macOS bloque encore, allez dans Réglages Système, Confidentialité et sécurité, puis Ouvrir quand même."
     ],
     "req_h2": "Configuration requise",
@@ -290,15 +290,24 @@
   "changelog": {
     "title": "Nouveautés",
     "h1": "Nouveautés",
-    "lead": "Toutes les versions de Filesmith, de la plus récente à la plus ancienne.",
+    "lead": "Toutes les versions de Fileshaper, de la plus récente à la plus ancienne.",
     "entries": [
+      {
+        "v": "1.2.0",
+        "date": "11 novembre 2026",
+        "name": "Filesmith devient Fileshaper",
+        "items": [
+          "Nouveau nom : Filesmith devient Fileshaper. Un autre produit utilisait déjà l'ancien nom. Vos réglages et votre historique sont conservés.",
+          "Outils en ligne gratuits sur le site : HEIC en JPG, compression d'images, fusion, signature, division et compression de PDF, compression de vidéos et GIF, directement dans votre navigateur. Rien n'est envoyé."
+        ]
+      },
       {
         "v": "1.1.0",
         "date": "11 novembre 2026",
         "name": "Six langues, clic droit et mises à jour",
         "items": [
           "L'app existe maintenant en anglais, espagnol, français, allemand, russe et chinois.",
-          "Faites un clic droit sur un fichier et choisissez Ouvrir avec Filesmith (Windows) ou Ouvrir avec, Filesmith (Mac).",
+          "Faites un clic droit sur un fichier et choisissez Ouvrir avec Fileshaper (Windows) ou Ouvrir avec, Fileshaper (Mac).",
           "Mises à jour automatiques : Windows installe seul les nouvelles versions ; sur Mac, une notification propose le téléchargement. Désactivable dans les Réglages.",
           "Animations plus fluides : contrôles qui glissent, fichiers terminés cochés.",
           "La licence et les mentions des logiciels tiers sont incluses."
@@ -324,11 +333,11 @@
     "title": "Politique de confidentialité",
     "h1": "Politique de confidentialité",
     "updated": "Dernière mise à jour : 11 novembre 2026",
-    "short": "En bref : Filesmith ne collecte rien. Vos fichiers ne quittent jamais votre ordinateur.",
+    "short": "En bref : Fileshaper ne collecte rien. Vos fichiers ne quittent jamais votre ordinateur.",
     "sections": [
       [
         "L'app",
-        "Filesmith traite chaque fichier sur votre propre ordinateur. Il n'a ni compte ni statistiques et n'envoie aucun rapport de plantage. La seule connexion est une vérification facultative des mises à jour : une fois par jour, il demande à GitHub le numéro de la dernière version, sans rien envoyer sur vous ou vos fichiers. Vous pouvez la désactiver dans les Réglages. Vos réglages et la liste des fichiers créés restent sur votre ordinateur, et vous pouvez effacer l'historique à tout moment."
+        "Fileshaper traite chaque fichier sur votre propre ordinateur. Il n'a ni compte ni statistiques et n'envoie aucun rapport de plantage. La seule connexion est une vérification facultative des mises à jour : une fois par jour, il demande à GitHub le numéro de la dernière version, sans rien envoyer sur vous ou vos fichiers. Vous pouvez la désactiver dans les Réglages. Vos réglages et la liste des fichiers créés restent sur votre ordinateur, et vous pouvez effacer l'historique à tout moment."
       ],
       [
         "Ce site",
@@ -336,7 +345,7 @@
       ],
       [
         "Pourboires",
-        "Si vous laissez un pourboire sur Ko-fi, Ko-fi gère le paiement selon sa propre politique de confidentialité. Filesmith ne voit jamais vos données de paiement."
+        "Si vous laissez un pourboire sur Ko-fi, Ko-fi gère le paiement selon sa propre politique de confidentialité. Fileshaper ne voit jamais vos données de paiement."
       ],
       [
         "Contact",
@@ -349,16 +358,16 @@
     "h1": "Questions et réponses",
     "items": [
       [
-        "Filesmith est-il vraiment gratuit ?",
+        "Fileshaper est-il vraiment gratuit ?",
         "Oui. Pas d'essai, pas de limite, pas de filigrane. C'est open source. Pour le soutenir, il y a une cagnotte, mais elle n'est jamais obligatoire."
       ],
       [
         "Est-ce sûr ?",
-        "Filesmith lit uniquement les fichiers que vous lui donnez et enregistre de nouvelles copies à côté. Il ne modifie ni ne supprime jamais vos originaux et ne se connecte jamais à internet. Tout le code est public sur GitHub."
+        "Fileshaper lit uniquement les fichiers que vous lui donnez et enregistre de nouvelles copies à côté. Il ne modifie ni ne supprime jamais vos originaux et ne se connecte jamais à internet. Tout le code est public sur GitHub."
       ],
       [
         "Pourquoi mon ordinateur m'avertit-il à l'ouverture ?",
-        "Windows et macOS avertissent pour les apps qui ne sont pas signées avec un certificat de développeur payant, qui coûte entre 100 et 300 dollars par an. Filesmith est récent et indépendant, il n'est donc pas encore signé. La page de téléchargement explique comment l'ouvrir."
+        "Windows et macOS avertissent pour les apps qui ne sont pas signées avec un certificat de développeur payant, qui coûte entre 100 et 300 dollars par an. Fileshaper est récent et indépendant, il n'est donc pas encore signé. La page de téléchargement explique comment l'ouvrir."
       ],
       [
         "Quels fichiers peut-il ouvrir ?",
@@ -366,11 +375,11 @@
       ],
       [
         "Comment « moins de 10 Mo » tombe-t-il toujours sous 10 Mo ?",
-        "Filesmith mesure la durée de la vidéo, calcule exactement combien de données tiennent dans votre limite, puis encode deux fois : une fois pour étudier la vidéo, une fois pour placer les données là où elles comptent. Les longues vidéos baissent en résolution pour rester nettes."
+        "Fileshaper mesure la durée de la vidéo, calcule exactement combien de données tiennent dans votre limite, puis encode deux fois : une fois pour étudier la vidéo, une fois pour placer les données là où elles comptent. Les longues vidéos baissent en résolution pour rester nettes."
       ],
       [
         "Fonctionne-t-il sans internet ?",
-        "Oui. Filesmith n'a jamais besoin d'internet, même pas pour démarrer."
+        "Oui. Fileshaper n'a jamais besoin d'internet, même pas pour démarrer."
       ],
       [
         "Qui l'a créé ?",
@@ -382,10 +391,10 @@
     "title": "À propos",
     "h1": "Bonjour, je suis Elvis.",
     "lead": "Je suis Elvis Zygmanta, et Hollowbit est mon studio de petits outils gratuits qui font une chose bien et respectent ceux qui les utilisent.",
-    "why_h2": "Pourquoi Filesmith existe",
+    "why_h2": "Pourquoi Fileshaper existe",
     "why": [
       "Réduire une vidéo pour Discord, ouvrir une photo d'iPhone sous Windows, signer un PDF : presque tout le monde doit le faire. La réponse habituelle, c'est un site qui vous demande d'envoyer vos fichiers, d'attendre dans une file et de payer pour retirer un filigrane.",
-      "Ça m'a semblé absurde pour des tâches qu'un ordinateur normal fait en quelques secondes. Filesmith est la réponse : une app pour la vidéo, les images, les PDF et l'audio qui tourne entièrement sur votre ordinateur.",
+      "Ça m'a semblé absurde pour des tâches qu'un ordinateur normal fait en quelques secondes. Fileshaper est la réponse : une app pour la vidéo, les images, les PDF et l'audio qui tourne entièrement sur votre ordinateur.",
       "Elle est livrée avec des programmes d'installation pour Windows et Mac, ce site et 21 tests automatisés qui pilotent la vraie app pour vérifier chaque outil."
     ],
     "rules_h2": "Les principes de Hollowbit",
@@ -440,10 +449,10 @@
     "title": "Assistance",
     "h1": "Assistance",
     "help_h2": "Obtenir de l'aide",
-    "help_p": "Un bug ou quelque chose qui ne marche pas ? Ouvrez un ticket sur GitHub. Indiquez votre ordinateur, la version de Filesmith et ce que vous avez essayé.",
+    "help_p": "Un bug ou quelque chose qui ne marche pas ? Ouvrez un ticket sur GitHub. Indiquez votre ordinateur, la version de Fileshaper et ce que vous avez essayé.",
     "help_btn": "Ouvrir un ticket",
     "give_h2": "Soutenir le projet",
-    "give_p": "Filesmith est gratuit et le restera. Un pourboire aide à payer les certificats de signature qui font disparaître les avertissements de sécurité.",
+    "give_p": "Fileshaper est gratuit et le restera. Un pourboire aide à payer les certificats de signature qui font disparaître les avertissements de sécurité.",
     "tip_btn": "Offrez-moi un café",
     "star_btn": "Mettre une étoile sur GitHub"
   },

@@ -5,7 +5,7 @@ primary_target: "src/renderer/index.html"
 related_targets: ["src/renderer/app.js","src/renderer/app.css"]
 ---
 
-# Surface brief: Filesmith app UI (src/renderer)
+# Surface brief: Fileshaper app UI (src/renderer)
 
 Scope: the whole desktop app window (home, video, images, PDF, audio, history, settings, support). Visitor mode: Operate.
 Audience: everyday, non-technical people fixing a file mid-task (see PRODUCT.md).

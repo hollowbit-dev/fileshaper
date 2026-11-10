@@ -1,9 +1,9 @@
-// The only bridge between Filesmith's window and the computer.
+// The only bridge between Fileshaper's window and the computer.
 const { contextBridge, ipcRenderer, webUtils } = require('electron');
 
-contextBridge.exposeInMainWorld('filesmith', {
+contextBridge.exposeInMainWorld('fileshaper', {
   pathFor: (file) => webUtils.getPathForFile(file),
-  fileUrl: (p) => `filesmith://file/${encodeURIComponent(p)}`,
+  fileUrl: (p) => `fileshaper://file/${encodeURIComponent(p)}`,
   pickFiles: (opts) => ipcRenderer.invoke('pick-files', opts),
   pickFolder: () => ipcRenderer.invoke('pick-folder'),
   stat: (p) => ipcRenderer.invoke('stat', p),

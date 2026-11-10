@@ -1,6 +1,6 @@
-# Filesmith
+# Fileshaper
 
-> Filesmith is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit (Elvis Zygmanta). Licence: GPL-3.0. Current version: 1.1.0.
+> Fileshaper is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit (Elvis Zygmanta). Licence: GPL-3.0. Current version: 1.2.0.
 
 ## Key facts
 - Price: free, no account, no watermark, no daily limits.
@@ -13,19 +13,19 @@
 - Audio: convert MP3/M4A/WAV/FLAC/OGG, trim, normalise loudness to -14 LUFS.
 
 ## Links
-- [Download](https://hollowbit-dev.github.io/filesmith/download.html)
-- [Features](https://hollowbit-dev.github.io/filesmith/features.html)
-- [FAQ](https://hollowbit-dev.github.io/filesmith/faq.html)
-- [Privacy policy](https://hollowbit-dev.github.io/filesmith/privacy.html)
-- [Source code](https://github.com/hollowbit-dev/filesmith)
+- [Download](https://hollowbit-dev.github.io/fileshaper/download.html)
+- [Features](https://hollowbit-dev.github.io/fileshaper/features.html)
+- [FAQ](https://hollowbit-dev.github.io/fileshaper/faq.html)
+- [Privacy policy](https://hollowbit-dev.github.io/fileshaper/privacy.html)
+- [Source code](https://github.com/hollowbit-dev/fileshaper)
 
 ## Online tools (run in the browser, nothing uploaded)
-- [All tools](https://hollowbit-dev.github.io/filesmith/tools/): HEIC to JPG, image compress/resize, merge/sign/split/compress PDF, compress video to a size, video to GIF.
+- [All tools](https://hollowbit-dev.github.io/fileshaper/tools/): HEIC to JPG, image compress/resize, merge/sign/split/compress PDF, compress video to a size, video to GIF.
 
 ## Guides
-- [How to compress a video for Discord](https://hollowbit-dev.github.io/filesmith/guides/compress-video-for-discord.html): Discord's free upload limit is 10 MB per file. To fit a longer or higher-quality video under it, re-encode it at a bitrate worked out from its length. Filesmith does that for you: choose "10 MB", and every video lands just under the limit, on your own computer.
-- [How to open HEIC photos on Windows (and convert them to JPG)](https://hollowbit-dev.github.io/filesmith/guides/heic-to-jpg-windows.html): iPhones save photos as HEIC to save space, but many Windows apps, websites and printers only accept JPG. The quickest fix is to convert them: drop the HEIC files on Filesmith, choose JPG, and it converts hundreds at once on your own computer.
-- [How to sign a PDF without uploading it](https://hollowbit-dev.github.io/filesmith/guides/sign-pdf-without-uploading.html): You can sign a PDF entirely on your own computer: open it in Filesmith, draw or type your signature, drag it onto the signature line, add the date, and save. The signed copy is a new file; the original isn't changed and nothing is uploaded.
-- [How to merge PDF files offline](https://hollowbit-dev.github.io/filesmith/guides/merge-pdf-offline.html): To combine PDFs without uploading them, drop them on Filesmith, drag them into the order you want, and click Merge. You get one PDF with every page, made on your own computer.
-- [How to make a GIF from a video](https://hollowbit-dev.github.io/filesmith/guides/video-to-gif.html): Open the video in Filesmith, choose Make GIF, drag the two handles to the moment you want (2 to 6 seconds works best), pick a width and smoothness, and save. The GIF is made on your computer with no watermark.
-- [How to compress a PDF for email or upload](https://hollowbit-dev.github.io/filesmith/guides/compress-pdf-for-email.html): Drop the PDF on Filesmith, choose Compress, and pick Light (keeps text selectable) or Strong (best for scans and photo-heavy files). The smaller copy is saved next to the original, without uploading anything.
+- [How to compress a video for Discord](https://hollowbit-dev.github.io/fileshaper/guides/compress-video-for-discord.html): Discord's free upload limit is 10 MB per file. To fit a longer or higher-quality video under it, re-encode it at a bitrate worked out from its length. Fileshaper does that for you: choose "10 MB", and every video lands just under the limit, on your own computer.
+- [How to open HEIC photos on Windows (and convert them to JPG)](https://hollowbit-dev.github.io/fileshaper/guides/heic-to-jpg-windows.html): iPhones save photos as HEIC to save space, but many Windows apps, websites and printers only accept JPG. The quickest fix is to convert them: drop the HEIC files on Fileshaper, choose JPG, and it converts hundreds at once on your own computer.
+- [How to sign a PDF without uploading it](https://hollowbit-dev.github.io/fileshaper/guides/sign-pdf-without-uploading.html): You can sign a PDF entirely on your own computer: open it in Fileshaper, draw or type your signature, drag it onto the signature line, add the date, and save. The signed copy is a new file; the original isn't changed and nothing is uploaded.
+- [How to merge PDF files offline](https://hollowbit-dev.github.io/fileshaper/guides/merge-pdf-offline.html): To combine PDFs without uploading them, drop them on Fileshaper, drag them into the order you want, and click Merge. You get one PDF with every page, made on your own computer.
+- [How to make a GIF from a video](https://hollowbit-dev.github.io/fileshaper/guides/video-to-gif.html): Open the video in Fileshaper, choose Make GIF, drag the two handles to the moment you want (2 to 6 seconds works best), pick a width and smoothness, and save. The GIF is made on your computer with no watermark.
+- [How to compress a PDF for email or upload](https://hollowbit-dev.github.io/fileshaper/guides/compress-pdf-for-email.html): Drop the PDF on Fileshaper, choose Compress, and pick Light (keeps text selectable) or Strong (best for scans and photo-heavy files). The smaller copy is saved next to the original, without uploading anything.

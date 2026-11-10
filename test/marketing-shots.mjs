@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const demo = path.join(here, 'demo');
 const outDir = path.join(here, 'demo-out');
-const shots = path.join(here, '..', 'docs', 'img');
+const shots = path.join(here, '..', 'site', 'assets', 'shots-png');
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 fs.mkdirSync(shots, { recursive: true });
@@ -18,13 +18,13 @@ const app = await electron.launch({ args: [path.join(here, '..'), `--user-data-d
 const page = await app.firstWindow();
 await page.setViewportSize({ width: 1200, height: 760 });
 await page.waitForSelector('.cmd');
-await page.evaluate((o) => window.filesmith.setSettings({ outDir: o, theme: 'dark' }), outDir);
+await page.evaluate((o) => window.fileshaper.setSettings({ outDir: o, theme: 'dark' }), outDir);
 await page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; delete document.documentElement.dataset.material; });
-const shot = async (name) => { await page.waitForTimeout(500); await page.screenshot({ path: path.join(shots, `${name}.png`) }); console.log('saved', name, await page.evaluate(() => window.__filesmithTest.S.view)); };
-const idle = async () => { for (let t = 0; t < 400 && await page.evaluate(() => window.__filesmithTest.S.running); t++) await page.waitForTimeout(500); };
+const shot = async (name) => { await page.waitForTimeout(500); await page.screenshot({ path: path.join(shots, `${name}.png`) }); console.log('saved', name, await page.evaluate(() => window.__fileshaperTest.S.view)); };
+const idle = async () => { for (let t = 0; t < 400 && await page.evaluate(() => window.__fileshaperTest.S.running); t++) await page.waitForTimeout(500); };
 
 // Video: compress two clips for Discord.
-await page.evaluate((f) => window.__filesmithTest.addFiles(f), [d('Lisbon trip 4K.mp4'), d('Clutch round.mov')]);
+await page.evaluate((f) => window.__fileshaperTest.addFiles(f), [d('Lisbon trip 4K.mp4'), d('Clutch round.mov')]);
 await page.waitForSelector('.qitem');
 await page.click('#run');
 await page.waitForTimeout(2500);
@@ -34,7 +34,7 @@ await page.waitForTimeout(4200);
 await shot('video');
 
 // Images: convert iPhone photos.
-await page.evaluate((f) => window.__filesmithTest.addFiles(f), [d('IMG_4821.HEIC'), d('IMG_4822.HEIC'), d('Screenshot 2026-11-08.png'), d('Wallpaper.jpg')]);
+await page.evaluate((f) => window.__fileshaperTest.addFiles(f), [d('IMG_4821.HEIC'), d('IMG_4822.HEIC'), d('Screenshot 2026-11-08.png'), d('Wallpaper.jpg')]);
 await page.waitForSelector('.qitem');
 await page.click('#run');
 await idle();
@@ -42,13 +42,13 @@ await page.waitForTimeout(4200);
 await shot('images');
 
 // Audio.
-await page.evaluate((f) => window.__filesmithTest.addFiles(f), [d('Voice memo 12.mp3')]);
+await page.evaluate((f) => window.__fileshaperTest.addFiles(f), [d('Voice memo 12.mp3')]);
 await page.click('[data-act="normalize"]');
 await page.click('#run');
 await idle();
 
 // PDF: merge, then sign.
-await page.evaluate((f) => window.__filesmithTest.addFiles(f), [d('Rental agreement.pdf'), d('Chemistry notes.pdf')]);
+await page.evaluate((f) => window.__fileshaperTest.addFiles(f), [d('Rental agreement.pdf'), d('Chemistry notes.pdf')]);
 await page.waitForTimeout(800);
 await shot('pdf-merge');
 await page.click('[data-pa="organize"]');
@@ -74,9 +74,9 @@ await page.waitForTimeout(4000);
 await shot('pdf-sign');
 
 // Home with real totals.
-await page.evaluate(() => window.__filesmithTest.go('home'));
+await page.evaluate(() => window.__fileshaperTest.go('home'));
 await page.waitForTimeout(3800);
-await page.evaluate(async () => { const t = window.__filesmithTest; });
+await page.evaluate(async () => { const t = window.__fileshaperTest; });
 await shot('home');
 
 await app.close();

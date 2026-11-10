@@ -9,7 +9,7 @@ await page.waitForTimeout(2500);
 const info = await page.evaluate(() => ({ w: innerWidth, h: innerHeight, mainScroll: document.getElementById('view').scrollHeight, page: getComputedStyle(document.querySelector('.page')).maxWidth }));
 console.log(JSON.stringify(info));
 await page.screenshot({ path: 'test/shots/fullscreen.png' });
-await page.evaluate(() => window.__filesmithTest.go('video'));
+await page.evaluate(() => window.__fileshaperTest.go('video'));
 await page.waitForTimeout(500);
 await page.screenshot({ path: 'test/shots/fullscreen-video.png' });
 await app.close();

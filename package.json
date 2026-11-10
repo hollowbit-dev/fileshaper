@@ -1,6 +1,6 @@
 {
-  "name": "filesmith",
-  "version": "1.1.0",
+  "name": "fileshaper",
+  "version": "1.2.0",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "Elvis Zygmanta",
   "license": "GPL-3.0-or-later",
-  "description": "Filesmith by Hollowbit: free, offline file toolbox. Compress videos, convert iPhone photos, merge and sign PDFs. Nothing is uploaded.",
+  "description": "Fileshaper by Hollowbit: free, offline file toolbox. Compress videos, convert iPhone photos, merge and sign PDFs. Nothing is uploaded.",
   "dependencies": {
     "electron-updater": "^6.8.11",
     "ffmpeg-static": "^5.3.0",
@@ -32,10 +32,10 @@
     "heic2any": "^0.0.4",
     "playwright": "1.48"
   },
-  "productName": "Filesmith",
+  "productName": "Fileshaper",
   "build": {
     "appId": "dev.hollowbit.filesmith",
-    "productName": "Filesmith",
+    "productName": "Fileshaper",
     "directories": {
       "output": "dist",
       "buildResources": "installer"
@@ -68,7 +68,7 @@
       "category": "public.app-category.productivity",
       "icon": "assets/icon.png",
       "identity": null,
-      "artifactName": "Filesmith-${version}-mac-${arch}.${ext}",
+      "artifactName": "Fileshaper-${version}-mac-${arch}.${ext}",
       "extraResources": [
         {
           "from": "vendor/ffmpeg/darwin-${arch}/ffmpeg",
@@ -162,17 +162,17 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "artifactName": "Filesmith-Setup-${version}-win-x64.exe",
+      "artifactName": "Fileshaper-Setup-${version}-win-x64.exe",
       "include": "installer/installer.nsh",
       "differentialPackage": true
     },
     "afterPack": "scripts/after-pack.js",
-    "copyright": "© 2026 Hollowbit · Elvis Zygmanta",
+    "copyright": "\u00a9 2026 Hollowbit \u00b7 Elvis Zygmanta",
     "publish": [
       {
         "provider": "github",
         "owner": "hollowbit-dev",
-        "repo": "filesmith"
+        "repo": "fileshaper"
       }
     ],
     "extraResources": [

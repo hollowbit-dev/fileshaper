@@ -1,4 +1,4 @@
-// Downloads the ffmpeg binary Filesmith bundles for a platform/arch into vendor/ffmpeg/<platform>-<arch>/.
+// Downloads the ffmpeg binary Fileshaper bundles for a platform/arch into vendor/ffmpeg/<platform>-<arch>/.
 // Usage: node scripts/fetch-ffmpeg.mjs darwin arm64   (or: darwin x64, win32 x64)
 import fs from 'fs';
 import path from 'path';

@@ -1,4 +1,4 @@
-// Builds the Filesmith website into docs/ (GitHub Pages), one folder per language.
+// Builds the Fileshaper website into docs/ (GitHub Pages), one folder per language.
 // Usage: node site/build.mjs
 import fs from 'fs';
 import path from 'path';
@@ -13,8 +13,8 @@ const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
 
 // ===== Edit these before you publish =====
 const SITE = {
-  url: 'https://hollowbit-dev.github.io/filesmith',
-  github: 'https://github.com/hollowbit-dev/filesmith',
+  url: 'https://hollowbit-dev.github.io/fileshaper',
+  github: 'https://github.com/hollowbit-dev/fileshaper',
   tip: 'https://ko-fi.com/hollowbit',
 };
 // =========================================
@@ -22,13 +22,13 @@ const SITE = {
 const VERSION = pkg.version;
 const releases = `${SITE.github}/releases/latest/download/`;
 const FILES = {
-  win: `Filesmith-Setup-${VERSION}-win-x64.exe`,
-  macArm: `Filesmith-${VERSION}-mac-arm64.dmg`,
-  macIntel: `Filesmith-${VERSION}-mac-x64.dmg`,
+  win: `Fileshaper-Setup-${VERSION}-win-x64.exe`,
+  macArm: `Fileshaper-${VERSION}-mac-arm64.dmg`,
+  macIntel: `Fileshaper-${VERSION}-mac-x64.dmg`,
 };
 const ORG_LD = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Hollowbit', url: SITE.url, logo: `${SITE.url}/img/icon-256.png`, founder: { '@type': 'Person', name: 'Elvis Zygmanta' }, sameAs: [SITE.github] };
 const APP_LD = (desc, lang) => ({
-  '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Filesmith', applicationCategory: 'UtilitiesApplication',
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Fileshaper', applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Windows 10, Windows 11, macOS 12 or later', softwareVersion: VERSION, inLanguage: lang, description: desc,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, downloadUrl: `${SITE.url}/download.html`, license: 'https://www.gnu.org/licenses/gpl-3.0.html',
   publisher: { '@type': 'Organization', name: 'Hollowbit' }, image: `${SITE.url}/og/og-en.png`, screenshot: `${SITE.url}/img/video.webp`,
@@ -113,7 +113,7 @@ function layout(L, t, page, title, body, o = {}) {
 <meta name="theme-color" content="#0b0b0c">
 <meta name="author" content="Hollowbit">
 <meta property="og:type" content="${o.article ? 'article' : 'website'}">
-<meta property="og:site_name" content="Filesmith">
+<meta property="og:site_name" content="Fileshaper">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(L.code)}">
@@ -136,7 +136,7 @@ ${ld}
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="28" height="28"><span>Filesmith</span></a>
+    <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="28" height="28"><span>Fileshaper</span></a>
     <nav class="links" aria-label="Main"><a href="${base}tools/"${page === 'tools' ? ' aria-current="page"' : ''}>${esc(t.nav.tools)}</a>${nav.map(([p, l]) => `<a href="${href(p)}"${p === page ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}</nav>
     <div class="nav-end">
       <details class="lang">
@@ -154,7 +154,7 @@ ${body}
 <footer class="foot">
   <div class="wrap foot-in">
     <div class="foot-brand">
-      <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="24" height="24"><span>Filesmith</span></a>
+      <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="24" height="24"><span>Fileshaper</span></a>
       <p>${esc(t.footer.tagline)}</p>
     </div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${base}tools/">${esc(t.nav.tools)}</a><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a><a href="${base}guides/">${esc(t.footer.guides)}</a></div>
@@ -358,7 +358,7 @@ function guidePage(g) {
   const others = GUIDES.filter((x) => x.slug !== g.slug).slice(0, 3);
   return `
 <section class="page-hero guide-hero"><div class="wrap narrow">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Filesmith</a><span>/</span><a href="./">Guides</a></nav>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Fileshaper</a><span>/</span><a href="./">Guides</a></nav>
   <h1>${esc(g.h1)}</h1>
   <div class="answer"><p>${esc(g.answer)}</p></div>
   <p class="fine">Updated ${new Date(UPDATED).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · Hollowbit</p>
@@ -369,7 +369,7 @@ function guidePage(g) {
   <div data-tool="${TOOL_OF[g.slug]}"></div>
   <h2>Step by step</h2>
   <ol class="howto">${g.steps.map(([n, d]) => `<li><b>${esc(n)}</b><span>${esc(d)}</span></li>`).join('')}</ol>
-  ${shot('../', FAM_SHOT[g.tool], `Filesmith ${g.tool} tool`)}
+  ${shot('../', FAM_SHOT[g.tool], `Fileshaper ${g.tool} tool`)}
   ${g.sections.map(([h, b]) => `<h2>${esc(h)}</h2><p class="prose">${esc(b)}</p>`).join('')}
   <h2>Questions</h2>
   <div class="faq">${g.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>
@@ -385,11 +385,11 @@ function guideIndex() {
 const guideLd = (g) => {
   const url = `${SITE.url}/guides/${g.slug}.html`;
   return [
-    { '@context': 'https://schema.org', '@type': 'HowTo', name: g.h1, description: g.answer, totalTime: 'PT2M', tool: [{ '@type': 'HowToTool', name: 'Filesmith (free app for Windows and Mac)' }],
+    { '@context': 'https://schema.org', '@type': 'HowTo', name: g.h1, description: g.answer, totalTime: 'PT2M', tool: [{ '@type': 'HowToTool', name: 'Fileshaper (free app for Windows and Mac)' }],
       step: g.steps.map(([n, d], i) => ({ '@type': 'HowToStep', position: i + 1, name: n, text: d, url: `${url}#step-${i + 1}` })) },
     { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: g.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Filesmith', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 1, name: 'Fileshaper', item: `${SITE.url}/` },
       { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE.url}/guides/` },
       { '@type': 'ListItem', position: 3, name: g.h1, item: url }] },
     { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.desc, dateModified: UPDATED, author: { '@type': 'Organization', name: 'Hollowbit' }, publisher: { '@type': 'Organization', name: 'Hollowbit' }, image: `${SITE.url}/og/og-en.png`, mainEntityOfPage: url },
@@ -409,7 +409,7 @@ const OPTS = {
 };
 
 const RENDER = { index: home, features, download, changelog, faq, about, support, privacy };
-const TITLE = (t, p) => (p === 'index' ? t.home.title : `${t[p].title} · Filesmith`);
+const TITLE = (t, p) => (p === 'index' ? t.home.title : `${t[p].title} · Fileshaper`);
 
 // ---------- Build ----------
 fs.rmSync(out, { recursive: true, force: true });
@@ -421,7 +421,7 @@ for (const L of LANGS) {
   const base = L.code === 'en' ? '' : '../';
   for (const p of PAGES) fs.writeFileSync(path.join(dir, `${p}.html`), layout(L, t, p, TITLE(t, p), RENDER[p](L, t, base), OPTS[p](t, L)));
 }
-fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Filesmith`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/filesmith/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/filesmith/$1"'));
+fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/fileshaper/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/fileshaper/$1"'));
 for (const f of ['style.css', 'site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 // Search-engine ownership files (Google, Bing) must stay on the site to remain verified.
 for (const f of fs.readdirSync(path.join(here, 'assets'))) if (/^google[a-z0-9]+\.html$|^BingSiteAuth\.xml$/.test(f)) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
@@ -431,15 +431,15 @@ fs.writeFileSync(path.join(out, '.nojekyll'), '');
 // Guides
 fs.mkdirSync(path.join(out, 'guides'), { recursive: true });
 for (const g of GUIDES) {
-  fs.writeFileSync(path.join(out, 'guides', `${g.slug}.html`), layout(LANGS[0], en, 'guides', `${g.title} · Filesmith`, guidePage(g), { prefix: '../', path: `guides/${g.slug}.html`, desc: g.desc, jsonld: guideLd(g), article: true, tools: true }));
+  fs.writeFileSync(path.join(out, 'guides', `${g.slug}.html`), layout(LANGS[0], en, 'guides', `${g.title} · Fileshaper`, guidePage(g), { prefix: '../', path: `guides/${g.slug}.html`, desc: g.desc, jsonld: guideLd(g), article: true, tools: true }));
 }
-fs.writeFileSync(path.join(out, 'guides', 'index.html'), layout(LANGS[0], en, 'guides', 'Guides · Filesmith', guideIndex(), { prefix: '../', path: 'guides/', desc: 'Free guides: compress a video for Discord, open HEIC on Windows, sign, merge and compress PDFs, make GIFs. All done offline with Filesmith.' }));
+fs.writeFileSync(path.join(out, 'guides', 'index.html'), layout(LANGS[0], en, 'guides', 'Guides · Fileshaper', guideIndex(), { prefix: '../', path: 'guides/', desc: 'Free guides: compress a video for Discord, open HEIC on Windows, sign, merge and compress PDFs, make GIFs. All done offline with Fileshaper.' }));
 
 // Online tools page + browser engines (self-hosted, so the site never calls another server)
 fs.mkdirSync(path.join(out, 'tools'), { recursive: true });
-fs.writeFileSync(path.join(out, 'tools', 'index.html'), layout(LANGS[0], en, 'tools', 'Free online file tools, no uploads · Filesmith', toolsPage(), { prefix: '../', path: 'tools/', tools: true,
+fs.writeFileSync(path.join(out, 'tools', 'index.html'), layout(LANGS[0], en, 'tools', 'Free online file tools, no uploads · Fileshaper', toolsPage(), { prefix: '../', path: 'tools/', tools: true,
   desc: 'Free online tools that run in your browser and never upload your files: HEIC to JPG, compress images, merge, sign, split and compress PDF, compress video for Discord, video to GIF.',
-  jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Filesmith online tools', url: `${SITE.url}/tools/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, browserRequirements: 'Requires JavaScript and WebAssembly', publisher: { '@type': 'Organization', name: 'Hollowbit' } }] }));
+  jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Fileshaper online tools', url: `${SITE.url}/tools/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, browserRequirements: 'Requires JavaScript and WebAssembly', publisher: { '@type': 'Organization', name: 'Hollowbit' } }] }));
 fs.copyFileSync(path.join(here, 'assets', 'tools.js'), path.join(out, 'tools.js'));
 const nm = path.join(root, 'node_modules');
 const vend = [
@@ -462,9 +462,9 @@ sm.push(`<url><loc>${SITE.url}/tools/</loc><lastmod>${UPDATED}</lastmod></url>`)
 for (const g of GUIDES) sm.push(`<url><loc>${SITE.url}/guides/${g.slug}.html</loc><lastmod>${UPDATED}</lastmod></url>`);
 fs.writeFileSync(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sm.join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(out, 'robots.txt'), `# Search engines and AI assistants are welcome.\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
-fs.writeFileSync(path.join(out, 'llms.txt'), `# Filesmith
+fs.writeFileSync(path.join(out, 'llms.txt'), `# Fileshaper
 
-> Filesmith is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit (Elvis Zygmanta). Licence: GPL-3.0. Current version: ${VERSION}.
+> Fileshaper is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit (Elvis Zygmanta). Licence: GPL-3.0. Current version: ${VERSION}.
 
 ## Key facts
 - Price: free, no account, no watermark, no daily limits.

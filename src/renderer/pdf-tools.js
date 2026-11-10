@@ -1,4 +1,4 @@
-// Filesmith — PDF tools. Merge, split, compress, organize pages, sign, and images to PDF.
+// Fileshaper — PDF tools. Merge, split, compress, organize pages, sign, and images to PDF.
 // Everything happens in this window with pdf-lib (editing) and PDF.js (drawing pages).
 import * as pdfjs from '../../node_modules/pdfjs-dist/build/pdf.min.mjs';
 import { ICON, esc, el, fmtBytes, baseName, extOf, savedLabel, toast, openModal, newId, makeSortable, segIndicator } from './ui.js';
@@ -6,7 +6,7 @@ import { refreshState } from './app.js';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL('../../node_modules/pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).href;
 const { PDFDocument, StandardFonts, rgb, degrees } = window.PDFLib;
-const api = window.filesmith;
+const api = window.fileshaper;
 
 const ACTIONS = [
   { id: 'merge', label: 'Merge', icon: 'merge' },
@@ -384,7 +384,7 @@ async function compressStrong(f) {
   }
   src.destroy();
   const bytes = await out.save({ useObjectStreams: true });
-  if (bytes.length >= f.size) return { name: f.name, note: "This PDF is already compact. Filesmith didn't save a bigger copy." };
+  if (bytes.length >= f.size) return { name: f.name, note: "This PDF is already compact. Fileshaper didn't save a bigger copy." };
   return api.saveOutput({ input: f.path, suffix: '-small', ext: '.pdf', bytes });
 }
 
@@ -483,7 +483,7 @@ async function renderOrganize(box) {
 
 // ---------- Sign & fill ----------
 
-const SIG_KEY = 'filesmith.signature';
+const SIG_KEY = 'fileshaper.signature';
 function localSig() { try { return localStorage.getItem(SIG_KEY); } catch (e) { return null; } }
 
 function startPlacing(item) {

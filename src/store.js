@@ -5,9 +5,16 @@ const path = require('path');
 
 const defaults = { outDir: '', openFolderWhenDone: false, theme: 'dark', lang: 'auto', autoUpdate: true, lastUpdateCheck: 0 };
 let state = { settings: { ...defaults }, history: [], stats: { files: 0, bytesSaved: 0 } };
-const file = () => path.join(app.getPath('userData'), 'filesmith.json');
+const file = () => path.join(app.getPath('userData'), 'fileshaper.json');
 
 function load() {
+  // Fileshaper was called Filesmith before 1.2.0: bring old settings and history across once.
+  try {
+    if (!fs.existsSync(file())) {
+      const old = path.join(app.getPath('userData'), '..', 'Filesmith', 'filesmith.json');
+      if (fs.existsSync(old)) { fs.mkdirSync(path.dirname(file()), { recursive: true }); fs.copyFileSync(old, file()); }
+    }
+  } catch (e) { /* nothing to migrate */ }
   try {
     const raw = JSON.parse(fs.readFileSync(file(), 'utf8'));
     state = {
@@ -25,7 +32,7 @@ function save() {
     try {
       fs.mkdirSync(path.dirname(file()), { recursive: true });
       fs.writeFileSync(file(), JSON.stringify(state));
-    } catch (e) { console.error('Filesmith: could not save settings', e); }
+    } catch (e) { console.error('Fileshaper: could not save settings', e); }
   }, 150);
 }
 

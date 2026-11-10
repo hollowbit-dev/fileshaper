@@ -1,12 +1,12 @@
-# Filesmith
+# Fileshaper
 
-[![Tests](https://github.com/hollowbit-dev/filesmith/actions/workflows/test.yml/badge.svg)](https://github.com/hollowbit-dev/filesmith/actions/workflows/test.yml)
+[![Tests](https://github.com/hollowbit-dev/fileshaper/actions/workflows/test.yml/badge.svg)](https://github.com/hollowbit-dev/fileshaper/actions/workflows/test.yml)
 
 **Stop uploading your files to sketchy websites.**
 
-Filesmith is a free, open-source file toolbox for Windows and Mac. It compresses videos for Discord, turns iPhone photos into JPGs, and merges and signs PDFs, all on your own computer. No limits, no watermarks, no account, no uploads.
+Fileshaper is a free, open-source file toolbox for Windows and Mac. It compresses videos for Discord, turns iPhone photos into JPGs, and merges and signs PDFs, all on your own computer. No limits, no watermarks, no account, no uploads.
 
-![Filesmith](docs/img/video.jpg)
+![Fileshaper](docs/img/video.jpg)
 
 ## What it does
 
@@ -36,8 +36,8 @@ npm test                  # 21 end-to-end checks against the real app
 ## Build the installers
 
 ```bash
-npm run dist:mac   # dist/Filesmith-1.0.0-mac-arm64.dmg and -mac-x64.dmg
-npm run dist:win   # dist/Filesmith-Setup-1.0.0-win-x64.exe (builds fine on a Mac)
+npm run dist:mac   # dist/Fileshaper-1.0.0-mac-arm64.dmg and -mac-x64.dmg
+npm run dist:win   # dist/Fileshaper-Setup-1.0.0-win-x64.exe (builds fine on a Mac)
 ```
 
 `scripts/fetch-ffmpeg.mjs` downloads the right FFmpeg binary for each platform into `vendor/` the first time.
@@ -55,9 +55,9 @@ Pages: home, features, download, changelog, FAQ, about, support, privacy, plus a
 ## Publish checklist
 
 1. **Fill in your GitHub username** in `src/renderer/config.js` (the app) and at the top of `site/build.mjs` (the website), then run `npm run site`.
-2. **Create a GitHub repo** called `filesmith` and push this folder.
+2. **Create a GitHub repo** called `fileshaper` and push this folder.
 3. **Make a release** tagged `v1.0.0` and upload the three files from `dist/` with their names unchanged. The website's download buttons point to `releases/latest/download/<file name>`.
-4. **Turn on the website:** repo Settings, then Pages, then deploy from the `main` branch, `/docs` folder. It goes live at `https://<you>.github.io/filesmith/`.
+4. **Turn on the website:** repo Settings, then Pages, then deploy from the `main` branch, `/docs` folder. It goes live at `https://<you>.github.io/fileshaper/`.
 5. **After rebuilding the installers**, run `npm run site` again so the download page shows the new SHA-256 checksums.
 
 ### About the security warnings
@@ -65,20 +65,20 @@ Pages: home, features, download, changelog, FAQ, about, support, privacy, plus a
 Windows signing is being set up through SignPath Foundation's free open-source programme. See [SIGNING.md](SIGNING.md) for the code signing policy and status.
 
 
-The builds aren't signed with a paid certificate, so Windows SmartScreen and macOS Gatekeeper warn on first launch. The website explains how to open Filesmith anyway. To remove the warnings:
+The builds aren't signed with a paid certificate, so Windows SmartScreen and macOS Gatekeeper warn on first launch. The website explains how to open Fileshaper anyway. To remove the warnings:
 - **Mac:** Apple Developer Program ($99/year), then set `mac.identity` and notarize.
 - **Windows:** a code-signing certificate, or apply to [SignPath Foundation](https://signpath.org), which signs open-source projects for free.
 
 ## How it's built
 
-- **Electron** app shell. `src/main.js` serves app files and the user's files over a private `filesmith://` scheme with HTTP range support, so video previews can seek.
+- **Electron** app shell. `src/main.js` serves app files and the user's files over a private `fileshaper://` scheme with HTTP range support, so video previews can seek.
 - **FFmpeg** (bundled) for video, audio and image work. Target-size compression is two-pass x264 with the bitrate worked out from the duration. Resolution drops automatically when the budget is tight.
 - **heic-convert** decodes iPhone photos, which FFmpeg 6 can't read reliably.
 - **pdf-lib** edits PDFs and **PDF.js** draws pages for previews, page thumbnails, signing and strong compression.
 - No network requests except an optional daily update check against GitHub (Settings → Check for updates). Settings and history live in a JSON file in the app's data folder.
 
 ```
-src/main.js            window, filesmith:// protocol, job runner (video/image/audio)
+src/main.js            window, fileshaper:// protocol, job runner (video/image/audio)
 src/ffmpeg.js          probe + run with progress
 src/store.js           settings, history, totals
 src/preload.js         the only bridge between the window and the computer
@@ -90,4 +90,4 @@ test/marketing-shots.mjs  regenerates the website screenshots
 
 ## Licence
 
-GPL-3.0-or-later (see [LICENSE](LICENSE)). Filesmith bundles FFmpeg built with x264 (GPL); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for every component and its licence.
+GPL-3.0-or-later (see [LICENSE](LICENSE)). Fileshaper bundles FFmpeg built with x264 (GPL); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for every component and its licence.

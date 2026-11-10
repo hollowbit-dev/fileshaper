@@ -1,4 +1,4 @@
-# Builds Filesmith and runs the 21 end-to-end tests on real Windows and Mac machines.
+# Builds Fileshaper and runs the 21 end-to-end tests on real Windows and Mac machines.
 name: Tests
 on: [push, pull_request, workflow_dispatch]
 jobs:

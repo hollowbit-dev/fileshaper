@@ -1,4 +1,4 @@
-// Draws Filesmith's app icon (1024x1024 PNG): ember gradient, white anvil and spark.
+// Draws Fileshaper's app icon (1024x1024 PNG): ember gradient, white anvil and spark.
 import AppKit
 let size: CGFloat = 1024
 let img = NSImage(size: NSSize(width: size, height: size))
@@ -22,7 +22,7 @@ ctx.drawLinearGradient(g, start: CGPoint(x: 0, y: size - inset), end: CGPoint(x:
 let glow = CGGradient(colorsSpace: cs, colors: [NSColor(white: 1, alpha: 0.35).cgColor, NSColor(white: 1, alpha: 0).cgColor] as CFArray, locations: [0, 1])!
 ctx.drawRadialGradient(glow, startCenter: CGPoint(x: size/2, y: size*0.42), startRadius: 0, endCenter: CGPoint(x: size/2, y: size*0.42), endRadius: 330, options: [])
 ctx.restoreGState()
-// Anvil with a spark: Filesmith's mark.
+// Anvil with a spark: Fileshaper's mark.
 ctx.saveGState()
 ctx.setShadow(offset: CGSize(width: 0, height: -10), blur: 24, color: NSColor(red: 0.45, green: 0.08, blue: 0.02, alpha: 0.35).cgColor)
 ctx.setFillColor(NSColor.white.cgColor)

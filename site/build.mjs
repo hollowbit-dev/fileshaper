@@ -143,6 +143,7 @@ ${ld}
         <summary aria-label="${esc(t.nav.language)}">${ICON.globe}<span>${L.code.toUpperCase()}</span></summary>
         <div class="lang-menu">${LANGS.map((l) => `<a href="${langPath(l.code)}" hreflang="${l.html}" lang="${l.html}" data-set-lang="${l.code}"${l.code === L.code ? ' aria-current="true"' : ''}>${l.name}</a>`).join('')}</div>
       </details>
+      <a class="btn btn-sm btn-ghost tip" href="${SITE.tip}" target="_blank" rel="noopener" aria-label="${esc(t.support.tip_btn)}" title="${esc(t.support.tip_btn)}">${ICON.heart}<span>Ko-fi</span></a>
       <a class="btn btn-sm btn-primary" href="${href('download')}" data-dl>${esc(t.nav.cta)}</a>
     </div>
   </div>
@@ -402,6 +403,8 @@ for (const L of LANGS) {
 }
 fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Filesmith`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/filesmith/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/filesmith/$1"'));
 for (const f of ['style.css', 'site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
+// Search-engine ownership files (Google, Bing) must stay on the site to remain verified.
+for (const f of fs.readdirSync(path.join(here, 'assets'))) if (/^google[a-z0-9]+\.html$|^BingSiteAuth\.xml$/.test(f)) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 for (const d of ['img', 'fonts']) fs.cpSync(path.join(here, 'assets', d), path.join(out, d), { recursive: true });
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
 

@@ -369,3 +369,5 @@ p { margin: 0; }
 .guide-list a:hover { padding-left: 6px; }
 .guide-list b { font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
 .guide-list span { color: var(--text-2); font-size: 15px; }
+.tip .ic { color: var(--accent); width: 15px; height: 15px; }
+@media (max-width: 680px) { .tip { padding: 0; width: 32px; } .tip span { display: none; } }

@@ -23,7 +23,8 @@
     "github": "GitHub",
     "about": "About",
     "made": "Made by Elvis Zygmanta at Hollowbit.",
-    "legal": "© 2026 Hollowbit. Filesmith is free software under the GPL-3.0 licence."
+    "legal": "© 2026 Hollowbit. Filesmith is free software under the GPL-3.0 licence.",
+    "guides": "Guides"
   },
   "common": {
     "dl_mac": "Download for Mac",
@@ -32,7 +33,7 @@
     "see_features": "See what it does",
     "platforms": "Free for Windows 10 and 11, and macOS 12 or newer.",
     "version": "Version",
-    "released": "Released 10 November 2026",
+    "released": "Released 11 November 2026",
     "intel": "Mac with Intel, or need help? See the download page."
   },
   "home": {
@@ -278,7 +279,7 @@
       ],
       [
         "Internet",
-        "Not needed, ever"
+        "Only for the optional update check"
       ]
     ],
     "verify_h2": "Verify your download",
@@ -290,6 +291,18 @@
     "h1": "Changelog",
     "lead": "Every release of Filesmith, newest first.",
     "entries": [
+      {
+        "v": "1.1.0",
+        "date": "11 November 2026",
+        "name": "Six languages, right-click and updates",
+        "items": [
+          "The app is now in English, Spanish, French, German, Russian and Chinese.",
+          "Right-click any file and choose Open with Filesmith (Windows), or Open With, Filesmith (Mac).",
+          "Automatic updates: Windows installs new versions on its own; Mac shows a notice with a download link. You can turn update checks off in Settings.",
+          "Smoother motion: sliding controls, finished files flash and check off.",
+          "Licence and third-party notices are included in the app."
+        ]
+      },
       {
         "v": "1.0.0",
         "date": "10 November 2026",
@@ -309,12 +322,12 @@
   "privacy": {
     "title": "Privacy policy",
     "h1": "Privacy policy",
-    "updated": "Last updated 10 November 2026",
+    "updated": "Last updated 11 November 2026",
     "short": "The short version: Filesmith collects nothing. Your files never leave your computer.",
     "sections": [
       [
         "The app",
-        "Filesmith processes every file on your own computer. It makes no network requests, has no account and no analytics, and sends no crash reports. Your settings and the list of files you've made are stored in a file on your computer, and you can clear the history in the app at any time."
+        "Filesmith processes every file on your own computer. It has no account, no analytics and sends no crash reports. The only network request is an optional update check: once a day it asks GitHub for the latest version number, and sends nothing about you or your files. You can turn it off in Settings. Your settings and the list of files you've made are stored on your computer, and you can clear the history at any time."
       ],
       [
         "This website",

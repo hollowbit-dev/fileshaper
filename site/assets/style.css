@@ -350,3 +350,22 @@ p { margin: 0; }
 .fine-link { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; margin-left: 4px; white-space: nowrap; }
 .fine-link:hover { color: var(--text); }
 @media (max-width: 680px) { .cta .btn-lg { width: 100%; } .fine-link { white-space: normal; } }
+
+/* Guides */
+.crumbs { display: flex; gap: 8px; color: var(--text-3); font-size: 14px; margin-bottom: 18px; }
+.crumbs a { color: var(--text-2); } .crumbs a:hover { color: var(--text); }
+.guide-hero h1 { font-size: clamp(32px, 4.4vw, 52px); max-width: 22ch; }
+.answer { margin-top: 22px; padding: 18px 20px; border: 1px solid var(--line-2); border-left: 0; border-radius: 12px; background: var(--panel); font-size: 18px; line-height: 1.6; color: var(--text); max-width: 760px; }
+.cta-left { justify-content: flex-start; }
+.howto { list-style: none; counter-reset: s; padding: 0; margin: 0 0 32px; display: grid; gap: 0; }
+.howto li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; column-gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+.howto li::before { content: counter(s); grid-row: span 2; width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--panel-2); border: 1px solid var(--line-2); font: 600 14px var(--mono); color: var(--accent); }
+.howto b { font-weight: 600; } .howto span { color: var(--text-2); }
+.guide-hero + .sec .shot { margin: 8px 0 24px; }
+.guide-list { list-style: none; padding: 0; margin: 0; }
+.guide-list li { border-top: 1px solid var(--line); }
+.guide-list li:last-child { border-bottom: 1px solid var(--line); }
+.guide-list a { display: grid; gap: 4px; padding: 18px 0; transition: padding .2s var(--ease-out); }
+.guide-list a:hover { padding-left: 6px; }
+.guide-list b { font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+.guide-list span { color: var(--text-2); font-size: 15px; }

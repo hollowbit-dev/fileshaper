@@ -23,7 +23,8 @@
     "github": "GitHub",
     "about": "Sobre mí",
     "made": "Hecho por Elvis Zygmanta en Hollowbit.",
-    "legal": "© 2026 Hollowbit. Filesmith es software libre bajo la licencia GPL-3.0."
+    "legal": "© 2026 Hollowbit. Filesmith es software libre bajo la licencia GPL-3.0.",
+    "guides": "Guías (en inglés)"
   },
   "common": {
     "dl_mac": "Descargar para Mac",
@@ -32,7 +33,7 @@
     "see_features": "Ver qué hace",
     "platforms": "Gratis para Windows 10 y 11, y macOS 12 o posterior.",
     "version": "Versión",
-    "released": "Publicada el 10 de noviembre de 2026",
+    "released": "Publicada el 11 de noviembre de 2026",
     "intel": "¿Mac con Intel o necesitas ayuda? Mira la página de descarga."
   },
   "home": {
@@ -278,7 +279,7 @@
       ],
       [
         "Internet",
-        "No hace falta, nunca"
+        "Solo para la comprobación opcional de actualizaciones"
       ]
     ],
     "verify_h2": "Verifica tu descarga",
@@ -290,6 +291,18 @@
     "h1": "Novedades",
     "lead": "Todas las versiones de Filesmith, de la más nueva a la más antigua.",
     "entries": [
+      {
+        "v": "1.1.0",
+        "date": "11 de noviembre de 2026",
+        "name": "Seis idiomas, clic derecho y actualizaciones",
+        "items": [
+          "La app ya está en inglés, español, francés, alemán, ruso y chino.",
+          "Haz clic derecho en un archivo y elige Abrir con Filesmith (Windows) o Abrir con, Filesmith (Mac).",
+          "Actualizaciones automáticas: Windows instala las nuevas versiones solo; en Mac aparece un aviso con enlace de descarga. Puedes desactivarlas en Ajustes.",
+          "Movimiento más fluido: controles que se deslizan y archivos que se marcan al terminar.",
+          "Se incluyen la licencia y los avisos de terceros."
+        ]
+      },
       {
         "v": "1.0.0",
         "date": "10 de noviembre de 2026",
@@ -309,12 +322,12 @@
   "privacy": {
     "title": "Política de privacidad",
     "h1": "Política de privacidad",
-    "updated": "Última actualización: 10 de noviembre de 2026",
+    "updated": "Última actualización: 11 de noviembre de 2026",
     "short": "En resumen: Filesmith no recoge nada. Tus archivos nunca salen de tu ordenador.",
     "sections": [
       [
         "La app",
-        "Filesmith procesa cada archivo en tu propio ordenador. No hace ninguna conexión de red, no tiene cuentas ni analíticas y no envía informes de errores. Tus ajustes y la lista de archivos creados se guardan en un archivo de tu ordenador, y puedes borrar el historial desde la app cuando quieras."
+        "Filesmith procesa cada archivo en tu propio ordenador. No tiene cuentas ni analíticas y no envía informes de errores. La única conexión es una comprobación opcional de actualizaciones: una vez al día pregunta a GitHub el número de la última versión, sin enviar nada sobre ti ni tus archivos. Puedes desactivarla en Ajustes. Tus ajustes y la lista de archivos creados se guardan en tu ordenador, y puedes borrar el historial cuando quieras."
       ],
       [
         "Esta web",

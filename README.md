@@ -1,5 +1,7 @@
 # Filesmith
 
+[![Tests](https://github.com/hollowbit-dev/filesmith/actions/workflows/test.yml/badge.svg)](https://github.com/hollowbit-dev/filesmith/actions/workflows/test.yml)
+
 **Stop uploading your files to sketchy websites.**
 
 Filesmith is a free, open-source file toolbox for Windows and Mac. It compresses videos for Discord, turns iPhone photos into JPGs, and merges and signs PDFs, all on your own computer. No limits, no watermarks, no account, no uploads.
@@ -60,6 +62,9 @@ Pages: home, features, download, changelog, FAQ, about, support, privacy, plus a
 
 ### About the security warnings
 
+Windows signing is being set up through SignPath Foundation's free open-source programme. See [SIGNING.md](SIGNING.md) for the code signing policy and status.
+
+
 The builds aren't signed with a paid certificate, so Windows SmartScreen and macOS Gatekeeper warn on first launch. The website explains how to open Filesmith anyway. To remove the warnings:
 - **Mac:** Apple Developer Program ($99/year), then set `mac.identity` and notarize.
 - **Windows:** a code-signing certificate, or apply to [SignPath Foundation](https://signpath.org), which signs open-source projects for free.
@@ -70,7 +75,7 @@ The builds aren't signed with a paid certificate, so Windows SmartScreen and mac
 - **FFmpeg** (bundled) for video, audio and image work. Target-size compression is two-pass x264 with the bitrate worked out from the duration. Resolution drops automatically when the budget is tight.
 - **heic-convert** decodes iPhone photos, which FFmpeg 6 can't read reliably.
 - **pdf-lib** edits PDFs and **PDF.js** draws pages for previews, page thumbnails, signing and strong compression.
-- No network requests. Settings and history live in a JSON file in the app's data folder.
+- No network requests except an optional daily update check against GitHub (Settings → Check for updates). Settings and history live in a JSON file in the app's data folder.
 
 ```
 src/main.js            window, filesmith:// protocol, job runner (video/image/audio)
@@ -85,4 +90,4 @@ test/marketing-shots.mjs  regenerates the website screenshots
 
 ## Licence
 
-GPL-3.0-or-later. Filesmith bundles FFmpeg built with x264 (GPL).
+GPL-3.0-or-later (see [LICENSE](LICENSE)). Filesmith bundles FFmpeg built with x264 (GPL); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for every component and its licence.

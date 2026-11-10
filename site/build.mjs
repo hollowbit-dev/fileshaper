@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+import { GUIDES, UPDATED } from './guides.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, '..');
@@ -25,6 +26,14 @@ const FILES = {
   macArm: `Filesmith-${VERSION}-mac-arm64.dmg`,
   macIntel: `Filesmith-${VERSION}-mac-x64.dmg`,
 };
+const ORG_LD = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Hollowbit', url: SITE.url, logo: `${SITE.url}/img/icon-256.png`, founder: { '@type': 'Person', name: 'Elvis Zygmanta' }, sameAs: [SITE.github] };
+const APP_LD = (desc, lang) => ({
+  '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Filesmith', applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Windows 10, Windows 11, macOS 12 or later', softwareVersion: VERSION, inLanguage: lang, description: desc,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, downloadUrl: `${SITE.url}/download.html`, license: 'https://www.gnu.org/licenses/gpl-3.0.html',
+  publisher: { '@type': 'Organization', name: 'Hollowbit' }, image: `${SITE.url}/og/og-en.png`, screenshot: `${SITE.url}/img/video.webp`,
+  featureList: ['Compress video to a target size such as 10 MB for Discord', 'Convert HEIC to JPG, PNG or WebP', 'Sign, merge, split and compress PDF', 'Trim video and audio, make GIFs, extract MP3', 'Works offline; files are never uploaded'],
+});
 const LANGS = [
   { code: 'en', name: 'English', html: 'en' },
   { code: 'es', name: 'Español', html: 'es' },
@@ -77,26 +86,48 @@ const FAM_ICON = { video: 'video', images: 'images', pdf: 'pdf', audio: 'audio' 
 const FAM_IMG = { video: 'video', images: 'images', pdf: 'pdf-sign', audio: 'home' };
 
 // ---------- Layout ----------
-function layout(L, t, page, title, body) {
-  const base = L.code === 'en' ? '' : '../';
-  const langPath = (code) => `${base}${code === 'en' ? '' : `${code}/`}${page === 'index' ? '' : `${page}.html`}` || './';
-  const abs = (code) => `${SITE.url}/${code === 'en' ? '' : `${code}/`}${page === 'index' ? '' : `${page}.html`}`;
+function layout(L, t, page, title, body, o = {}) {
+  // o.prefix: path back to this language's root (guides live one folder down).
+  // o.path: page path for canonical URLs when it isn't a translated page (guides).
+  const prefix = o.prefix || '';
+  const base = (L.code === 'en' ? '' : '../') + prefix;
+  const href = (p) => prefix + (p === 'index' ? './' : `${p}.html`);
+  const pagePath = (code) => `${code === 'en' ? '' : `${code}/`}${page === 'index' ? '' : `${page}.html`}`;
+  const langPath = (code) => (o.path ? `${base}${code === 'en' ? '' : `${code}/`}` : `${(L.code === 'en' ? '' : '../')}${pagePath(code)}`) || './';
+  const abs = (code) => `${SITE.url}/${o.path || pagePath(code)}`;
+  const desc = o.desc || t.meta.description;
+  const ogImg = `${SITE.url}/og/og-${o.path ? 'en' : L.code}.png`;
+  const alternates = o.path
+    ? `<link rel="alternate" hreflang="en" href="${abs('en')}">`
+    : `${LANGS.map((l) => `<link rel="alternate" hreflang="${l.html}" href="${abs(l.code)}">`).join('\n')}\n<link rel="alternate" hreflang="x-default" href="${abs('en')}">`;
+  const ld = [ORG_LD, ...(o.jsonld || [])].map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('\n');
   const nav = [['features', t.nav.features], ['download', t.nav.download], ['changelog', t.nav.changelog], ['faq', t.nav.faq], ['about', t.nav.about]];
   return `<!doctype html>
-<html lang="${L.html}" data-lang="${L.code}">
-<script>document.documentElement.classList.add('js')</script>
+<html lang="${o.path ? 'en' : L.html}" data-lang="${L.code}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(t.meta.description)}">
+<meta name="description" content="${esc(desc)}">
 <meta name="theme-color" content="#0b0b0c">
+<meta name="author" content="Hollowbit">
+<meta property="og:type" content="${o.article ? 'article' : 'website'}">
+<meta property="og:site_name" content="Filesmith">
 <meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(t.meta.description)}">
-<meta property="og:image" content="${SITE.url}/img/home.webp">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${abs(L.code)}">
+<meta property="og:image" content="${ogImg}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="${L.html.replace('-', '_')}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:image" content="${ogImg}">
 <link rel="canonical" href="${abs(L.code)}">
-${LANGS.map((l) => `<link rel="alternate" hreflang="${l.html}" href="${abs(l.code)}">`).join('\n')}
-<link rel="alternate" hreflang="x-default" href="${abs('en')}">
+${alternates}
+${ld}
 <link rel="icon" href="${base}favicon.png">
 <link rel="preload" href="${base}fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${base}style.css">
@@ -125,7 +156,7 @@ ${body}
       <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="24" height="24"><span>Filesmith</span></a>
       <p>${esc(t.footer.tagline)}</p>
     </div>
-    <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a></div>
+    <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a><a href="${base}guides/">${esc(t.footer.guides)}</a></div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.help)}</p><a href="${href('faq')}">${esc(t.nav.faq)}</a><a href="${href('support')}">${esc(t.footer.support)}</a><a href="${href('privacy')}">${esc(t.footer.privacy)}</a></div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.studio)}</p><a href="${href('about')}">${esc(t.footer.about)}</a><a href="${SITE.github}" rel="noopener">${esc(t.footer.github)}</a></div>
   </div>
@@ -301,6 +332,61 @@ function notfound(L, t) {
   return `<section class="page-hero nf"><div class="wrap"><h1>${esc(t.notfound.h1)}</h1><p class="lead">${esc(t.notfound.p)}</p><a class="btn btn-primary" href="./">${esc(t.notfound.home)}</a></div></section>`;
 }
 
+// ---------- Guides (English, for search) ----------
+const FAM_SHOT = { video: 'video', images: 'images', pdf: 'pdf-sign', audio: 'home' };
+function guidePage(g) {
+  const t = en;
+  const others = GUIDES.filter((x) => x.slug !== g.slug).slice(0, 3);
+  return `
+<section class="page-hero guide-hero"><div class="wrap narrow">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Filesmith</a><span>/</span><a href="./">Guides</a></nav>
+  <h1>${esc(g.h1)}</h1>
+  <div class="answer"><p>${esc(g.answer)}</p></div>
+  <p class="fine">Updated ${new Date(UPDATED).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · Hollowbit</p>
+  <div class="cta cta-left">${dlButtons(t)}</div>
+</div></section>
+<section class="sec tight"><div class="wrap narrow">
+  <h2>Step by step</h2>
+  <ol class="howto">${g.steps.map(([n, d]) => `<li><b>${esc(n)}</b><span>${esc(d)}</span></li>`).join('')}</ol>
+  ${shot('../', FAM_SHOT[g.tool], `Filesmith ${g.tool} tool`)}
+  ${g.sections.map(([h, b]) => `<h2>${esc(h)}</h2><p class="prose">${esc(b)}</p>`).join('')}
+  <h2>Questions</h2>
+  <div class="faq">${g.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div>
+  <h2>More guides</h2>
+  <ul class="guide-list">${others.map((x) => `<li><a href="${x.slug}.html"><b>${esc(x.h1)}</b><span>${esc(x.desc)}</span></a></li>`).join('')}</ul>
+</div></section>`;
+}
+function guideIndex() {
+  return `
+<section class="page-hero"><div class="wrap"><h1>Guides</h1><p class="lead">Plain answers to everyday file problems, each done on your own computer for free.</p></div></section>
+<section class="sec tight"><div class="wrap narrow"><ul class="guide-list">${GUIDES.map((x) => `<li><a href="${x.slug}.html"><b>${esc(x.h1)}</b><span>${esc(x.desc)}</span></a></li>`).join('')}</ul></div></section>`;
+}
+const guideLd = (g) => {
+  const url = `${SITE.url}/guides/${g.slug}.html`;
+  return [
+    { '@context': 'https://schema.org', '@type': 'HowTo', name: g.h1, description: g.answer, totalTime: 'PT2M', tool: [{ '@type': 'HowToTool', name: 'Filesmith (free app for Windows and Mac)' }],
+      step: g.steps.map(([n, d], i) => ({ '@type': 'HowToStep', position: i + 1, name: n, text: d, url: `${url}#step-${i + 1}` })) },
+    { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: g.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Filesmith', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE.url}/guides/` },
+      { '@type': 'ListItem', position: 3, name: g.h1, item: url }] },
+    { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.desc, dateModified: UPDATED, author: { '@type': 'Organization', name: 'Hollowbit' }, publisher: { '@type': 'Organization', name: 'Hollowbit' }, image: `${SITE.url}/og/og-en.png`, mainEntityOfPage: url },
+  ];
+};
+
+// Per-page description and structured data.
+const OPTS = {
+  index: (t, L) => ({ jsonld: [APP_LD(t.meta.description, L.html)] }),
+  features: (t) => ({ desc: t.features.lead }),
+  download: (t, L) => ({ desc: `${t.download.h1} ${t.download.lead} ${t.common.platforms}`, jsonld: [APP_LD(t.meta.description, L.html)] }),
+  changelog: (t) => ({ desc: t.changelog.lead }),
+  faq: (t) => ({ desc: t.faq.items.slice(0, 3).map((x) => x[0]).join(' '), jsonld: [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: t.faq.items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }] }),
+  about: (t) => ({ desc: t.about.lead }),
+  support: (t) => ({ desc: t.support.help_p }),
+  privacy: (t) => ({ desc: t.privacy.short }),
+};
+
 const RENDER = { index: home, features, download, changelog, faq, about, support, privacy };
 const TITLE = (t, p) => (p === 'index' ? t.home.title : `${t[p].title} · Filesmith`);
 
@@ -312,10 +398,53 @@ for (const L of LANGS) {
   const dir = L.code === 'en' ? out : path.join(out, L.code);
   fs.mkdirSync(dir, { recursive: true });
   const base = L.code === 'en' ? '' : '../';
-  for (const p of PAGES) fs.writeFileSync(path.join(dir, `${p}.html`), layout(L, t, p, TITLE(t, p), RENDER[p](L, t, base)));
+  for (const p of PAGES) fs.writeFileSync(path.join(dir, `${p}.html`), layout(L, t, p, TITLE(t, p), RENDER[p](L, t, base), OPTS[p](t, L)));
 }
 fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Filesmith`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/filesmith/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/filesmith/$1"'));
 for (const f of ['style.css', 'site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 for (const d of ['img', 'fonts']) fs.cpSync(path.join(here, 'assets', d), path.join(out, d), { recursive: true });
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
+
+// Guides
+fs.mkdirSync(path.join(out, 'guides'), { recursive: true });
+for (const g of GUIDES) {
+  fs.writeFileSync(path.join(out, 'guides', `${g.slug}.html`), layout(LANGS[0], en, 'guides', `${g.title} · Filesmith`, guidePage(g), { prefix: '../', path: `guides/${g.slug}.html`, desc: g.desc, jsonld: guideLd(g), article: true }));
+}
+fs.writeFileSync(path.join(out, 'guides', 'index.html'), layout(LANGS[0], en, 'guides', 'Guides · Filesmith', guideIndex(), { prefix: '../', path: 'guides/', desc: 'Free guides: compress a video for Discord, open HEIC on Windows, sign, merge and compress PDFs, make GIFs. All done offline with Filesmith.' }));
+
+// Sitemap, robots, llms.txt
+const urlOf = (code, p) => `${SITE.url}/${code === 'en' ? '' : `${code}/`}${p === 'index' ? '' : `${p}.html`}`;
+const sm = [];
+for (const p of PAGES) for (const L of LANGS) {
+  sm.push(`<url><loc>${urlOf(L.code, p)}</loc><lastmod>${UPDATED}</lastmod>${LANGS.map((a) => `<xhtml:link rel="alternate" hreflang="${a.html}" href="${urlOf(a.code, p)}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${urlOf('en', p)}"/></url>`);
+}
+sm.push(`<url><loc>${SITE.url}/guides/</loc><lastmod>${UPDATED}</lastmod></url>`);
+for (const g of GUIDES) sm.push(`<url><loc>${SITE.url}/guides/${g.slug}.html</loc><lastmod>${UPDATED}</lastmod></url>`);
+fs.writeFileSync(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sm.join('\n')}\n</urlset>\n`);
+fs.writeFileSync(path.join(out, 'robots.txt'), `# Search engines and AI assistants are welcome.\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
+fs.writeFileSync(path.join(out, 'llms.txt'), `# Filesmith
+
+> Filesmith is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit (Elvis Zygmanta). Licence: GPL-3.0. Current version: ${VERSION}.
+
+## Key facts
+- Price: free, no account, no watermark, no daily limits.
+- Platforms: Windows 10 and 11 (64-bit), macOS 12 or newer (Apple Silicon and Intel).
+- Privacy: all processing is local (FFmpeg, pdf-lib, PDF.js). No analytics. The only network request is an optional daily update check against GitHub.
+- Languages: English, Spanish, French, German, Russian, Chinese.
+- Video: compress to 8/10/16/25/50 MB or a custom size using two-pass encoding, trim, make GIFs, extract MP3, convert MOV/MKV/WEBM/AVI to MP4, remove sound.
+- Images: convert HEIC, PNG, WebP, GIF, BMP, TIFF to JPG/PNG/WebP, resize, compress, images to PDF.
+- PDF: sign and fill (drawn or typed signature, text, date), merge, split, reorder/rotate/delete pages, compress.
+- Audio: convert MP3/M4A/WAV/FLAC/OGG, trim, normalise loudness to -14 LUFS.
+
+## Links
+- [Download](${SITE.url}/download.html)
+- [Features](${SITE.url}/features.html)
+- [FAQ](${SITE.url}/faq.html)
+- [Privacy policy](${SITE.url}/privacy.html)
+- [Source code](${SITE.github})
+
+## Guides
+${GUIDES.map((g) => `- [${g.h1}](${SITE.url}/guides/${g.slug}.html): ${g.answer}`).join('\n')}
+`);
+if (fs.existsSync(path.join(here, 'assets', 'og'))) fs.cpSync(path.join(here, 'assets', 'og'), path.join(out, 'og'), { recursive: true });
 console.log(`Built ${LANGS.length} languages × ${PAGES.length} pages into docs/`);

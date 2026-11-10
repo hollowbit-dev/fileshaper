@@ -1,6 +1,6 @@
 // Filesmith — main process. Window, local file serving, and the ffmpeg/HEIC jobs.
 // Everything runs on this computer. Filesmith makes no network requests.
-const { app, BrowserWindow, ipcMain, dialog, shell, protocol, nativeTheme } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, protocol, nativeTheme, net } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
@@ -208,6 +208,13 @@ function registerIpc() {
   }));
   ipcMain.handle('set-settings', (_e, patch) => { store.setSettings(patch); if ('theme' in patch) applyChrome(); return store.settings; });
   ipcMain.handle('clear-history', () => { store.clearHistory(); return true; });
+  ipcMain.handle('renderer-ready', () => { rendererReady = true; flushOpen(); return updateState; });
+  ipcMain.handle('check-updates', () => { store.setSettings({ lastUpdateCheck: Date.now() }); return checkForUpdates(); });
+  ipcMain.handle('install-update', () => { if (updater) updater.quitAndInstall(); });
+  ipcMain.handle('open-licences', () => {
+    const p = app.isPackaged ? path.join(process.resourcesPath, 'THIRD_PARTY_NOTICES.md') : path.join(appRoot, 'THIRD_PARTY_NOTICES.md');
+    return shell.openPath(p);
+  });
 }
 
 function finishOutput(input, out) {
@@ -382,17 +389,102 @@ async function audioJob(action, file, o, ctx) {
   return out;
 }
 
+// ---------- "Open with Filesmith" ----------
+// Files arrive from the right-click menu, "Open With", or being dropped on the app icon.
+// They're batched for a moment so selecting 20 files opens one batch, not 20.
+let pendingOpen = [];
+let openTimer = null;
+let rendererReady = false;
+function queueOpen(paths) {
+  const files = paths.filter((p) => p && !p.startsWith('-') && path.isAbsolute(p) && p !== process.execPath && fs.existsSync(p) && fs.statSync(p).isFile());
+  if (!files.length) return;
+  pendingOpen.push(...files);
+  clearTimeout(openTimer);
+  openTimer = setTimeout(flushOpen, 350);
+}
+function flushOpen() {
+  if (!rendererReady || !win || win.isDestroyed() || !pendingOpen.length) return;
+  win.webContents.send('open-files', [...new Set(pendingOpen)]);
+  pendingOpen = [];
+  if (win.isMinimized()) win.restore();
+  win.show(); win.focus();
+}
+app.on('open-file', (e, file) => { e.preventDefault(); queueOpen([file]); });
+
+// ---------- Updates ----------
+// Once a day (if enabled in Settings) Filesmith asks GitHub for the latest version number.
+// Windows downloads and installs it on quit. macOS builds aren't signed, so they can't
+// replace themselves; there the app shows a notice with a link to the download page.
+const REPO = 'hollowbit-dev/filesmith';
+const newer = (a, b) => {
+  const x = a.split('.').map(Number); const y = b.split('.').map(Number);
+  for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); }
+  return false;
+};
+let updater = null;
+let updateState = { state: 'idle' };
+function sendUpdate(st) {
+  updateState = st;
+  if (win && !win.isDestroyed()) win.webContents.send('update', st);
+}
+async function checkForUpdates() {
+  if (!app.isPackaged) return { state: 'latest' };
+  try {
+    if (process.platform === 'win32') {
+      if (!updater) {
+        updater = require('electron-updater').autoUpdater;
+        updater.autoDownload = true;
+        updater.autoInstallOnAppQuit = true;
+        updater.on('update-downloaded', (info) => sendUpdate({ state: 'ready', version: info.version }));
+        updater.on('error', () => {});
+      }
+      const r = await updater.checkForUpdates();
+      const v = r && r.updateInfo && r.updateInfo.version;
+      if (v && newer(v, app.getVersion())) { sendUpdate({ state: 'downloading', version: v }); return { state: 'downloading', version: v }; }
+      return { state: 'latest' };
+    }
+    const res = await net.fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+    if (!res.ok) throw new Error(String(res.status));
+    const rel = await res.json();
+    const v = String(rel.tag_name || '').replace(/^v/, '');
+    if (v && newer(v, app.getVersion())) {
+      const st = { state: 'available', version: v, url: rel.html_url };
+      sendUpdate(st);
+      return st;
+    }
+    return { state: 'latest' };
+  } catch (e) {
+    return { state: 'error' };
+  }
+}
+function scheduleUpdateChecks() {
+  const run = () => {
+    if (store.settings.autoUpdate === false) return;
+    const last = store.settings.lastUpdateCheck || 0;
+    if (Date.now() - last < 20 * 3600 * 1000) return;
+    store.setSettings({ lastUpdateCheck: Date.now() });
+    checkForUpdates();
+  };
+  setTimeout(run, 8000);
+  setInterval(run, 3600 * 1000);
+}
+
 // ---------- App lifecycle ----------
 
 if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {
-  app.on('second-instance', () => { if (win) { if (win.isMinimized()) win.restore(); win.focus(); } });
+  app.on('second-instance', (_e, argv) => {
+    if (win) { if (win.isMinimized()) win.restore(); win.focus(); }
+    queueOpen(argv.slice(1));
+  });
+  queueOpen(process.argv.slice(1));
   app.whenReady().then(() => {
     store.load();
     registerProtocol();
     registerIpc();
     createWindow();
+    scheduleUpdateChecks();
     app.on('activate', () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });
   });
   app.on('window-all-closed', () => { if (!isMac) app.quit(); });

@@ -2,6 +2,7 @@
 import { ICON, KINDS, kindOf, extOf, baseName, fmtBytes, fmtTime, fmtAgo, esc, el, savedLabel, toast, newId, makeSortable, segIndicator } from './ui.js';
 import { renderPdf, addPdfFiles } from './pdf-tools.js';
 import { CONFIG } from './config.js';
+import { LANGS, setLang, pickLang, startTranslating, tr, currentLang } from './i18n.js';
 
 const api = window.filesmith;
 const view = document.getElementById('view');
@@ -218,7 +219,7 @@ function matchCommands(q) {
   const words = q.split(/\s+/);
   return COMMANDS
     .map((c) => {
-      const hay = `${c.t} ${c.d} ${c.kw}`.toLowerCase();
+      const hay = `${c.t} ${c.d} ${c.kw} ${tr(c.t)} ${tr(c.d)}`.toLowerCase();
       let score = 0;
       for (const w of words) { if (hay.includes(w)) score += c.t.toLowerCase().includes(w) ? 2 : 1; else return null; }
       return { c, score };
@@ -740,13 +741,17 @@ function renderSettings() {
         <div class="row">${st.outDir ? '<button class="btn sm ghost" id="reset-dir">Use original folder</button>' : ''}<button class="btn sm" id="pick-dir">Choose folder…</button></div></div>
       <div class="set-row"><div><div class="t">Show the file when done</div><div class="meta">Opens the folder after a batch finishes.</div></div>
         <label class="switch"><input type="checkbox" id="open-done" ${st.openFolderWhenDone ? 'checked' : ''}><span></span></label></div>
+      <div class="set-row"><div><div class="t">Language</div></div>
+        <select id="lang" style="width:auto;min-width:160px" data-no-i18n>${[['auto', tr('Automatic')], ...Object.entries(LANGS)].map(([v, l]) => `<option value="${v}" ${(st.lang || 'auto') === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>
+      <div class="set-row"><div><div class="t">Check for updates</div><div class="meta" style="white-space:normal">Once a day, Filesmith asks GitHub for the latest version number. Nothing about you or your files is sent.</div><div class="meta" id="upd-msg"></div></div>
+        <div class="row"><button class="btn sm" id="upd-now">Check now</button><label class="switch"><input type="checkbox" id="auto-upd" ${st.autoUpdate !== false ? 'checked' : ''}><span></span></label></div></div>
       <div class="set-row"><div><div class="t">Appearance</div></div>
-        <div class="chips" id="theme">${[['system', 'System'], ['dark', 'Dark'], ['light', 'Light']].map(([v, l]) => `<button class="chip-opt ${st.theme === v ? 'on' : ''}" data-v="${v}">${l}</button>`).join('')}</div></div>
+        <div class="chips" id="theme">${[['system', tr('System')], ['dark', tr('Dark')], ['light', currentLang() === 'en' ? 'Light' : tr('Light appearance')]].map(([v, l]) => `<button class="chip-opt ${st.theme === v ? 'on' : ''}" data-v="${v}" data-no-i18n>${l}</button>`).join('')}</div></div>
     </div>
     <h2>About</h2>
     <div class="group">
       <div class="set-row"><div><div class="t">Filesmith ${esc(S.version)}</div><div class="meta">Free and open source. Uses FFmpeg, pdf-lib and PDF.js.</div></div>
-        <button class="btn sm" data-href="${CONFIG.github}">${ICON.github} GitHub</button></div>
+        <div class="row"><button class="btn sm" id="licences">Licences</button><button class="btn sm" data-href="${CONFIG.github}">${ICON.github} GitHub</button></div></div>
       <div class="set-row"><div><div class="t">Made by ${esc(CONFIG.author)} · ${esc(CONFIG.studio)}</div><div class="meta">${esc(CONFIG.studio)} makes tools with no ads, no accounts and no tracking. Found a bug or have an idea? Open an issue on GitHub.</div></div>
         <button class="btn sm" data-href="${CONFIG.website}">Website</button></div>
     </div>
@@ -755,6 +760,19 @@ function renderSettings() {
   const rd = view.querySelector('#reset-dir');
   if (rd) rd.addEventListener('click', async () => { await api.setSettings({ outDir: '' }); await refreshState(); renderSettings(); });
   view.querySelector('#open-done').addEventListener('change', async (e) => { await api.setSettings({ openFolderWhenDone: e.target.checked }); await refreshState(); });
+  view.querySelector('#lang').addEventListener('change', async (e) => {
+    await api.setSettings({ lang: e.target.value });
+    location.reload();
+  });
+  view.querySelector('#auto-upd').addEventListener('change', async (e) => { await api.setSettings({ autoUpdate: e.target.checked }); await refreshState(); });
+  view.querySelector('#licences').addEventListener('click', () => api.openLicences());
+  view.querySelector('#upd-now').addEventListener('click', async (e) => {
+    const b = e.currentTarget; const msg = view.querySelector('#upd-msg');
+    b.disabled = true; msg.textContent = '';
+    const r = await api.checkUpdates();
+    b.disabled = false;
+    msg.textContent = r.state === 'latest' ? "You're on the latest version." : r.state === 'error' ? "Couldn't check for updates. Are you online?" : '';
+  });
   view.querySelector('#theme').addEventListener('click', async (e) => {
     const b = e.target.closest('.chip-opt'); if (!b) return;
     await api.setSettings({ theme: b.dataset.v }); await refreshState(); renderSettings();
@@ -783,10 +801,28 @@ function renderSupport() {
 
 // ---------- Start ----------
 
+// A quiet notice above the sidebar footer when a new version exists.
+function showUpdate(st) {
+  if (!st || !['ready', 'available'].includes(st.state)) return;
+  document.querySelector('.update-note')?.remove();
+  const note = el(`<div class="update-note" role="status">
+    <div>${st.state === 'ready' ? `Version ${esc(st.version)} is ready.` : `Version ${esc(st.version)} is available.`}</div>
+    <div class="row"><button class="btn sm primary-sm" id="upd-go">${st.state === 'ready' ? 'Restart to update' : 'Download'}</button><button class="btn sm ghost" id="upd-later">Later</button></div>
+  </div>`);
+  document.querySelector('.side-foot').prepend(note);
+  note.querySelector('#upd-go').addEventListener('click', () => { if (st.state === 'ready') api.installUpdate(); else api.openExternal(st.url || `${CONFIG.github}/releases/latest`); });
+  note.querySelector('#upd-later').addEventListener('click', () => note.remove());
+}
+
 (async function start() {
   await refreshState();
+  setLang(pickLang(S.settings.lang));
+  startTranslating();
   renderNav();
   render();
+  api.onOpenFiles((files) => addFiles(files));
+  api.onUpdate(showUpdate);
+  showUpdate(await api.rendererReady());
 })();
 
 // Hook for automated tests (test/e2e.mjs).

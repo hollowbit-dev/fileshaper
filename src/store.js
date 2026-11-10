@@ -3,7 +3,7 @@ const { app } = require('electron');
 const fs = require('fs');
 const path = require('path');
 
-const defaults = { outDir: '', openFolderWhenDone: false, theme: 'dark' };
+const defaults = { outDir: '', openFolderWhenDone: false, theme: 'dark', lang: 'auto', autoUpdate: true, lastUpdateCheck: 0 };
 let state = { settings: { ...defaults }, history: [], stats: { files: 0, bytesSaved: 0 } };
 const file = () => path.join(app.getPath('userData'), 'filesmith.json');
 

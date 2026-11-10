@@ -400,3 +400,6 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
   .seg-ind { transition: none; }
   .btn:active, .chip-opt:active { transform: none; }
 }
+/* Update notice */
+.update-note { margin: 0 2px 8px; padding: 10px; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--panel); display: grid; gap: 8px; font-size: var(--t-12); animation: rise .3s var(--ease-out); }
+.update-note .btn.primary-sm { background: var(--accent); border-color: transparent; color: var(--accent-ink); }

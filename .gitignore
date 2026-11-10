@@ -1,0 +1,14 @@
+node_modules
+dist
+vendor
+build
+test/out
+test/shots
+test/media
+test/userdata-*
+.DS_Store
+test/demo
+test/demo-out
+test/shots
+.impeccable/mocks
+*.log

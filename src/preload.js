@@ -1,0 +1,25 @@
+// The only bridge between Filesmith's window and the computer.
+const { contextBridge, ipcRenderer, webUtils } = require('electron');
+
+contextBridge.exposeInMainWorld('filesmith', {
+  pathFor: (file) => webUtils.getPathForFile(file),
+  fileUrl: (p) => `filesmith://file/${encodeURIComponent(p)}`,
+  pickFiles: (opts) => ipcRenderer.invoke('pick-files', opts),
+  pickFolder: () => ipcRenderer.invoke('pick-folder'),
+  stat: (p) => ipcRenderer.invoke('stat', p),
+  probe: (p) => ipcRenderer.invoke('probe', p),
+  readFile: (p) => ipcRenderer.invoke('read-file', p),
+  saveOutput: (args) => ipcRenderer.invoke('save-output', args),
+  heicToJpg: (p) => ipcRenderer.invoke('heic-to-jpg', p),
+  runJob: (job) => ipcRenderer.invoke('run-job', job),
+  cancelJob: (id) => ipcRenderer.invoke('cancel-job', id),
+  onProgress: (cb) => ipcRenderer.on('job-progress', (_e, d) => cb(d)),
+  onFullscreen: (cb) => ipcRenderer.on('fullscreen', (_e, v) => cb(v)),
+  platform: process.platform,
+  showInFolder: (p) => ipcRenderer.invoke('show-in-folder', p),
+  openFile: (p) => ipcRenderer.invoke('open-file', p),
+  openExternal: (u) => ipcRenderer.invoke('open-external', u),
+  getState: () => ipcRenderer.invoke('get-state'),
+  setSettings: (patch) => ipcRenderer.invoke('set-settings', patch),
+  clearHistory: () => ipcRenderer.invoke('clear-history'),
+});

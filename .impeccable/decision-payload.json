@@ -1,0 +1,245 @@
+{
+ "title": "Choose Filesmith's visual world",
+ "question": "New hand: the roll dealt the Bag Sizer. Keep it, take an alternate, or re-roll.",
+ "options": [
+  {
+   "id": "assigned2",
+   "kind": "assigned",
+   "label": "Bag Sizer",
+   "kicker": "THE ROLL",
+   "lineage": "airport cabin-bag sizers and terminal wayfinding",
+   "thesis": "Every file is checked against its limit like hand luggage in the sizer: it fits, or Filesmith makes it fit.",
+   "palette": [
+    "#141414",
+    "#efeee9",
+    "#ffcc00",
+    "#ffffff",
+    "#2f8a4e",
+    "#d0382b"
+   ],
+   "materials": [
+    "black rail with yellow wayfinding bands",
+    "concourse-grey ground",
+    "steel sizer frame"
+   ],
+   "viewport": "Black rail where yellow marks only where you are, the size limit set monumental like a gate number, and every file row showing its bar against the sizer frame.",
+   "risk": "Yellow must stay reserved for wayfinding; spread around it turns into a hazard-tape costume.",
+   "raised": [
+    {
+     "from": "challenger-terminal",
+     "raise": "Yellow means 'you are here' and nothing else; one message per line."
+    },
+    {
+     "from": "challenger-labanotation",
+     "raise": "Trim and GIF timelines draw exact duration: bar length is real seconds."
+    },
+    {
+     "from": "challenger-acetate",
+     "raise": "Each tool family keeps one full-strength hue as its section colour."
+    },
+    {
+     "from": "challenger-emission",
+     "raise": "State reads from line form too (solid live, dashed queued, struck failed), never colour alone."
+    },
+    {
+     "from": "challenger-mono",
+     "raise": "Every claim sits next to its proof: the measured before/after, not an adjective."
+    }
+   ],
+   "html": ".impeccable/mocks/decision/assigned2.html",
+   "comp": ".impeccable/mocks/decision/assigned2.webp"
+  },
+  {
+   "id": "model-pick",
+   "kind": "pick",
+   "label": "Till Receipt",
+   "kicker": "IMPECCABLE\u2019S PICK",
+   "lineage": "shop till receipts: itemised lines, dotted leaders, a total you saved",
+   "thesis": "Every job ends in a receipt: what went in, what came out, and what you saved.",
+   "palette": [
+    "#1f3d99",
+    "#f7f5ef",
+    "#2b2b2b",
+    "#ff7a3d",
+    "#2f9e62"
+   ],
+   "materials": [
+    "thermal paper",
+    "tabular till figures",
+    "perforated tear edge"
+   ],
+   "viewport": "Till-blue rail, the queue as itemised lines with dotted leaders from file name to before/after size, a running total at the foot.",
+   "risk": "Familiar: the receipt motif shows up in some finance apps.",
+   "html": ".impeccable/mocks/decision/model-pick.html",
+   "comp": ".impeccable/mocks/decision/model-pick.webp"
+  },
+  {
+   "id": "challenger-terminal",
+   "kind": "challenger",
+   "catalogId": "wayfinding-cartography-signage-terminal-yellow-wayfinding",
+   "label": "Terminal Signage",
+   "verdict": "competitive",
+   "lineage": "Schiphol-style yellow wayfinding",
+   "thesis": "The app as an overhead sign: yellow bands tell you where each job goes.",
+   "palette": [
+    "#ffcc00",
+    "#111111",
+    "#ffffff",
+    "#2b2b2b"
+   ],
+   "materials": [
+    "yellow sign panels",
+    "white pictograms on black"
+   ],
+   "viewport": "A yellow overhead band of tools across the top, monumental size limit, queue beneath.",
+   "case": "Same terminal world everyone knows; loses narrowly on clarity because a yellow band everywhere shouts.",
+   "risk": "Loud: a full yellow header is tiring on a tool used daily.",
+   "html": ".impeccable/mocks/decision/challenger-terminal.html",
+   "comp": ".impeccable/mocks/decision/challenger-terminal.webp",
+   "hero": "https://impeccable.style/worlds/cards/wayfinding-cartography-signage-terminal-yellow-wayfinding-hero.webp"
+  },
+  {
+   "id": "challenger-mono",
+   "kind": "challenger",
+   "catalogId": "digital-design-canon-monochrome-product-marketing",
+   "label": "Monochrome Product Site",
+   "verdict": "declined",
+   "lineage": "Monochrome Product Site",
+   "thesis": "Every claim paired with its proof.",
+   "palette": [
+    "#fafafa",
+    "#111111",
+    "#3b5bdb"
+   ],
+   "materials": [
+    "see catalog"
+   ],
+   "viewport": "Not sketched.",
+   "case": "Declined: a marketing-page language, not a working screen.",
+   "kept": "Every claim paired with its proof.",
+   "risk": "Fails audience identification.",
+   "hero": "https://impeccable.style/worlds/cards/digital-design-canon-monochrome-product-marketing-hero.webp"
+  },
+  {
+   "id": "challenger-saville",
+   "kind": "challenger",
+   "catalogId": "brand-identity-canon-saville-catalog-sleeve",
+   "label": "Factory Sleeve",
+   "verdict": "declined",
+   "lineage": "Factory Sleeve",
+   "thesis": "One element owns the field; vast quiet space.",
+   "palette": [
+    "#0d0d0d",
+    "#ffffff",
+    "#e53935",
+    "#1e88e5"
+   ],
+   "materials": [
+    "see catalog"
+   ],
+   "viewport": "Not sketched.",
+   "case": "Declined: coded colour strips hide plain-language labels everyday users need.",
+   "kept": "One element owns the field; vast quiet space.",
+   "risk": "Fails audience identification.",
+   "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-saville-catalog-sleeve-hero.webp"
+  },
+  {
+   "id": "challenger-labanotation",
+   "kind": "challenger",
+   "catalogId": "notation-diagram-systems-labanotation",
+   "label": "Dance Score",
+   "verdict": "declined",
+   "lineage": "Dance Score",
+   "thesis": "Length equals exact duration.",
+   "palette": [
+    "#ffffff",
+    "#111111",
+    "#d9d9d9"
+   ],
+   "materials": [
+    "see catalog"
+   ],
+   "viewport": "Not sketched.",
+   "case": "Declined: nobody fixing a file reads dance notation.",
+   "kept": "Length equals exact duration.",
+   "risk": "Fails audience identification.",
+   "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-labanotation-hero.webp"
+  },
+  {
+   "id": "challenger-acetate",
+   "kind": "challenger",
+   "catalogId": "rw-manual-acetate-tab-board",
+   "label": "Acetate Manual",
+   "verdict": "declined",
+   "lineage": "Acetate Manual",
+   "thesis": "One full-strength hue per section.",
+   "palette": [
+    "#e8622c",
+    "#f2c230",
+    "#3d9a4f",
+    "#2a5bd7"
+   ],
+   "materials": [
+    "see catalog"
+   ],
+   "viewport": "Not sketched.",
+   "case": "Declined: old software manuals aren't in everyday users' world.",
+   "kept": "One full-strength hue per section.",
+   "risk": "Fails audience identification.",
+   "hero": "https://impeccable.style/worlds/cards/rw-manual-acetate-tab-board-hero.webp"
+  },
+  {
+   "id": "challenger-emission",
+   "kind": "challenger",
+   "catalogId": "operate-c-emission-line-rail",
+   "label": "Emission Rail",
+   "verdict": "declined",
+   "lineage": "Emission Rail",
+   "thesis": "State as line form, not hue.",
+   "palette": [
+    "#2a2a2c",
+    "#e8e2d6",
+    "#f5c518"
+   ],
+   "materials": [
+    "see catalog"
+   ],
+   "viewport": "Not sketched.",
+   "case": "Declined: a lab instrument look; reads cold and technical.",
+   "kept": "State as line form, not hue.",
+   "risk": "Fails audience identification.",
+   "hero": "https://impeccable.style/worlds/cards/operate-c-emission-line-rail-hero.webp"
+  }
+ ],
+ "reroll": {
+  "registers": [
+   "safer",
+   "bolder"
+  ]
+ },
+ "buildPath": {
+  "value": "code"
+ },
+ "canon": true,
+ "canonCard": {
+  "kind": "canon",
+  "label": "The category standard",
+  "thesis": "A clean utility app like the best Mac and Windows converters, executed with full craft.",
+  "palette": [
+   "#ffffff",
+   "#f3f4f6",
+   "#111827",
+   "#2563eb"
+  ],
+  "materials": [
+   "neutral panels",
+   "system type",
+   "one blue accent"
+  ],
+  "viewport": "Sidebar, a toolbar of tool tabs, the queue and a settings inspector.",
+  "risk": "Indistinguishable from other converters by design.",
+  "html": ".impeccable/mocks/decision/canon.html",
+  "comp": ".impeccable/mocks/decision/canon.webp"
+ },
+ "steer": true
+}

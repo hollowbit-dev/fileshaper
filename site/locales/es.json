@@ -1,0 +1,176 @@
+{
+  "lang": "Español",
+  "meta": { "description": "Filesmith es una app gratuita y sin conexión para Windows y Mac. Comprime vídeos para Discord, convierte fotos de iPhone, une y firma PDF. No se sube nada." },
+  "nav": { "features": "Funciones", "download": "Descargar", "changelog": "Novedades", "faq": "Preguntas", "about": "Sobre mí", "cta": "Descargar", "skip": "Ir al contenido", "language": "Idioma" },
+  "footer": {
+    "tagline": "Arregla cualquier archivo. Nada sale de tu ordenador.",
+    "product": "Producto", "help": "Ayuda", "studio": "Hollowbit",
+    "support": "Soporte", "privacy": "Privacidad", "github": "GitHub", "about": "Sobre mí",
+    "made": "Hecho por Elvis Zygmanta en Hollowbit.",
+    "legal": "© 2026 Hollowbit. Filesmith es software libre bajo la licencia GPL-3.0."
+  },
+  "common": {
+    "dl_mac": "Descargar para Mac", "dl_win": "Descargar para Windows", "dl_free": "Descargar gratis",
+    "see_features": "Ver qué hace", "platforms": "Gratis para Windows 10 y 11, y macOS 12 o posterior.",
+    "version": "Versión", "released": "Publicada el 10 de noviembre de 2026"
+  },
+  "home": {
+    "title": "Filesmith: arregla cualquier archivo, en privado",
+    "h1": "Arregla cualquier archivo. Nada sale de tu ordenador.",
+    "lead": "Comprime vídeos para Discord, convierte fotos de iPhone a JPG, une y firma PDF. Filesmith lo hace en tu propio ordenador. Gratis, sin cuenta y sin límites.",
+    "demo_label": "Demostración en vivo del campo de comandos",
+    "demo_queries": ["comprimir para discord", "heic a jpg", "firmar un pdf"],
+    "demo_results": [
+      { "cmd": "Comprimir un vídeo para Discord", "detail": "menos de 10 MB", "file": "Viaje a Lisboa 4K.mp4", "result": "149 MB → 9,1 MB" },
+      { "cmd": "Convertir fotos de iPhone a JPG", "detail": "de HEIC a JPG", "file": "IMG_4821.HEIC", "result": "Guardado como IMG_4821.jpg" },
+      { "cmd": "Firmar un PDF", "detail": "dibuja o escribe tu firma", "file": "Contrato de alquiler.pdf", "result": "Guardado como Contrato de alquiler-signed.pdf" }
+    ],
+    "demo_done": "Listo",
+    "demo_placeholder": "¿Qué quieres hacer?",
+    "tools_h2": "Una app en lugar de cuarenta webs.",
+    "tools_p": "Las tareas con archivos que la gente busca cada semana, en un solo sitio que funciona sin wifi.",
+    "proof_h2": "Medido, no prometido.",
+    "proof_note": "Resultados con los archivos de prueba de Filesmith.",
+    "proof": [
+      { "n": "149 MB → 9,1 MB", "l": "Un clip 4K de 40 segundos, comprimido para el límite de 10 MB de Discord" },
+      { "n": "−88%", "l": "Una captura PNG guardada como JPG que se ve igual" },
+      { "n": "0 bytes", "l": "Subidos a internet. Todo se hace en tu ordenador." }
+    ],
+    "privacy_h2": "Tus archivos siguen siendo tuyos.",
+    "privacy_p": "Los conversores online te obligan a subir contratos, DNI escaneados y fotos privadas a servidores que no conoces. Filesmith no tiene servidores. No puede ver tus archivos, porque nunca salen de tu ordenador.",
+    "facts": [
+      { "t": "Sin subidas", "d": "Todo se hace en local, con FFmpeg, pdf-lib y PDF.js." },
+      { "t": "Sin cuenta", "d": "Descárgala y úsala. No hay que registrarse." },
+      { "t": "Sin rastreo", "d": "Sin analíticas en la app ni en esta web." },
+      { "t": "Código abierto", "d": "Todo el código es público, así que cualquiera puede revisarlo." }
+    ],
+    "final_h2": "Cuando quieras.",
+    "final_p": "Gratis, sin prueba y sin marca de agua. Ocupa entre 110 y 135 MB."
+  },
+  "families": {
+    "video": { "name": "Vídeo", "blurb": "Elige un límite de tamaño y Filesmith se queda justo por debajo, siempre.",
+      "items": [
+        ["Comprimir a un tamaño", "8, 10, 16, 25 o 50 MB, o el número que quieras. Los vídeos largos bajan de resolución para seguir viéndose bien."],
+        ["Comprimir por calidad", "Alta, equilibrada o mínima, cuando el tamaño no importa."],
+        ["Recortar", "Arrastra dos tiradores sobre una vista previa y quédate solo con lo que quieres."],
+        ["Crear un GIF", "Elige unos segundos, la fluidez y el ancho."],
+        ["Extraer audio", "Guarda el sonido de cualquier vídeo como MP3."],
+        ["Convertir a MP4", "MOV, MKV, WEBM y AVI pasan a MP4, que se reproduce en todas partes."],
+        ["Quitar el sonido", "Mantén la imagen tal cual y elimina el audio."]
+      ] },
+    "images": { "name": "Imágenes", "blurb": "Fotos de iPhone que no se abren en Windows, arregladas por lotes.",
+      "items": [
+        ["Convertir", "HEIC, PNG, WebP, GIF, BMP y TIFF a JPG, PNG o WebP."],
+        ["Redimensionar", "Por el lado más largo o por porcentaje. Las fotos nunca se deforman."],
+        ["Comprimir", "Archivos más pequeños que se ven igual, listos para enviar o subir."],
+        ["Imágenes a PDF", "Cada imagen es una página, bien orientada."]
+      ] },
+    "pdf": { "name": "PDF", "blurb": "Lo que normalmente pagarías, o subirías tus documentos para hacer.",
+      "items": [
+        ["Firmar y rellenar", "Dibuja o escribe una firma, añade nombres y fechas y colócalos arrastrando."],
+        ["Unir", "Combina PDF en el orden que quieras."],
+        ["Dividir", "Todas las páginas, por rangos o solo las que elijas."],
+        ["Organizar páginas", "Reordena, gira y elimina páginas arrastrando miniaturas."],
+        ["Comprimir", "Ligera mantiene el texto seleccionable. Fuerte reduce escaneos y archivos con muchas fotos."]
+      ] },
+    "audio": { "name": "Audio", "blurb": "Notas de voz, podcasts, canciones y tonos.",
+      "items": [
+        ["Convertir", "MP3, M4A, WAV, FLAC y OGG."],
+        ["Recortar", "Corta un tono o la mejor parte de una nota de voz, con vista previa."],
+        ["Igualar el volumen", "Las grabaciones bajas suben y las altas bajan, al nivel de las apps de streaming."]
+      ] }
+  },
+  "features": {
+    "title": "Funciones",
+    "h1": "Todo lo que hace Filesmith.",
+    "lead": "Dieciocho herramientas para vídeo, imágenes, PDF y audio. Cada una es una elección sencilla como «menos de 10 MB» o «a JPG», nunca una página de ajustes.",
+    "everywhere_h2": "En todas las herramientas",
+    "everywhere": [
+      ["Suelta lo que sea", "Arrastra archivos a cualquier parte de la ventana. Filesmith separa vídeos, fotos, PDF y audio por ti."],
+      ["Barra de comandos", "Pulsa Ctrl K (⌘K en Mac) y escribe lo que quieres, como «heic a jpg»."],
+      ["Por lotes", "Cientos de archivos de una vez, con el progreso de cada uno."],
+      ["Originales a salvo", "Cada resultado es un archivo nuevo. Tus originales nunca cambian."],
+      ["Mira el ahorro", "Cada resultado muestra su tamaño antes y después."],
+      ["Oscuro y claro", "Oscuro por defecto, con modo claro o el del sistema en Ajustes."]
+    ]
+  },
+  "download": {
+    "title": "Descargar",
+    "h1": "Descarga Filesmith.",
+    "lead": "Gratis y sin cuenta. Elige tu ordenador.",
+    "win": "Windows", "win_req": "Windows 10 u 11, 64 bits", "win_btn": "Descargar para Windows",
+    "mac": "macOS", "mac_req": "macOS 12 Monterey o posterior", "mac_silicon": "Apple Silicon", "mac_intel": "Intel",
+    "which_mac": "¿No sabes qué Mac tienes? Abre el menú Apple y luego Acerca de este Mac. «Apple M1», M2, M3 o M4 significa Apple Silicon.",
+    "first_h2": "Abrirla la primera vez",
+    "first_p": "Filesmith es nueva y aún no está firmada con un certificado de desarrollador de pago, así que tu ordenador muestra un aviso la primera vez. Así se abre de forma segura.",
+    "first_win": ["Ejecuta el instalador que descargaste.", "Si ves «Windows protegió su PC», haz clic en Más información.", "Haz clic en Ejecutar de todas formas. Solo se hace una vez."],
+    "first_mac": ["Abre el .dmg y arrastra Filesmith a Aplicaciones.", "Haz clic derecho en Filesmith dentro de Aplicaciones y elige Abrir.", "Haz clic en Abrir. Si macOS la sigue bloqueando, ve a Ajustes del Sistema, Privacidad y seguridad, y pulsa Abrir igualmente."],
+    "req_h2": "Requisitos",
+    "req": [["Espacio en disco", "Unos 350 MB una vez instalada"], ["Memoria", "4 GB o más"], ["Internet", "No hace falta, nunca"]],
+    "verify_h2": "Verifica tu descarga",
+    "verify_p": "Compara estas huellas SHA-256 con tu archivo para asegurarte de que no ha sido manipulado.",
+    "source": "¿Prefieres compilarla tú? El código fuente está en GitHub."
+  },
+  "changelog": {
+    "title": "Novedades", "h1": "Novedades", "lead": "Todas las versiones de Filesmith, de la más nueva a la más antigua.",
+    "entries": [
+      { "v": "1.0.0", "date": "10 de noviembre de 2026", "name": "Primera versión",
+        "items": [
+          "Vídeo: comprimir por tamaño o calidad, recortar, crear GIF, extraer audio, convertir a MP4, quitar el sonido.",
+          "Imágenes: convertir HEIC y otros formatos, redimensionar, comprimir, pasar imágenes a PDF.",
+          "PDF: firmar y rellenar, unir, dividir, organizar páginas, comprimir.",
+          "Audio: convertir, recortar, igualar el volumen.",
+          "Barra de comandos (Ctrl K o ⌘K) que entiende lo que quieres en palabras normales.",
+          "Aspecto oscuro y claro. Barra lateral nativa en macOS y Windows 11.",
+          "Instaladores para Windows y para Mac con Apple Silicon e Intel."
+        ] }
+    ]
+  },
+  "privacy": {
+    "title": "Política de privacidad", "h1": "Política de privacidad", "updated": "Última actualización: 10 de noviembre de 2026",
+    "short": "En resumen: Filesmith no recoge nada. Tus archivos nunca salen de tu ordenador.",
+    "sections": [
+      ["La app", "Filesmith procesa cada archivo en tu propio ordenador. No hace ninguna conexión de red, no tiene cuentas ni analíticas y no envía informes de errores. Tus ajustes y la lista de archivos creados se guardan en un archivo de tu ordenador, y puedes borrar el historial desde la app cuando quieras."],
+      ["Esta web", "Esta web está alojada en GitHub Pages. GitHub puede guardar registros normales del servidor, como direcciones IP, según su propia política de privacidad. La web no usa cookies, analíticas ni rastreo. Las fuentes se alojan aquí, no se cargan desde Google. Tu idioma elegido solo se recuerda en tu navegador."],
+      ["Propinas", "Si dejas una propina en Ko-fi, Ko-fi gestiona el pago según su propia política de privacidad. Filesmith nunca ve tus datos de pago."],
+      ["Contacto", "¿Preguntas sobre privacidad? Abre una incidencia en GitHub."]
+    ]
+  },
+  "faq": {
+    "title": "Preguntas", "h1": "Preguntas y respuestas",
+    "items": [
+      ["¿Filesmith es gratis de verdad?", "Sí. Sin prueba, sin límites y sin marca de agua. Es de código abierto. Si quieres apoyarla, hay un bote de propinas, pero nunca es necesario."],
+      ["¿Es segura?", "Filesmith solo lee los archivos que le das y guarda copias nuevas a su lado. Nunca cambia ni borra tus originales y nunca se conecta a internet. Todo el código es público en GitHub."],
+      ["¿Por qué mi ordenador me avisa al abrirla?", "Windows y macOS avisan de las apps que no están firmadas con un certificado de desarrollador de pago, que cuesta entre 100 y 300 dólares al año. Filesmith es nueva y la hace una sola persona, así que aún no está firmada. La página de descarga explica cómo abrirla."],
+      ["¿Qué archivos puede abrir?", "Vídeo: MP4, MOV, MKV, WEBM, AVI y más. Imágenes: HEIC, JPG, PNG, WebP, GIF, BMP, TIFF. PDF. Audio: MP3, M4A, WAV, FLAC, OGG, WMA."],
+      ["¿Cómo consigue que «menos de 10 MB» quede siempre por debajo?", "Filesmith mide la duración del vídeo, calcula cuántos datos caben exactamente en tu límite y codifica dos veces: una para estudiar el vídeo y otra para gastar los datos donde importan. Los vídeos largos bajan de resolución para seguir viéndose bien."],
+      ["¿Funciona sin internet?", "Sí. Filesmith nunca necesita internet, ni siquiera para arrancar."],
+      ["¿Quién la ha hecho?", "Elvis Zygmanta, bajo el nombre Hollowbit. Mira la página Sobre mí."]
+    ]
+  },
+  "about": {
+    "title": "Sobre mí", "h1": "Hola, soy Elvis.",
+    "lead": "Soy Elvis Zygmanta. Hago software bajo el nombre Hollowbit: herramientas pequeñas y gratuitas que hacen una cosa bien y respetan a quien las usa.",
+    "why_h2": "Por qué hice Filesmith",
+    "why": [
+      "Reducir un vídeo para Discord, abrir una foto de iPhone en Windows, firmar un PDF: casi todo el mundo tiene que hacerlo. La respuesta habitual es una web que te pide subir tus archivos, esperar en una cola y pagar para quitar una marca de agua.",
+      "Me pareció mal para tareas que un ordenador normal hace en segundos. Así que hice Filesmith: una app para vídeo, imágenes, PDF y audio que funciona entera en tu propio ordenador.",
+      "La diseñé, escribí el código, creé los instaladores para Windows y Mac, hice esta web y escribí 21 pruebas automáticas que manejan la app real para comprobar que cada herramienta funciona."
+    ],
+    "rules_h2": "Lo que Hollowbit respeta",
+    "rules": [["Sin anuncios", "Ni en la app ni en la web."], ["Sin cuentas", "No deberías registrarte para convertir un archivo."], ["Sin rastreo", "Sin analíticas ni recogida de datos."], ["Código abierto", "Cada línea de código es pública."]],
+    "tech_h2": "Cómo está hecha",
+    "tech": [["Electron", "Un solo código para Windows y Mac"], ["FFmpeg", "Procesado de vídeo, audio e imágenes"], ["pdf-lib y PDF.js", "Editar, firmar y dibujar PDF"], ["Codificación en dos pasadas", "Queda justo por debajo del tamaño objetivo"], ["Playwright", "21 pruebas de extremo a extremo en la app real"], ["Sin conexiones de red", "Funciona sin wifi"]],
+    "github": "Mi GitHub"
+  },
+  "support": {
+    "title": "Soporte", "h1": "Soporte",
+    "help_h2": "Obtener ayuda",
+    "help_p": "¿Has encontrado un fallo o algo no funciona? Abre una incidencia en GitHub. Indica qué ordenador usas, qué versión de Filesmith y qué intentaste.",
+    "help_btn": "Abrir una incidencia",
+    "give_h2": "Apoyar el proyecto",
+    "give_p": "Filesmith es gratis y lo seguirá siendo. Una propina ayuda a pagar los certificados de firma que eliminan los avisos de seguridad.",
+    "tip_btn": "Invítame a un café", "star_btn": "Dar una estrella en GitHub"
+  },
+  "notfound": { "title": "Página no encontrada", "h1": "Esta página no existe.", "p": "Puede que el enlace sea antiguo o que la página se haya movido.", "home": "Volver al inicio" }
+}

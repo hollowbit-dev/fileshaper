@@ -1,0 +1,15 @@
+import { _electron as electron } from 'playwright';
+import path from 'path';
+const app = await electron.launch({ args: [path.resolve('.')] });
+const page = await app.firstWindow();
+await page.waitForSelector('.cmd');
+page.on('console', (m) => console.log('console:', m.text()));
+await app.evaluate(({ BrowserWindow }) => BrowserWindow.getAllWindows()[0].setFullScreen(true));
+await page.waitForTimeout(2500);
+const info = await page.evaluate(() => ({ w: innerWidth, h: innerHeight, mainScroll: document.getElementById('view').scrollHeight, page: getComputedStyle(document.querySelector('.page')).maxWidth }));
+console.log(JSON.stringify(info));
+await page.screenshot({ path: 'test/shots/fullscreen.png' });
+await page.evaluate(() => window.__filesmithTest.go('video'));
+await page.waitForTimeout(500);
+await page.screenshot({ path: 'test/shots/fullscreen-video.png' });
+await app.close();

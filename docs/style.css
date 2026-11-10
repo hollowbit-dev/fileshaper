@@ -347,3 +347,6 @@ p { margin: 0; }
   .demo-bar i { transition: none; }
   .shot, .btn .ic { transition: none; }
 }
+.fine-link { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; margin-left: 4px; white-space: nowrap; }
+.fine-link:hover { color: var(--text); }
+@media (max-width: 680px) { .cta .btn-lg { width: 100%; } .fine-link { white-space: normal; } }

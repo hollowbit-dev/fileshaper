@@ -26,8 +26,15 @@
   const ua = navigator.userAgent;
   const os = /Windows/i.test(ua) ? 'win' : (/Macintosh|Mac OS X/i.test(ua) && !/iPhone|iPad/i.test(ua) ? 'mac' : null);
   if (os) {
-    document.querySelectorAll('[data-dl-label]').forEach((s) => { s.textContent = os === 'win' ? FS.t.win : FS.t.mac; });
-    if (os === 'win') document.querySelectorAll('a[data-dl]').forEach((a) => { if (a.querySelector('[data-dl-label]')) a.href = FS.releases + FS.files.win; });
+    // The visitor's own OS gets the highlighted button and goes first.
+    document.querySelectorAll('.cta').forEach((cta) => {
+      const mine = cta.querySelector(`[data-os-btn="${os}"]`);
+      const other = cta.querySelector(`[data-os-btn="${os === 'mac' ? 'win' : 'mac'}"]`);
+      if (!mine || !other) return;
+      mine.classList.replace('btn-ghost', 'btn-primary');
+      other.classList.replace('btn-primary', 'btn-ghost');
+      cta.prepend(mine);
+    });
     const card = document.querySelector(`.dl-card[data-os="${os}"]`);
     if (card) { card.classList.add('mine'); card.parentElement.prepend(card); }
   }

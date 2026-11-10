@@ -140,8 +140,10 @@ ${body}
 
 const shot = (base, img, alt, cls = '') => `<figure class="shot ${cls}"><div class="shot-bar"><i></i><i></i><i></i></div><img src="${base}img/${img}.webp" alt="${esc(alt)}" width="1200" height="760" loading="${cls.includes('eager') ? 'eager' : 'lazy'}"></figure>`;
 
-const dlButtons = (t, big = true) => `
-  <a class="btn ${big ? 'btn-lg' : ''} btn-primary" href="download.html" data-dl>${ICON.down}<span data-dl-label>${esc(t.common.dl_free)}</span></a>`;
+// Both downloads, side by side. site.js makes the visitor's own OS the highlighted one.
+const dlButtons = (t) => `
+  <a class="btn btn-lg btn-primary" data-os-btn="mac" href="${releases}${FILES.macArm}">${ICON.apple}${esc(t.common.dl_mac)}</a>
+  <a class="btn btn-lg btn-ghost" data-os-btn="win" href="${releases}${FILES.win}">${ICON.windows}${esc(t.common.dl_win)}</a>`;
 
 // ---------- Pages ----------
 function home(L, t, base) {
@@ -151,8 +153,8 @@ function home(L, t, base) {
   <div class="wrap hero-in">
     <h1>${esc(t.home.h1)}</h1>
     <p class="lead">${esc(t.home.lead)}</p>
-    <div class="cta">${dlButtons(t)}<a class="btn btn-lg btn-ghost" href="${href('features')}">${esc(t.common.see_features)}${ICON.arrow}</a></div>
-    <p class="fine">${esc(t.common.platforms)}</p>
+    <div class="cta">${dlButtons(t)}</div>
+    <p class="fine">${esc(t.common.platforms)} <a class="fine-link" href="${href('download')}">${esc(t.common.intel)}</a></p>
   </div>
   <div class="wrap demo-wrap">
     <div class="demo" role="img" aria-label="${esc(t.home.demo_label)}" data-demo='${esc(JSON.stringify({ q: t.home.demo_queries, r: t.home.demo_results, done: t.home.demo_done }))}'>
@@ -196,6 +198,7 @@ function home(L, t, base) {
     <h2>${esc(t.home.final_h2)}</h2>
     <p>${esc(t.home.final_p)}</p>
     <div class="cta">${dlButtons(t)}</div>
+    <p class="fine"><a class="fine-link" href="${href('download')}">${esc(t.common.intel)}</a></p>
   </div>
   </div>
 </section>`;

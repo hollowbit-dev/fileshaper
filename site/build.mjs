@@ -137,7 +137,7 @@ ${ld}
 <header class="nav">
   <div class="wrap nav-in">
     <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="28" height="28"><span>Filesmith</span></a>
-    <nav class="links" aria-label="Main">${nav.map(([p, l]) => `<a href="${href(p)}"${p === page ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}</nav>
+    <nav class="links" aria-label="Main"><a href="${base}tools/"${page === 'tools' ? ' aria-current="page"' : ''}>${esc(t.nav.tools)}</a>${nav.map(([p, l]) => `<a href="${href(p)}"${p === page ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}</nav>
     <div class="nav-end">
       <details class="lang">
         <summary aria-label="${esc(t.nav.language)}">${ICON.globe}<span>${L.code.toUpperCase()}</span></summary>
@@ -157,7 +157,7 @@ ${body}
       <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="24" height="24"><span>Filesmith</span></a>
       <p>${esc(t.footer.tagline)}</p>
     </div>
-    <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a><a href="${base}guides/">${esc(t.footer.guides)}</a></div>
+    <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${base}tools/">${esc(t.nav.tools)}</a><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a><a href="${base}guides/">${esc(t.footer.guides)}</a></div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.help)}</p><a href="${href('faq')}">${esc(t.nav.faq)}</a><a href="${href('support')}">${esc(t.footer.support)}</a><a href="${href('privacy')}">${esc(t.footer.privacy)}</a></div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.studio)}</p><a href="${href('about')}">${esc(t.footer.about)}</a><a href="${SITE.github}" rel="noopener">${esc(t.footer.github)}</a></div>
   </div>
@@ -165,6 +165,7 @@ ${body}
 </footer>
 <script>window.FS=${JSON.stringify({ releases, files: FILES, lang: L.code, langs: LANGS.map((l) => l.code), page, t: { mac: t.common.dl_mac, win: t.common.dl_win } })};</script>
 <script src="${base}site.js" defer></script>
+${o.tools ? `<script type="module" src="${base}tools.js"></script>` : ''}
 </body>
 </html>
 `;
@@ -334,6 +335,23 @@ function notfound(L, t) {
 }
 
 // ---------- Guides (English, for search) ----------
+const TOOL_OF = { 'compress-video-for-discord': 'video-compress', 'heic-to-jpg-windows': 'heic-to-jpg', 'sign-pdf-without-uploading': 'pdf-sign', 'merge-pdf-offline': 'pdf-merge', 'video-to-gif': 'video-gif', 'compress-pdf-for-email': 'pdf-compress' };
+const TOOL_LIST = [
+  ['images', 'Images: convert, resize, compress', 'HEIC, PNG, WebP, GIF and more to JPG, PNG or WebP, in bulk.'],
+  ['pdf-merge', 'Merge PDFs', 'Combine PDFs in any order.'],
+  ['pdf-sign', 'Sign a PDF', 'Draw or type a signature, add the date, place them on the page.'],
+  ['pdf-compress', 'Compress a PDF', 'Shrink PDFs for email and upload portals.'],
+  ['pdf-split', 'Split a PDF', 'Every page as its own file, or just the pages you pick.'],
+  ['video-compress', 'Compress a video', 'Fit a video under 8, 10, 25 or 50 MB. Up to 200 MB in the browser.'],
+  ['video-gif', 'Video to GIF', 'Pick a moment, choose size and smoothness.'],
+];
+function toolsPage() {
+  return `
+<section class="page-hero"><div class="wrap"><h1>Free online tools that never upload your files</h1>
+<p class="lead">Convert images, merge, sign and compress PDFs, shrink videos and make GIFs, right here in your browser. Everything runs on your own device: turn off the Wi-Fi once the page has loaded and it still works.</p>
+<nav class="tools-nav">${TOOL_LIST.map(([id, n]) => `<a href="#${id}">${esc(n)}</a>`).join('')}</nav></div></section>
+<section class="sec tight"><div class="wrap narrow">${TOOL_LIST.map(([id, n, d]) => `<div class="tool-sec" id="${id}"><h2>${esc(n)}</h2><p>${esc(d)}</p><div data-tool="${id}"></div></div>`).join('')}</div></section>`;
+}
 const FAM_SHOT = { video: 'video', images: 'images', pdf: 'pdf-sign', audio: 'home' };
 function guidePage(g) {
   const t = en;
@@ -347,6 +365,8 @@ function guidePage(g) {
   <div class="cta cta-left">${dlButtons(t)}</div>
 </div></section>
 <section class="sec tight"><div class="wrap narrow">
+  <h2 class="try-h">Do it right here</h2>
+  <div data-tool="${TOOL_OF[g.slug]}"></div>
   <h2>Step by step</h2>
   <ol class="howto">${g.steps.map(([n, d]) => `<li><b>${esc(n)}</b><span>${esc(d)}</span></li>`).join('')}</ol>
   ${shot('../', FAM_SHOT[g.tool], `Filesmith ${g.tool} tool`)}
@@ -411,9 +431,25 @@ fs.writeFileSync(path.join(out, '.nojekyll'), '');
 // Guides
 fs.mkdirSync(path.join(out, 'guides'), { recursive: true });
 for (const g of GUIDES) {
-  fs.writeFileSync(path.join(out, 'guides', `${g.slug}.html`), layout(LANGS[0], en, 'guides', `${g.title} · Filesmith`, guidePage(g), { prefix: '../', path: `guides/${g.slug}.html`, desc: g.desc, jsonld: guideLd(g), article: true }));
+  fs.writeFileSync(path.join(out, 'guides', `${g.slug}.html`), layout(LANGS[0], en, 'guides', `${g.title} · Filesmith`, guidePage(g), { prefix: '../', path: `guides/${g.slug}.html`, desc: g.desc, jsonld: guideLd(g), article: true, tools: true }));
 }
 fs.writeFileSync(path.join(out, 'guides', 'index.html'), layout(LANGS[0], en, 'guides', 'Guides · Filesmith', guideIndex(), { prefix: '../', path: 'guides/', desc: 'Free guides: compress a video for Discord, open HEIC on Windows, sign, merge and compress PDFs, make GIFs. All done offline with Filesmith.' }));
+
+// Online tools page + browser engines (self-hosted, so the site never calls another server)
+fs.mkdirSync(path.join(out, 'tools'), { recursive: true });
+fs.writeFileSync(path.join(out, 'tools', 'index.html'), layout(LANGS[0], en, 'tools', 'Free online file tools, no uploads · Filesmith', toolsPage(), { prefix: '../', path: 'tools/', tools: true,
+  desc: 'Free online tools that run in your browser and never upload your files: HEIC to JPG, compress images, merge, sign, split and compress PDF, compress video for Discord, video to GIF.',
+  jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Filesmith online tools', url: `${SITE.url}/tools/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, browserRequirements: 'Requires JavaScript and WebAssembly', publisher: { '@type': 'Organization', name: 'Hollowbit' } }] }));
+fs.copyFileSync(path.join(here, 'assets', 'tools.js'), path.join(out, 'tools.js'));
+const nm = path.join(root, 'node_modules');
+const vend = [
+  ['pdf-lib/dist/pdf-lib.min.js', 'pdf-lib.min.js'],
+  ['pdfjs-dist/build/pdf.min.mjs', 'pdfjs/pdf.min.mjs'], ['pdfjs-dist/build/pdf.worker.min.mjs', 'pdfjs/pdf.worker.min.mjs'],
+  ['heic2any/dist/heic2any.min.js', 'heic2any.min.js'],
+  ['@ffmpeg/ffmpeg/dist/umd/ffmpeg.js', 'ffmpeg/ffmpeg.js'], ['@ffmpeg/ffmpeg/dist/umd/814.ffmpeg.js', 'ffmpeg/814.ffmpeg.js'],
+  ['@ffmpeg/core/dist/umd/ffmpeg-core.js', 'ffmpeg/ffmpeg-core.js'], ['@ffmpeg/core/dist/umd/ffmpeg-core.wasm', 'ffmpeg/ffmpeg-core.wasm'],
+];
+for (const [from, to] of vend) { const d = path.join(out, 'vendor', to); fs.mkdirSync(path.dirname(d), { recursive: true }); fs.copyFileSync(path.join(nm, from), d); }
 
 // Sitemap, robots, llms.txt
 const urlOf = (code, p) => `${SITE.url}/${code === 'en' ? '' : `${code}/`}${p === 'index' ? '' : `${p}.html`}`;
@@ -422,6 +458,7 @@ for (const p of PAGES) for (const L of LANGS) {
   sm.push(`<url><loc>${urlOf(L.code, p)}</loc><lastmod>${UPDATED}</lastmod>${LANGS.map((a) => `<xhtml:link rel="alternate" hreflang="${a.html}" href="${urlOf(a.code, p)}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${urlOf('en', p)}"/></url>`);
 }
 sm.push(`<url><loc>${SITE.url}/guides/</loc><lastmod>${UPDATED}</lastmod></url>`);
+sm.push(`<url><loc>${SITE.url}/tools/</loc><lastmod>${UPDATED}</lastmod></url>`);
 for (const g of GUIDES) sm.push(`<url><loc>${SITE.url}/guides/${g.slug}.html</loc><lastmod>${UPDATED}</lastmod></url>`);
 fs.writeFileSync(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${sm.join('\n')}\n</urlset>\n`);
 fs.writeFileSync(path.join(out, 'robots.txt'), `# Search engines and AI assistants are welcome.\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
@@ -445,6 +482,9 @@ fs.writeFileSync(path.join(out, 'llms.txt'), `# Filesmith
 - [FAQ](${SITE.url}/faq.html)
 - [Privacy policy](${SITE.url}/privacy.html)
 - [Source code](${SITE.github})
+
+## Online tools (run in the browser, nothing uploaded)
+- [All tools](${SITE.url}/tools/): HEIC to JPG, image compress/resize, merge/sign/split/compress PDF, compress video to a size, video to GIF.
 
 ## Guides
 ${GUIDES.map((g) => `- [${g.h1}](${SITE.url}/guides/${g.slug}.html): ${g.answer}`).join('\n')}

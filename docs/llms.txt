@@ -19,6 +19,9 @@
 - [Privacy policy](https://hollowbit-dev.github.io/filesmith/privacy.html)
 - [Source code](https://github.com/hollowbit-dev/filesmith)
 
+## Online tools (run in the browser, nothing uploaded)
+- [All tools](https://hollowbit-dev.github.io/filesmith/tools/): HEIC to JPG, image compress/resize, merge/sign/split/compress PDF, compress video to a size, video to GIF.
+
 ## Guides
 - [How to compress a video for Discord](https://hollowbit-dev.github.io/filesmith/guides/compress-video-for-discord.html): Discord's free upload limit is 10 MB per file. To fit a longer or higher-quality video under it, re-encode it at a bitrate worked out from its length. Filesmith does that for you: choose "10 MB", and every video lands just under the limit, on your own computer.
 - [How to open HEIC photos on Windows (and convert them to JPG)](https://hollowbit-dev.github.io/filesmith/guides/heic-to-jpg-windows.html): iPhones save photos as HEIC to save space, but many Windows apps, websites and printers only accept JPG. The quickest fix is to convert them: drop the HEIC files on Filesmith, choose JPG, and it converts hundreds at once on your own computer.

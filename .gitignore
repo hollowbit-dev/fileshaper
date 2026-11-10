@@ -1,7 +1,7 @@
 node_modules
 dist
-vendor
-build
+/vendor
+/build
 test/out
 test/shots
 test/media

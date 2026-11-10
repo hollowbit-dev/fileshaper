@@ -12,7 +12,7 @@ open-source projects for free. They review each project by hand, so it takes a f
 ## What you need to do
 1. Apply at https://signpath.org/apply with the repository URL
    `https://github.com/hollowbit-dev/fileshaper` and the website
-   `https://hollowbit-dev.github.io/fileshaper/`.
+   `https://fileshaper.app/`.
 2. When they approve it, they'll give you an organization ID and an API token.
    Add the token to the repo as a secret: GitHub → Settings → Secrets and variables → Actions →
    New repository secret, named `SIGNPATH_API_TOKEN`.
@@ -27,4 +27,4 @@ SignPath Foundation, once the project is approved.
 - Only builds produced from this repository by GitHub Actions are signed.
 - Privacy: Fileshaper does not transfer any information to other networked systems, except an
   optional update check (it asks GitHub for the latest version number) that the user can turn
-  off in Settings. See the privacy policy: https://hollowbit-dev.github.io/fileshaper/privacy.html
+  off in Settings. See the privacy policy: https://fileshaper.app/privacy.html

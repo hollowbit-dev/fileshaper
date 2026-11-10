@@ -5,7 +5,7 @@ export const CONFIG = {
   author: 'Elvis Zygmanta',
   studio: 'Hollowbit',
   github: 'https://github.com/hollowbit-dev/fileshaper',
-  website: 'https://hollowbit-dev.github.io/fileshaper/',
+  website: 'https://fileshaper.app/',
   tipName: 'Ko-fi',
   tipUrl: 'https://ko-fi.com/hollowbit',
   crypto: { label: 'USDT on TRON (TRC20)', address: '' },

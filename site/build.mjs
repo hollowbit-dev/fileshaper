@@ -13,7 +13,7 @@ const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
 
 // ===== Edit these before you publish =====
 const SITE = {
-  url: 'https://hollowbit-dev.github.io/fileshaper',
+  url: 'https://fileshaper.app',
   github: 'https://github.com/hollowbit-dev/fileshaper',
   tip: 'https://ko-fi.com/hollowbit',
 };
@@ -421,12 +421,13 @@ for (const L of LANGS) {
   const base = L.code === 'en' ? '' : '../';
   for (const p of PAGES) fs.writeFileSync(path.join(dir, `${p}.html`), layout(L, t, p, TITLE(t, p), RENDER[p](L, t, base), OPTS[p](t, L)));
 }
-fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/fileshaper/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/fileshaper/$1"'));
+fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/$1"'));
 for (const f of ['style.css', 'site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 // Search-engine ownership files (Google, Bing) must stay on the site to remain verified.
 for (const f of fs.readdirSync(path.join(here, 'assets'))) if (/^google[a-z0-9]+\.html$|^BingSiteAuth\.xml$/.test(f)) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 for (const d of ['img', 'fonts']) fs.cpSync(path.join(here, 'assets', d), path.join(out, d), { recursive: true });
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
+fs.writeFileSync(path.join(out, 'CNAME'), new URL(SITE.url).host + '\n'); // custom domain for GitHub Pages
 
 // Guides
 fs.mkdirSync(path.join(out, 'guides'), { recursive: true });

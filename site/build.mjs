@@ -45,11 +45,16 @@ const LANGS = [
 ];
 const PAGES = ['index', 'features', 'download', 'changelog', 'faq', 'about', 'support', 'privacy'];
 
-// Checksums come from the built installers when they exist.
+// Checksums: from the local installers if they're built, otherwise from the GitHub release (same files).
+const RELEASE_SUMS = {};
+try {
+  const r = await fetch(`https://api.github.com/repos/hollowbit-dev/fileshaper/releases/tags/v${VERSION}`, { headers: { 'User-Agent': 'hollowbit-site-build' } });
+  if (r.ok) for (const a of (await r.json()).assets || []) if (a.digest) RELEASE_SUMS[a.name] = a.digest.replace(/^sha256:/, '');
+} catch { /* offline */ }
 function sha(file) {
   const p = path.join(root, 'dist', file);
-  if (!fs.existsSync(p)) return 'build the installers to fill this in';
-  return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  if (fs.existsSync(p)) return crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  return RELEASE_SUMS[file] || 'build the installers to fill this in';
 }
 const SUMS = { win: sha(FILES.win), macArm: sha(FILES.macArm), macIntel: sha(FILES.macIntel) };
 

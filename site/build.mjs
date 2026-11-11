@@ -5,6 +5,7 @@ import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { GUIDES, UPDATED } from './guides.mjs';
+import { studioPill, studioBadge, studioCard, studioCss } from './studio.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, '..');
@@ -136,7 +137,7 @@ ${ld}
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="28" height="28"><span>Fileshaper</span></a>
+    <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="28" height="28"><span>Fileshaper</span></a>${studioPill(L.code)}
     <nav class="links" aria-label="Main"><a href="${base}tools/"${page === 'tools' ? ' aria-current="page"' : ''}>${esc(t.nav.tools)}</a>${nav.map(([p, l]) => `<a href="${href(p)}"${p === page ? ' aria-current="page"' : ''}>${esc(l)}</a>`).join('')}</nav>
     <div class="nav-end">
       <details class="lang">
@@ -152,6 +153,7 @@ ${ld}
 ${body}
 </main>
 <footer class="foot">
+  <div class="wrap">${studioCard(L.code, 'Fileshaper')}</div>
   <div class="wrap foot-in">
     <div class="foot-brand">
       <a class="logo" href="${href('index')}"><img src="${base}img/icon-256.png" alt="" width="24" height="24"><span>Fileshaper</span></a>
@@ -184,6 +186,7 @@ function home(L, t, base) {
   return `
 <section class="hero">
   <div class="wrap hero-in">
+    <div class="hb-row">${studioBadge(L.code)}</div>
     <h1>${esc(t.home.h1)}</h1>
     <p class="lead">${esc(t.home.lead)}</p>
     <div class="cta">${dlButtons(t)}</div>
@@ -422,7 +425,8 @@ for (const L of LANGS) {
   for (const p of PAGES) fs.writeFileSync(path.join(dir, `${p}.html`), layout(L, t, p, TITLE(t, p), RENDER[p](L, t, base), OPTS[p](t, L)));
 }
 fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/$1"'));
-for (const f of ['style.css', 'site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
+for (const f of ['site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
+fs.writeFileSync(path.join(out, 'style.css'), fs.readFileSync(path.join(here, 'assets', 'style.css'), 'utf8') + studioCss + '\n:root { --hb-accent: #f26a1b; }\n.hb-row { display: flex; justify-content: center; }\n.logo { flex: none; } .logo + .hb-pill { margin-left: -16px; flex: none; }\n.links a { white-space: nowrap; }\n@media (max-width: 1420px) { .hb-pill span { display: none; } .hb-pill { padding: 5px; } }\n');
 // Search-engine ownership files (Google, Bing) must stay on the site to remain verified.
 for (const f of fs.readdirSync(path.join(here, 'assets'))) if (/^google[a-z0-9]+\.html$|^BingSiteAuth\.xml$/.test(f)) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 for (const d of ['img', 'fonts']) fs.cpSync(path.join(here, 'assets', d), path.join(out, d), { recursive: true });

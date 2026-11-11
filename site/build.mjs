@@ -26,12 +26,12 @@ const FILES = {
   macArm: `Fileshaper-${VERSION}-mac-arm64.dmg`,
   macIntel: `Fileshaper-${VERSION}-mac-x64.dmg`,
 };
-const ORG_LD = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Hollowbit', url: SITE.url, logo: `${SITE.url}/img/icon-256.png`, founder: { '@type': 'Person', name: 'Elvis Zygmanta' }, sameAs: [SITE.github] };
+const ORG_LD = { '@context': 'https://schema.org', '@type': 'Organization', name: 'Hollowbit Studio', url: 'https://hollowbit.dev', logo: `${SITE.url}/img/icon-256.png`, founder: { '@type': 'Person', name: 'Elvis Zygmanta' }, sameAs: [SITE.github] };
 const APP_LD = (desc, lang) => ({
   '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: 'Fileshaper', applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Windows 10, Windows 11, macOS 12 or later', softwareVersion: VERSION, inLanguage: lang, description: desc,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, downloadUrl: `${SITE.url}/download.html`, license: 'https://www.gnu.org/licenses/gpl-3.0.html',
-  publisher: { '@type': 'Organization', name: 'Hollowbit' }, image: `${SITE.url}/og/og-en.png`, screenshot: `${SITE.url}/img/video.webp`,
+  publisher: { '@type': 'Organization', name: 'Hollowbit Studio', url: 'https://hollowbit.dev' }, image: `${SITE.url}/og/og-en.png`, screenshot: `${SITE.url}/img/video.webp`,
   featureList: ['Compress video to a target size such as 10 MB for Discord', 'Convert HEIC to JPG, PNG or WebP', 'Sign, merge, split and compress PDF', 'Trim video and audio, make GIFs, extract MP3', 'Works offline; files are never uploaded'],
 });
 const LANGS = [
@@ -111,7 +111,7 @@ function layout(L, t, page, title, body, o = {}) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <meta name="theme-color" content="#0b0b0c">
-<meta name="author" content="Hollowbit">
+<meta name="author" content="Hollowbit Studio">
 <meta property="og:type" content="${o.article ? 'article' : 'website'}">
 <meta property="og:site_name" content="Fileshaper">
 <meta property="og:title" content="${esc(title)}">
@@ -159,7 +159,7 @@ ${body}
     </div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${base}tools/">${esc(t.nav.tools)}</a><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a><a href="${base}guides/">${esc(t.footer.guides)}</a></div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.help)}</p><a href="${href('faq')}">${esc(t.nav.faq)}</a><a href="${href('support')}">${esc(t.footer.support)}</a><a href="${href('privacy')}">${esc(t.footer.privacy)}</a></div>
-    <div class="foot-col"><p class="foot-h">${esc(t.footer.studio)}</p><a href="${href('about')}">${esc(t.footer.about)}</a><a href="${SITE.github}" rel="noopener">${esc(t.footer.github)}</a></div>
+    <div class="foot-col"><p class="foot-h">${esc(t.footer.studio)}</p><a href="https://hollowbit.dev/">hollowbit.dev</a><a href="${href('about')}">${esc(t.footer.about)}</a><a href="${SITE.github}" rel="noopener">${esc(t.footer.github)}</a></div>
   </div>
   <div class="wrap foot-legal"><span>${esc(t.footer.made)}</span><span>${esc(t.footer.legal)}</span></div>
 </footer>
@@ -361,7 +361,7 @@ function guidePage(g) {
   <nav class="crumbs" aria-label="Breadcrumb"><a href="../">Fileshaper</a><span>/</span><a href="./">Guides</a></nav>
   <h1>${esc(g.h1)}</h1>
   <div class="answer"><p>${esc(g.answer)}</p></div>
-  <p class="fine">Updated ${new Date(UPDATED).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · Hollowbit</p>
+  <p class="fine">Updated ${new Date(UPDATED).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })} · Hollowbit Studio</p>
   <div class="cta cta-left">${dlButtons(t)}</div>
 </div></section>
 <section class="sec tight"><div class="wrap narrow">
@@ -392,7 +392,7 @@ const guideLd = (g) => {
       { '@type': 'ListItem', position: 1, name: 'Fileshaper', item: `${SITE.url}/` },
       { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE.url}/guides/` },
       { '@type': 'ListItem', position: 3, name: g.h1, item: url }] },
-    { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.desc, dateModified: UPDATED, author: { '@type': 'Organization', name: 'Hollowbit' }, publisher: { '@type': 'Organization', name: 'Hollowbit' }, image: `${SITE.url}/og/og-en.png`, mainEntityOfPage: url },
+    { '@context': 'https://schema.org', '@type': 'Article', headline: g.title, description: g.desc, dateModified: UPDATED, author: { '@type': 'Organization', name: 'Hollowbit Studio' }, publisher: { '@type': 'Organization', name: 'Hollowbit Studio', url: 'https://hollowbit.dev' }, image: `${SITE.url}/og/og-en.png`, mainEntityOfPage: url },
   ];
 };
 
@@ -440,7 +440,7 @@ fs.writeFileSync(path.join(out, 'guides', 'index.html'), layout(LANGS[0], en, 'g
 fs.mkdirSync(path.join(out, 'tools'), { recursive: true });
 fs.writeFileSync(path.join(out, 'tools', 'index.html'), layout(LANGS[0], en, 'tools', 'Free online file tools, no uploads · Fileshaper', toolsPage(), { prefix: '../', path: 'tools/', tools: true,
   desc: 'Free online tools that run in your browser and never upload your files: HEIC to JPG, compress images, merge, sign, split and compress PDF, compress video for Discord, video to GIF.',
-  jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Fileshaper online tools', url: `${SITE.url}/tools/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, browserRequirements: 'Requires JavaScript and WebAssembly', publisher: { '@type': 'Organization', name: 'Hollowbit' } }] }));
+  jsonld: [{ '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Fileshaper online tools', url: `${SITE.url}/tools/`, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any (web browser)', offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, browserRequirements: 'Requires JavaScript and WebAssembly', publisher: { '@type': 'Organization', name: 'Hollowbit Studio', url: 'https://hollowbit.dev' } }] }));
 fs.copyFileSync(path.join(here, 'assets', 'tools.js'), path.join(out, 'tools.js'));
 const nm = path.join(root, 'node_modules');
 const vend = [
@@ -465,7 +465,7 @@ fs.writeFileSync(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="U
 fs.writeFileSync(path.join(out, 'robots.txt'), `# Search engines and AI assistants are welcome.\nUser-agent: *\nAllow: /\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
 fs.writeFileSync(path.join(out, 'llms.txt'), `# Fileshaper
 
-> Fileshaper is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit (Elvis Zygmanta). Licence: GPL-3.0. Current version: ${VERSION}.
+> Fileshaper is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit Studio (Elvis Zygmanta, https://hollowbit.dev). Licence: GPL-3.0. Current version: ${VERSION}.
 
 ## Key facts
 - Price: free, no account, no watermark, no daily limits.

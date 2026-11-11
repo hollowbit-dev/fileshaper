@@ -18,13 +18,13 @@
     "tagline": "Jede Datei reparieren. Nichts verlässt deinen Computer.",
     "product": "Produkt",
     "help": "Hilfe",
-    "studio": "Hollowbit",
+    "studio": "Hollowbit Studio",
     "support": "Support",
     "privacy": "Datenschutz",
     "github": "GitHub",
     "about": "Über mich",
-    "made": "Entwickelt von Elvis Zygmanta bei Hollowbit.",
-    "legal": "© 2026 Hollowbit. Fileshaper ist freie Software unter der GPL-3.0-Lizenz.",
+    "made": "Entwickelt von Elvis Zygmanta bei Hollowbit Studio.",
+    "legal": "© 2026 Hollowbit Studio. Fileshaper ist freie Software unter der GPL-3.0-Lizenz.",
     "guides": "Anleitungen (Englisch)"
   },
   "common": {
@@ -383,7 +383,7 @@
       ],
       [
         "Wer hat das gemacht?",
-        "Elvis Zygmanta unter dem Namen Hollowbit. Siehe „Über mich“."
+        "Elvis Zygmanta unter dem Namen Hollowbit Studio. Siehe „Über mich“."
       ]
     ]
   },

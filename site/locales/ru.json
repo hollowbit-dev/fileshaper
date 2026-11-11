@@ -18,13 +18,13 @@
     "tagline": "Исправьте любой файл. Ничего не покидает ваш компьютер.",
     "product": "Продукт",
     "help": "Помощь",
-    "studio": "Hollowbit",
+    "studio": "Hollowbit Studio",
     "support": "Поддержка",
     "privacy": "Конфиденциальность",
     "github": "GitHub",
     "about": "Обо мне",
-    "made": "Создано Элвисом Зигмантой в Hollowbit.",
-    "legal": "© 2026 Hollowbit. Fileshaper — свободное ПО под лицензией GPL-3.0.",
+    "made": "Создано Элвисом Зигмантой в Hollowbit Studio.",
+    "legal": "© 2026 Hollowbit Studio. Fileshaper — свободное ПО под лицензией GPL-3.0.",
     "guides": "Руководства (англ.)"
   },
   "common": {
@@ -383,7 +383,7 @@
       ],
       [
         "Кто это сделал?",
-        "Элвис Зигманта под именем Hollowbit. Подробнее на странице «Обо мне»."
+        "Элвис Зигманта под именем Hollowbit Studio. Подробнее на странице «Обо мне»."
       ]
     ]
   },

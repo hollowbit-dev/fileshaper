@@ -18,13 +18,13 @@
     "tagline": "修好任何文件。文件绝不离开你的电脑。",
     "product": "产品",
     "help": "帮助",
-    "studio": "Hollowbit",
+    "studio": "Hollowbit Studio",
     "support": "支持",
     "privacy": "隐私",
     "github": "GitHub",
     "about": "关于",
-    "made": "由 Elvis Zygmanta 在 Hollowbit 制作。",
-    "legal": "© 2026 Hollowbit。Fileshaper 是基于 GPL-3.0 许可的自由软件。",
+    "made": "由 Elvis Zygmanta 在 Hollowbit Studio 制作。",
+    "legal": "© 2026 Hollowbit Studio。Fileshaper 是基于 GPL-3.0 许可的自由软件。",
     "guides": "使用指南（英文）"
   },
   "common": {
@@ -383,7 +383,7 @@
       ],
       [
         "这是谁做的？",
-        "Elvis Zygmanta，以 Hollowbit 的名义制作。详见“关于”页面。"
+        "Elvis Zygmanta，以 Hollowbit Studio 的名义制作。详见“关于”页面。"
       ]
     ]
   },

@@ -1,6 +1,6 @@
 # Fileshaper
 
-> Fileshaper is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit Studio (Elvis Zygmanta, https://hollowbit.dev). Licence: GPL-3.0. Current version: 1.2.0.
+> Fileshaper is a free, open-source desktop app for Windows and macOS that fixes everyday files offline: it compresses videos to a target size (for example under 10 MB for Discord), converts iPhone HEIC photos to JPG, signs, merges, splits and compresses PDFs, and converts and trims audio. Files are processed on the user's own computer and are never uploaded. Made by Hollowbit Studio (Elvis Zygmanta, https://hollowbit.dev). Licence: GPL-3.0. Current version: 1.2.1.
 
 ## Key facts
 - Price: free, no account, no watermark, no daily limits.

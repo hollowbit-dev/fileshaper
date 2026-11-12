@@ -6,6 +6,8 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { GUIDES, UPDATED } from './guides.mjs';
 import { studioPill, studioBadge, studioCard, studioCss } from './studio.mjs';
+// Stylesheet version, so browsers fetch the new CSS after every restyle.
+const CSSV = crypto.createHash('md5').update(['style.css', 'glass.css'].map((f) => fs.readFileSync(new URL(`./assets/${f}`, import.meta.url), 'utf8')).join('') + studioCss).digest('hex').slice(0, 8);
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(here, '..');
@@ -136,9 +138,10 @@ ${alternates}
 ${ld}
 <link rel="icon" href="${base}favicon.png">
 <link rel="preload" href="${base}fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="${base}style.css">
+<link rel="stylesheet" href="${base}style.css?v=${CSSV}">
 </head>
 <body data-page="${page}">
+<div class="wash" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <a class="skip" href="#main">${esc(t.nav.skip)}</a>
 <header class="nav">
   <div class="wrap nav-in">
@@ -431,7 +434,7 @@ for (const L of LANGS) {
 }
 fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/$1"'));
 for (const f of ['site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
-fs.writeFileSync(path.join(out, 'style.css'), fs.readFileSync(path.join(here, 'assets', 'style.css'), 'utf8') + studioCss + '\n:root { --hb-accent: #f26a1b; }\n.hb-row { display: flex; justify-content: center; }\n.logo { flex: none; } .logo + .hb-pill { margin-left: -16px; flex: none; }\n.links a { white-space: nowrap; }\n@media (max-width: 1420px) { .hb-pill span { display: none; } .hb-pill { padding: 5px; } }\n');
+fs.writeFileSync(path.join(out, 'style.css'), fs.readFileSync(path.join(here, 'assets', 'style.css'), 'utf8') + studioCss + fs.readFileSync(path.join(here, 'assets', 'glass.css'), 'utf8') + '\n:root { --hb-accent: #f26a1b; }\n.hb-row { display: flex; justify-content: center; }\n.logo { flex: none; } .logo + .hb-pill { margin-left: -16px; flex: none; }\n.links a { white-space: nowrap; }\n@media (max-width: 1420px) { .hb-pill span { display: none; } .hb-pill { padding: 5px; } }\n');
 // Search-engine ownership files (Google, Bing) must stay on the site to remain verified.
 for (const f of fs.readdirSync(path.join(here, 'assets'))) if (/^google[a-z0-9]+\.html$|^BingSiteAuth\.xml$/.test(f)) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 for (const d of ['img', 'fonts']) fs.cpSync(path.join(here, 'assets', d), path.join(out, d), { recursive: true });

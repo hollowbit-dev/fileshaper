@@ -1,0 +1,110 @@
+/* ---------- Hollowbit dark liquid glass (shared look with hollowbit.dev and Writeshaper) ----------
+   Loaded last: a slow colour wash behind frosted panels, bright 1px top edges, soft layered shadows.
+   Fileshaper keeps its orange. */
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+:root {
+  --bg: #0b0a10; --bg-2: rgba(255,255,255,.035);
+  --panel: rgba(255,255,255,.045); --panel-2: rgba(255,255,255,.1);
+  --line: rgba(255,255,255,.08); --line-2: rgba(255,255,255,.14);
+  --text: #f4f3f8; --text-2: #adabbd; --text-3: #85839a;
+  --hi: inset 0 1px 0 rgba(255,255,255,.10), inset 0 0 0 1px rgba(255,255,255,.06);
+  --sh-1: 0 1px 2px rgba(0,0,0,.35), 0 4px 12px rgba(0,0,0,.25);
+  --sh-2: 0 2px 6px rgba(0,0,0,.3), 0 18px 48px rgba(0,0,0,.38);
+  --sh-3: 0 4px 12px rgba(0,0,0,.35), 0 30px 90px rgba(0,0,0,.55);
+  --glass-ease: cubic-bezier(.16,1,.3,1); --ease-io: cubic-bezier(.65,0,.35,1);
+}
+body { background: var(--bg); overflow-x: clip; }
+
+.wash { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.wash i { position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%; filter: blur(90px); opacity: .17; will-change: transform; }
+.wash i:nth-child(1) { background: radial-gradient(circle, #f26a1b, transparent 62%); left: -28vmax; top: -36vmax; animation: d1 30s var(--ease-io) infinite alternate; }
+.wash i:nth-child(2) { background: radial-gradient(circle, #ffb13d, transparent 62%); right: -30vmax; top: -26vmax; animation: d2 34s var(--ease-io) infinite alternate; opacity: .12; }
+.wash i:nth-child(3) { background: radial-gradient(circle, #a07cff, transparent 62%); left: 6vmax; bottom: -48vmax; animation: d3 31s var(--ease-io) infinite alternate; }
+.wash i:nth-child(4) { background: radial-gradient(circle, #f9457f, transparent 62%); right: -34vmax; bottom: -46vmax; animation: d1 38s var(--ease-io) infinite alternate-reverse; opacity: .13; }
+@keyframes d1 { to { transform: translate(9vmax, 7vmax) scale(1.08); } }
+@keyframes d2 { to { transform: translate(-8vmax, 10vmax) scale(.93); } }
+@keyframes d3 { to { transform: translate(10vmax, -7vmax) scale(1.06); } }
+
+/* glass, shared by every panel */
+.panel, .dl-card, .webtool, .answer, .lang-menu, .hb-card, .final-in, .demo {
+  background: var(--panel); border: 0;
+  backdrop-filter: blur(28px) saturate(1.6); -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  box-shadow: var(--hi), var(--sh-2);
+}
+.panel, .dl-card, .webtool { border-radius: 22px; }
+.answer { border-radius: 16px; box-shadow: var(--hi), inset 3px 0 0 var(--accent), var(--sh-1); }
+.lang-menu { background: rgba(30,29,40,.85); border-radius: 14px; box-shadow: var(--hi), var(--sh-3); }
+.dl-card.mine { box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 0 0 1.5px rgba(242,106,27,.6), 0 0 0 5px rgba(242,106,27,.08), var(--sh-2); }
+.hb-card:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 0 0 1px rgba(242,106,27,.35), var(--sh-3); }
+
+/* nav: a floating glass pill */
+.nav { background: none; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 12px 16px 0; }
+.nav-in { padding: 0 9px 0 18px; border-radius: 20px; background: rgba(22,21,30,.55); backdrop-filter: blur(30px) saturate(1.8); -webkit-backdrop-filter: blur(30px) saturate(1.8); box-shadow: var(--hi), 0 10px 40px rgba(0,0,0,.25); }
+.links { padding: 3px; border-radius: 14px; background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px var(--line); gap: 2px; }
+.links a { border-radius: 11px; padding: 6px 12px; }
+.links a[aria-current="page"] { background: rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), var(--sh-1); color: var(--text); }
+.lang summary, .hb-pill { border: 0; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px var(--line); border-radius: 999px; }
+
+/* buttons: pills with a top highlight */
+.btn { border-radius: 999px; }
+.btn-primary { box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 8px 28px -10px rgba(242,106,27,.8); }
+.btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 10px 34px -8px rgba(242,106,27,.9); }
+.btn-ghost { border-color: transparent; background: rgba(255,255,255,.06); box-shadow: var(--hi); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.btn-ghost:hover { background: rgba(255,255,255,.1); }
+.jump a { border: 0; border-radius: 999px; background: rgba(255,255,255,.04); box-shadow: inset 0 0 0 1px var(--line-2); }
+
+/* hero */
+.hero::before { display: none; }
+.hero .wrap:last-child::after { background: linear-gradient(transparent, rgba(11,10,16,.85)); }
+.demo { background: rgba(30,29,40,.72); border-radius: 18px; box-shadow: var(--hi), var(--sh-3); }
+.shot { border: 0; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--line-2), var(--sh-3); }
+
+/* tabs: glass segmented control */
+.tabs { border: 0; border-radius: 999px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px var(--line); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.tabs button { border-radius: 999px; }
+.tab-ind, .tabs button[aria-selected="true"] { border-radius: 999px; background: rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), var(--sh-1); }
+.tabs.has-ind button[aria-selected="true"] { background: none; box-shadow: none; }
+
+/* proof numbers and the family grid become glass tiles */
+.proof { border: 0; gap: 14px; }
+.proof > div, .proof > div + div { padding: 28px; border: 0; border-radius: 22px; background: var(--panel); box-shadow: var(--hi), var(--sh-2); backdrop-filter: blur(28px) saturate(1.5); -webkit-backdrop-filter: blur(28px) saturate(1.5); }
+.big { color: var(--text); }
+.proof > div:first-child .big { color: var(--accent-2); }
+.grid3 { border: 0; gap: 12px; }
+.cell { border: 0; border-radius: 20px; background: var(--panel); box-shadow: var(--hi), var(--sh-1); backdrop-filter: blur(24px) saturate(1.5); -webkit-backdrop-filter: blur(24px) saturate(1.5); }
+.facts > div { padding: 22px; border-radius: 20px; background: var(--panel); box-shadow: var(--hi), var(--sh-1); }
+
+/* final CTA: glass with a moving orange edge */
+.final-in { position: relative; isolation: isolate; overflow: hidden; border-radius: 32px; padding: clamp(56px, 7vw, 92px) 24px; }
+.final-in::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; z-index: 1; pointer-events: none;
+  background: conic-gradient(from var(--a), #f26a1b, #ffd03d, #ff9f4d, #f9457f, #a07cff, #f26a1b);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spin 8s linear infinite; }
+.final-in::after { content: ""; position: absolute; z-index: -1; inset: 30% 10% -40%; border-radius: 50%; background: conic-gradient(from var(--a), #f26a1b, #ffd03d, #f9457f, #f26a1b); filter: blur(80px); opacity: .22; animation: spin 8s linear infinite; }
+.final-in img { filter: drop-shadow(0 18px 30px rgba(242,106,27,.4)); }
+@keyframes spin { to { --a: 360deg; } }
+
+/* FAQ: one glass sheet */
+.faq { background: var(--panel); border-radius: 24px; padding: 4px 26px; box-shadow: var(--hi), var(--sh-2); backdrop-filter: blur(28px) saturate(1.5); -webkit-backdrop-filter: blur(28px) saturate(1.5); }
+.faq details:first-child { border-top: 0; }
+
+/* in-browser tools */
+.wt-drop { border-radius: 16px; background: rgba(255,255,255,.025); }
+.wt-chips button, .wt-input { border-radius: 999px; }
+
+.foot { border-top: 1px solid var(--line); }
+
+@media (max-width: 900px) {
+  .proof { grid-template-columns: 1fr; }
+  .grid3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav { padding: 8px 8px 0; }
+  .nav-in { padding: 0 6px 0 12px; }
+  .faq { padding: 2px 18px; border-radius: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wash i, .final-in::before, .final-in::after { animation: none; }
+}
+.facts { gap: 12px; border-top: 0; }
+.nav-in .logo + .hb-pill { margin-left: 2px; }
+@media (max-width: 640px) { .nav-in .logo + .hb-pill { display: none; } }

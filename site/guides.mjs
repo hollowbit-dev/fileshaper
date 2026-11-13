@@ -1,6 +1,6 @@
 // Search guides: plain answers to the file questions people actually search for.
 // Each one gives the answer first, then steps (marked up as HowTo), then honest alternatives and an FAQ.
-export const UPDATED = '2026-11-11';
+export const UPDATED = '2026-11-13';
 
 export const GUIDES = [
   {
@@ -145,4 +145,53 @@ export const GUIDES = [
       ['Is my document uploaded?', 'No. Fileshaper works offline.'],
     ],
   },
+  {
+    slug: 'mov-to-mp4',
+    title: 'How to convert MOV to MP4 for free (Mac and Windows, offline)',
+    desc: 'Turn iPhone and QuickTime MOV videos into MP4 files that play everywhere, without uploading them to a website. Free, offline, Windows and Mac.',
+    h1: 'How to convert MOV to MP4',
+    answer: 'MOV is Apple\'s video format. It plays fine on a Mac and iPhone, but some Windows apps, Android phones, websites and editors refuse it. Converting it to MP4 makes a file that plays almost everywhere. Fileshaper does it in one click, on your own computer, with no upload and no watermark.',
+    tool: 'video',
+    steps: [
+      ['Download Fileshaper', 'Install the free app for Windows or Mac from the download page.'],
+      ['Drop your MOV files on the window', 'iPhone videos, screen recordings and QuickTime exports all work. You can add several at once.'],
+      ['Choose Convert to MP4', 'Under Video, pick Convert to MP4.'],
+      ['Click Convert', 'The MP4 is saved next to the original, which is left untouched.'],
+    ],
+    sections: [
+      ['Why MOV files sometimes won\'t play', 'MOV is a container made by Apple. Windows Media Player, many Android phones, some upload forms and older editors only accept MP4. Newer iPhones also record in HEVC, which some devices can\'t decode at all. An MP4 with H.264 video is the safest format to share.'],
+      ['Does converting lose quality?', 'Re-encoding always changes the video slightly, but at normal settings you won\'t see the difference. If you also need the file smaller, use Compress instead and pick a size such as 25 MB.'],
+      ['Other ways to do it', 'On a Mac, QuickTime Player\'s File, Export As makes a MOV, not an MP4. VLC and HandBrake are free and can convert, with many more settings to work through. Online converters work too, but they upload your video to someone else\'s server and often limit file size.'],
+    ],
+    faq: [
+      ['Is MP4 better than MOV?', 'Not better, just more widely supported. For sharing and uploading, MP4 is the safer choice.'],
+      ['Can I convert several MOV files at once?', 'Yes. Drop them all on Fileshaper together and convert them in one go.'],
+      ['Does Fileshaper upload my video?', 'No. Everything happens on your computer. Fileshaper never uploads your files.'],
+    ],
+  },
+  {
+    slug: 'compress-video-for-email',
+    title: 'How to compress a video for email or WhatsApp (free, offline)',
+    desc: 'Shrink a video so it fits as an email attachment or sends quickly in a chat, without uploading it anywhere. Free, offline, Windows and Mac.',
+    h1: 'How to compress a video for email or WhatsApp',
+    answer: 'Most email services cap attachments at about 20 to 25 MB (Gmail allows 25 MB), and chat apps squeeze big videos hard when you send them. Compressing the video yourself to a set size keeps it sharper and makes sure it goes through. Fileshaper lets you pick the size, such as 16 or 25 MB, and does the rest on your computer.',
+    tool: 'video',
+    steps: [
+      ['Download Fileshaper', 'Install the free app for Windows or Mac from the download page.'],
+      ['Drop your video on the window', 'MP4, MOV, MKV, WEBM and iPhone videos all work.'],
+      ['Pick a size under Compress', 'Choose 25 MB for most email, or 16 MB to keep it small for chats.'],
+      ['Click Compress and attach the new file', 'The smaller copy is saved next to the original, with the size in its name.'],
+    ],
+    sections: [
+      ['How small can a video get?', 'A file\'s size is its bitrate multiplied by its length, so short clips stay sharp and long ones have to drop resolution. As a rough guide, 25 MB holds about 2 minutes at 1080p or 5 minutes at 720p. Trimming the video first helps more than anything else.'],
+      ['When to share a link instead', 'For long videos, a shared link from iCloud Drive, Google Drive or OneDrive is better than squeezing them into an attachment. Gmail switches large attachments to a Drive link for you.'],
+      ['Other ways to do it', 'HandBrake is free and powerful but has no "fit under 25 MB" option. Online compressors work, but you upload your video to a stranger\'s server, and many add a watermark or limit the size.'],
+    ],
+    faq: [
+      ['What is the email attachment limit?', 'Gmail allows 25 MB per email. Most other services allow about 20 to 25 MB.'],
+      ['Will the video look worse?', 'A little, because it has to fit in fewer bytes. Short clips usually look almost the same.'],
+      ['Is it private?', 'Yes. Fileshaper works offline and never uploads your video.'],
+    ],
+  },
+
 ];

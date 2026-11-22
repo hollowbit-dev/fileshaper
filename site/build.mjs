@@ -169,7 +169,7 @@ ${body}
     </div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.product)}</p><a href="${base}tools/">${esc(t.nav.tools)}</a><a href="${href('features')}">${esc(t.nav.features)}</a><a href="${href('download')}">${esc(t.nav.download)}</a><a href="${href('changelog')}">${esc(t.nav.changelog)}</a><a href="${base}guides/">${esc(t.footer.guides)}</a></div>
     <div class="foot-col"><p class="foot-h">${esc(t.footer.help)}</p><a href="${href('faq')}">${esc(t.nav.faq)}</a><a href="${href('support')}">${esc(t.footer.support)}</a><a href="${href('privacy')}">${esc(t.footer.privacy)}</a></div>
-    <div class="foot-col"><p class="foot-h">${esc(t.footer.studio)}</p><a href="https://hollowbit.dev/">hollowbit.dev</a><a href="${href('about')}">${esc(t.footer.about)}</a><a href="${SITE.github}" rel="noopener">${esc(t.footer.github)}</a></div>
+    <div class="foot-col"><p class="foot-h">${esc(t.footer.studio)}</p><a href="https://hollowbit.dev/">hollowbit.dev</a><a href="${href('about')}">${esc(t.footer.about)}</a><a href="${SITE.github}" rel="noopener">${esc(t.footer.github)}</a><a href="https://discord.gg/ENSTjVpJj8" rel="noopener">Discord</a></div>
   </div>
   <div class="wrap foot-legal"><span>${esc(t.footer.made)}</span><span>${esc(t.footer.legal)}</span></div>
 </footer>

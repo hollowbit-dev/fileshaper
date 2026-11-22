@@ -479,7 +479,7 @@ if (!app.requestSingleInstanceLock()) {
     queueOpen(argv.slice(1));
   });
   queueOpen(process.argv.slice(1));
-  app.whenReady().then(() => {
+  app.whenReady().then(() => { require('./discord-menu').addDiscordMenu();
     store.load();
     registerProtocol();
     registerIpc();

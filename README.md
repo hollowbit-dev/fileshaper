@@ -1,12 +1,25 @@
-# Fileshaper
+<p align="center">
+  <a href="https://hollowbit.dev/fileshaper/"><img src="assets/icon.png" width="96" height="96" alt="Fileshaper icon"></a>
+</p>
 
-[![Tests](https://github.com/hollowbit-dev/fileshaper/actions/workflows/test.yml/badge.svg)](https://github.com/hollowbit-dev/fileshaper/actions/workflows/test.yml)
+<h1 align="center">Fileshaper</h1>
 
-**Stop uploading your files to sketchy websites.**
+<p align="center"><b>Stop uploading your files to sketchy websites.</b></p>
+<p align="center">Compress videos for Discord, turn iPhone photos into JPGs, and merge and sign PDFs on your own computer. No limits, no watermarks, no account, no uploads.</p>
 
-Fileshaper is a free, open-source file toolbox for Windows and Mac. It compresses videos for Discord, turns iPhone photos into JPGs, and merges and signs PDFs, all on your own computer. No limits, no watermarks, no account, no uploads.
+<p align="center">
+  <a href="https://github.com/hollowbit-dev/fileshaper/releases/latest"><img src="https://img.shields.io/github/v/release/hollowbit-dev/fileshaper?style=flat-square&label=release&color=5b6cff" alt="Latest release"></a>
+  <img src="https://img.shields.io/badge/price-free-22c55e?style=flat-square" alt="Free">
+  <img src="https://img.shields.io/badge/platform-Mac_%2B_Windows-555?style=flat-square" alt="Platforms">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-a78bfa?style=flat-square" alt="GPL-3.0 licence"></a>
+</p>
 
-![Fileshaper](docs/img/video.jpg)
+<p align="center">
+  <a href="https://hollowbit.dev/fileshaper/download.html"><img src="https://img.shields.io/badge/Download-Free-2563eb?style=for-the-badge" alt="Download Fileshaper for free"></a>
+  <a href="https://github.com/hollowbit-dev/fileshaper/actions/workflows/test.yml"><img src="https://github.com/hollowbit-dev/fileshaper/actions/workflows/test.yml/badge.svg" height="28" alt="Tests"></a>
+</p>
+
+<p align="center"><img src="docs/img/video.webp" width="880" alt="Fileshaper compressing a video to a target size"></p>
 
 ## What it does
 
@@ -22,7 +35,28 @@ Fileshaper is a free, open-source file toolbox for Windows and Mac. It compresse
 
 Originals are never changed. New files are saved next to the original, or in a folder you pick.
 
-## Run it from source
+## Install
+
+Get the installer from the [website](https://hollowbit.dev/fileshaper/download.html) or the [latest release](https://github.com/hollowbit-dev/fileshaper/releases/latest).
+
+- **Mac:** open the .dmg and drag Fileshaper to Applications. The first time, right-click it and choose **Open**, because the app isn't signed yet.
+- **Windows:** run the installer. If SmartScreen appears, click **More info**, then **Run anyway**.
+
+With Homebrew:
+
+```sh
+brew tap hollowbit-dev/tap
+brew trust hollowbit-dev/tap
+brew install --cask fileshaper
+```
+
+Windows signing is being set up through SignPath Foundation's free open-source programme. See [SIGNING.md](SIGNING.md).
+
+## Privacy
+
+No network requests except an optional daily update check against GitHub (Settings → Check for updates).
+
+## Run from source
 
 You need Node.js 20+.
 
@@ -30,44 +64,11 @@ You need Node.js 20+.
 npm install
 npm start                 # opens the app
 bash test/make-media.sh   # sample files for the tests (once)
-npm test                  # 21 end-to-end checks against the real app
+npm test                  # end-to-end checks against the real app
+npm run dist:mac          # Mac installers in dist/
+npm run dist:win          # Windows installer (builds fine on a Mac)
+npm run site              # rebuilds the website in docs/
 ```
-
-## Build the installers
-
-```bash
-npm run dist:mac   # dist/Fileshaper-1.0.0-mac-arm64.dmg and -mac-x64.dmg
-npm run dist:win   # dist/Fileshaper-Setup-1.0.0-win-x64.exe (builds fine on a Mac)
-```
-
-`scripts/fetch-ffmpeg.mjs` downloads the right FFmpeg binary for each platform into `vendor/` the first time.
-
-## The website
-
-The site in `docs/` is generated. Edit the text in `site/locales/*.json` (English plus Spanish, French, German, Russian and Chinese), the layout in `site/build.mjs`, and the styles in `site/assets/`, then run:
-
-```bash
-npm run site       # rebuilds docs/ in all 6 languages, with checksums from dist/
-```
-
-Pages: home, features, download, changelog, FAQ, about, support, privacy, plus a 404. Fonts are self-hosted (Geist, SIL Open Font License), so the site makes no third-party requests. Set your GitHub URL at the top of `site/build.mjs`.
-
-## Publish checklist
-
-1. **Fill in your GitHub username** in `src/renderer/config.js` (the app) and at the top of `site/build.mjs` (the website), then run `npm run site`.
-2. **Create a GitHub repo** called `fileshaper` and push this folder.
-3. **Make a release** tagged `v1.0.0` and upload the three files from `dist/` with their names unchanged. The website's download buttons point to `releases/latest/download/<file name>`.
-4. **Turn on the website:** repo Settings, then Pages, then deploy from the `main` branch, `/docs` folder. It goes live at `https://<you>.github.io/fileshaper/`.
-5. **After rebuilding the installers**, run `npm run site` again so the download page shows the new SHA-256 checksums.
-
-### About the security warnings
-
-Windows signing is being set up through SignPath Foundation's free open-source programme. See [SIGNING.md](SIGNING.md) for the code signing policy and status.
-
-
-The builds aren't signed with a paid certificate, so Windows SmartScreen and macOS Gatekeeper warn on first launch. The website explains how to open Fileshaper anyway. To remove the warnings:
-- **Mac:** Apple Developer Program ($99/year), then set `mac.identity` and notarize.
-- **Windows:** a code-signing certificate, or apply to [SignPath Foundation](https://signpath.org), which signs open-source projects for free.
 
 ## How it's built
 
@@ -75,7 +76,6 @@ The builds aren't signed with a paid certificate, so Windows SmartScreen and mac
 - **FFmpeg** (bundled) for video, audio and image work. Target-size compression is two-pass x264 with the bitrate worked out from the duration. Resolution drops automatically when the budget is tight.
 - **heic-convert** decodes iPhone photos, which FFmpeg 6 can't read reliably.
 - **pdf-lib** edits PDFs and **PDF.js** draws pages for previews, page thumbnails, signing and strong compression.
-- No network requests except an optional daily update check against GitHub (Settings → Check for updates). Settings and history live in a JSON file in the app's data folder.
 
 ```
 src/main.js            window, fileshaper:// protocol, job runner (video/image/audio)
@@ -88,6 +88,22 @@ test/e2e.mjs           end-to-end tests (Playwright driving the real app)
 test/marketing-shots.mjs  regenerates the website screenshots
 ```
 
+## More free apps from Hollowbit
+
+- **[Melodyshaper](https://hollowbit.dev/melodyshaper/)**: hum a tune, make a song
+- **[Clipshaper](https://hollowbit.dev/clipshaper/)**: long videos to short clips
+- **[Captionshaper](https://hollowbit.dev/captionshaper/)**: offline auto subtitles
+- **[Lightshaper](https://hollowbit.dev/lightshaper/)**: free photo editor
+- **[Writeshaper](https://hollowbit.dev/writeshaper/)**: offline writing assistant
+- **[Moveshaper](https://hollowbit.dev/moveshaper/)**: move to a new computer
+- **[Diskshaper](https://hollowbit.dev/diskshaper/)**: clean up storage
+- **[Startshaper](https://hollowbit.dev/startshaper/)**: find out why your PC is slow
+- **[Fuseduo](https://fuseduo.com/)**: automate your Mac apps
+
 ## Licence
 
-GPL-3.0-or-later (see [LICENSE](LICENSE)). Fileshaper bundles FFmpeg built with x264 (GPL); see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for every component and its licence.
+GPL-3.0-or-later (see [LICENSE](LICENSE)). Fileshaper bundles FFmpeg built with x264 (GPL). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for every component and its licence.
+
+---
+
+<p align="center"><sub>Made by <a href="https://hollowbit.dev">Hollowbit Studio</a>. If Fileshaper helped you, a ⭐ helps other people find it.</sub></p>

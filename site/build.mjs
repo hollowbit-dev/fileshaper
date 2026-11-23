@@ -16,7 +16,7 @@ const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
 
 // ===== Edit these before you publish =====
 const SITE = {
-  url: 'https://fileshaper.app',
+  url: 'https://hollowbit.dev/fileshaper',
   github: 'https://github.com/hollowbit-dev/fileshaper',
   tip: 'https://ko-fi.com/hollowbit',
 };
@@ -432,14 +432,13 @@ for (const L of LANGS) {
   const base = L.code === 'en' ? '' : '../';
   for (const p of PAGES) fs.writeFileSync(path.join(dir, `${p}.html`), layout(L, t, p, TITLE(t, p), RENDER[p](L, t, base), OPTS[p](t, L)));
 }
-fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/$1"'));
+fs.writeFileSync(path.join(out, '404.html'), layout(LANGS[0], en, '404', `${en.notfound.title} · Fileshaper`, notfound(LANGS[0], en)).replace(/href="(?!https?:|#|\/)([^"]*)"/g, (m, h) => `href="/fileshaper/${h.replace(/^\.\//, '')}"`).replace(/src="(?!https?:|\/)([^"]*)"/g, 'src="/fileshaper/$1"'));
 for (const f of ['site.js', 'favicon.png']) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 fs.writeFileSync(path.join(out, 'style.css'), fs.readFileSync(path.join(here, 'assets', 'style.css'), 'utf8') + studioCss + fs.readFileSync(path.join(here, 'assets', 'glass.css'), 'utf8') + '\n:root { --hb-accent: #f26a1b; }\n.hb-row { display: flex; justify-content: center; }\n.logo { flex: none; } .logo + .hb-pill { margin-left: -16px; flex: none; }\n.links a { white-space: nowrap; }\n@media (max-width: 1420px) { .hb-pill span { display: none; } .hb-pill { padding: 5px; } }\n');
 // Search-engine ownership files (Google, Bing) must stay on the site to remain verified.
 for (const f of fs.readdirSync(path.join(here, 'assets'))) if (/^google[a-z0-9]+\.html$|^BingSiteAuth\.xml$/.test(f)) fs.copyFileSync(path.join(here, 'assets', f), path.join(out, f));
 for (const d of ['img', 'fonts']) fs.cpSync(path.join(here, 'assets', d), path.join(out, d), { recursive: true });
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
-fs.writeFileSync(path.join(out, 'CNAME'), new URL(SITE.url).host + '\n'); // custom domain for GitHub Pages
 
 // Guides
 fs.mkdirSync(path.join(out, 'guides'), { recursive: true });
